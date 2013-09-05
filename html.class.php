@@ -2208,4 +2208,4 @@ class element_selector
 
 }
 
-if (file_exists('html.shortcuts.php')) include_once "html.shortcuts.php";
+if (file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'html.shortcuts.php')) include_once 'html.shortcuts.php';
