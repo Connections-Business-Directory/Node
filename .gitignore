@@ -217,4 +217,4 @@ pip-log.txt
 sftp-config.json
 
 # Ignore the testing shell plugin.
-connetions-html.php
+connections-html.php
