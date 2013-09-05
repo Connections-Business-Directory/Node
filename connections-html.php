@@ -35,7 +35,6 @@ function CN_HTML ( $atts , $content = NULL ) {
 	// $html = cnHTML::tag( 'div' );
 	// $html->append( h1( 'This is a <h1> tag.' ) );
 
-	clearstatcache();
 	include 'html.class.php';
 
 	//If we really wanna freak out on the syntax, we can try something like that:
@@ -70,8 +69,10 @@ function CN_HTML ( $atts , $content = NULL ) {
 			 ->name('age')
 		  ->caption('Type your age: ')
 		  ->command('Really?')
-			->value('')
+			->value(' ')
 		 ->appendTo($container);
 
-	return esc_html( $container );
+	html::style('.in.a.box{border: 1px solid black;}')->type('text/css')->appendTo($container);
+
+	return $container->addClass('in a box');
 }
