@@ -1,0 +1,630 @@
+<html>
+	<head>
+		<title>Example page - auto generated</title>
+		<link href="http://steamdev.com/snippet/css/jquery.snippet.css" type="text/css" rel="Stylesheet" />
+		<style>
+			body{
+				font: 75% arial,sans-serif;
+			}
+			.collapsible{
+				padding-top: 7px;
+			}
+			.collapsible:hover{
+				cursor: pointer;
+				background-color: #D7DEFF;
+			}
+			.example{
+				padding: 10px;
+				margin-bottom: 10px;
+				border: 2px solid #E2E7EF;
+				width: 802px;
+			}
+			.outputbox{
+				padding: 25px 5px;
+				background-color: #E9EDF3;
+				border: 1px solid white;
+				overflow: auto;
+			}
+			h2{
+				color: black;
+				padding: 0px 10px;
+				width: 805px;
+				background-color: #E9E9E9;
+			}
+			pre{
+				margin: 0;
+				font-family: monospace;
+			}
+			.sidebar{
+				min-width: 15em;
+				border-right: 2px solid #E9E9E9;
+				height: 600px;
+				float: left;
+			}
+			.pname{
+				font-size: 300%;
+				text-decoration: none;
+			}
+			.pname a,
+			.pname a:visited{
+				color: #666;
+				text-decoration: none;
+				font-size: 82%;
+			}
+			.psum{
+			}
+			.psum a,
+			.psum a:visited{
+				color: #444;
+				text-decoration: none;
+				font-size: 90%;
+			}
+			
+
+/*---------- typical Styles ---------*/
+.sh_typical{background:none; padding:0; margin:0; border:0 none;}
+.sh_typical .sh_sourceCode{background-color:#EEEEEE;color:#000;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_keyword{color:#6F5735;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_type{color:#00f;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_string{color:#575757;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_regexp{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_specialchar{color:#C42DA8;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_comment{color:#909090;font-weight:normal;font-style:italic;}
+.sh_typical .sh_sourceCode .sh_number{color:#a900a9;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_preproc{color:#00b800;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_symbol{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_function{color:#000;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_cbracket{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_url{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_date{color:#00f;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_time{color:#00f;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_file{color:#00f;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_ip{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_name{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_variable{color:#ec7f15;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_oldfile{color:#C42DA8;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_newfile{color:#f00;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_difflines{color:#00f;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_selector{color:#ec7f15;font-weight:normal;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_property{color:#00f;font-weight:bold;font-style:normal;}
+.sh_typical .sh_sourceCode .sh_value{color:#f00;font-weight:normal;font-style:normal;}
+
+/*-------- Snippet Base Styles ----------*/
+.snippet-wrap {position:relative;}
+*:first-child+html .snippet-wrap {display:inline-block;}
+* html .snippet-wrap {display:inline-block;}
+.snippet-reveal{text-decoration:underline;}
+.snippet-wrap .snippet-menu, .snippet-wrap .snippet-hide {position:absolute; top:10px; right:15px; font-size:.9em;z-index:1;background-color:transparent;}
+.snippet-wrap .snippet-hide {top:auto; bottom:10px;}
+*:first-child+html .snippet-wrap .snippet-hide {bottom:25px;}
+* html .snippet-wrap .snippet-hide {bottom:25px;}
+.snippet-wrap .snippet-menu pre, .snippet-wrap .snippet-hide pre {background-color:transparent; margin:0; padding:0;}
+.snippet-wrap .snippet-menu a, .snippet-wrap .snippet-hide a {padding:0 5px; text-decoration:underline;}
+.snippet-wrap pre.sh_sourceCode{padding:1em;line-height:1.8em;overflow:auto;position:relative;
+
+-moz-border-radius:0px;
+-webkit-border-radius:0px;
+border-radius:0px;
+
+box-shadow: none;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;}
+.snippet-wrap pre.snippet-textonly {padding:2em;}
+*:first-child+html .snippet-wrap pre.snippet-formatted {padding:2em 1em;}
+* html .snippet-wrap pre.snippet-formatted {padding:2em 1em;}
+.snippet-reveal pre.sh_sourceCode {padding:.5em 1em; text-align:right;}
+.snippet-wrap .snippet-num li{padding-left:1.5em;}
+.snippet-wrap .snippet-no-num{list-style:none; padding:.6em 1em; margin:0;}
+.snippet-wrap .snippet-no-num li {list-style:none; padding-left:0;}
+.snippet-wrap .snippet-num {margin:1em 0 1em 1em; padding-left:3em;}
+.snippet-wrap .snippet-num li {list-style:decimal-leading-zero outside none;}
+.snippet-wrap .snippet-no-num li.box {padding:0 6px; margin-left:-6px;}
+.snippet-wrap .snippet-num li.box {border:1px solid; list-style-position:inside; margin-left:-3em; padding-left:6px;}
+*:first-child+html .snippet-wrap .snippet-num li.box {margin-left:-2.4em;}
+* html .snippet-wrap .snippet-num li.box {margin-left:-2.4em;}
+.snippet-wrap li.box-top {border-width:1px 1px 0 !important;}
+.snippet-wrap li.box-bot {border-width:0 1px 1px !important;}
+.snippet-wrap li.box-mid {border-width:0 1px !important;}
+.snippet-wrap .snippet-num li .box-sp {width:18px; display:inline-block;}
+*:first-child+html .snippet-wrap .snippet-num li .box-sp {width:27px;}
+* html .snippet-wrap .snippet-num li .box-sp {width:27px;}
+.snippet-wrap .snippet-no-num li.box {border:1px solid;}
+.snippet-wrap .snippet-no-num li .box-sp {display:none;}
+
+		</style>
+		<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" type="text/css" rel="Stylesheet" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="http://steamdev.com/snippet/js/jquery.snippet.min.js" type="text/javascript"></script>
+		<script src="http://shjs.sourceforge.net/lang/sh_html.min.js" type="text/javascript"></script>
+		<script src="http://shjs.sourceforge.net/lang/sh_php.min.js" type="text/javascript"></script>
+		
+		<script>
+			jQuery(document).ready(function(){
+				jQuery('.example .startclosed.collapsible').click(function() {
+					jQuery(this).next().toggle('fast');	return false;
+				}).next().hide();
+				jQuery('.example .startopen.collapsible').click(function() {
+					jQuery(this).next().toggle('fast');	return false;
+				}).next().show();
+				
+				jQuery(".htmlcode").snippet("html",{style:"typical",showNum:false});
+				jQuery(".phpcode").snippet("php",{style:"typical",showNum:false});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="maincontainer">
+
+			<table style="padding:23px 0px 0px 0px; margin: 0px 0px 10px 0px; width:100%" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr style="height: 58px;">
+						<td style="width: 9em;">
+							<a href="http://code.google.com/p/phpcreatehtml/">
+								<img src="http://phpcreatehtml.googlecode.com/hg/misc/phpcreatehtml.png" width="153" height="55" alt="phpcreatehtml logo">
+							</a>
+							</td>
+						<td style="padding-left: 0.5em">
+							<div class="pname">
+								<a href="http://code.google.com/p/phpcreatehtml/"><span>phpcreatehtml</span></a>
+							</div>
+							<div class="psum">
+								<a href="http://code.google.com/p/phpcreatehtml/"><span>This is a simple but powerful way to create html from php</span></a>
+							</div>
+						</td>
+						<td style="white-space:nowrap;text-align:right; vertical-align:bottom;"></td>
+					</tr>
+				</tbody>
+			</table>
+ 
+			<table>
+				<tr>
+					<td class="sidebar">
+					</td>
+					<td class="exampleframe">
+						<img src="http://phpcreatehtml.googlecode.com/hg/misc/phpcreatehtml_banner.png"><br>
+<h2>Simple Textcreation</h2><div class="example"><h3>Lets create a div container</h3><div class="description"><span>Create some elements and append them to the container.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><h3>Example</h3><h4>Create and appendTo.</h4></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  /*Simple tag creation example*/
+  
+  //Lets start with a div container...
+  $container = html::div('class','container');
+  
+  //...and add a heading to it...
+  html::h3(&quot;Example&quot;)-&gt;appendTo($container);
+  
+  //...and another one.
+  html::h4(&quot;Create and appendTo.&quot;)-&gt;appendTo($container);
+  
+  //Done, lets get the output.
+  echo $container;
+  
+  //Feel free to examine the object that has been created, just uncomment
+  //print_r($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;h3&gt;Example&lt;/h3&gt;<br>&nbsp;&nbsp;&lt;h4&gt;Create&nbsp;and&nbsp;appendTo.&lt;/h4&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Another simple text creation</h3><div class="description"><span>This example makes use of another code style.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><h3>Example</h3><h4>Create and appendTo.</h4></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Once again, almost the same output. Simple creation but another style.
+  $out = html::div(html::h3('Example'),html::h4('Append inline.'));
+  echo $out;
+  //print_r($out);
+  
+  //And now the really short way. (Enabled &quot;function alias&quot; needed)
+  $out = div(h3('Example'),h4('Append inline short.'));
+  echo $out;
+  //print_r($out);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;h3&gt;Example&lt;/h3&gt;<br>&nbsp;&nbsp;&lt;h4&gt;Create&nbsp;and&nbsp;appendTo.&lt;/h4&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Based on the $container we already build, we extend the container a bit</h3><div class="description"><span>Find some more advanced things like append in this example.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container" style="color: blue;">I am a container and contain nodes.<br /><span style="color: red;" class="description">Like the creation of new nodes, there are several ways to create attributes. There are simply two rules.<ol style="color: black;"><li>If you provide attributes as list and the given count of attributes is odd, the first element is interpreted as node content.</li><li>Attributes overwrite existing attributes. Last in, last out.</li></ol></span></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  html::h4(&quot;Lets add some attributes.&quot;)-&gt;appendTo($container);
+  
+  //Lets create another div as container and adding a class 'container', some fanzy colors and some plain text.
+  $container = html::div('I am a container and contain nodes.')-&gt;class(&quot;container&quot;)-&gt;style('color: green;');
+  
+  //Yeah, another style has already applied, so this one will replace the style.
+  $container-&gt;style('color: blue;');
+  
+  //Append a break for the nicer output
+  $container-&gt;append(html::br());
+  
+  //Now lets create a span tag in list style and append it to the container.
+  $descriptionText = html::span('Like the creation of new nodes, there are several ways to create attributes. ','style','color: red;','class','description')-&gt;appendTo($container);
+  
+  //...add another piece of text...
+  $descriptionText-&gt;addText('There are simply two rules.');
+  
+  //...and some list items.
+  html::ol('style','color: black;',
+    html::li(&quot;If you provide attributes as list and the given count of attributes is odd, the first element is interpreted as node content.&quot;),
+    html::li(&quot;Attributes overwrite existing attributes. Last in, last out.&quot;)
+  )-&gt;appendTo($descriptionText);
+  
+  //Here we go.
+  echo $container;
+  //print_r($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&nbsp;style=&quot;color:&nbsp;blue;&quot;&gt;I&nbsp;am&nbsp;a&nbsp;container&nbsp;and&nbsp;contain&nbsp;nodes.<br>&lt;br&nbsp;/&gt;<br>&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;description&quot;&gt;Like&nbsp;the&nbsp;creation&nbsp;of&nbsp;new&nbsp;nodes,&nbsp;there&nbsp;are&nbsp;several&nbsp;ways&nbsp;to&nbsp;create&nbsp;attributes.&nbsp;There&nbsp;are&nbsp;simply&nbsp;two&nbsp;rules.<br>&lt;ol&nbsp;style=&quot;color:&nbsp;black;&quot;&gt;<br>&nbsp;&nbsp;&lt;li&gt;If&nbsp;you&nbsp;provide&nbsp;attributes&nbsp;as&nbsp;list&nbsp;and&nbsp;the&nbsp;given&nbsp;count&nbsp;of&nbsp;attributes&nbsp;is&nbsp;odd,&nbsp;the&nbsp;first&nbsp;element&nbsp;is&nbsp;interpreted&nbsp;as&nbsp;node&nbsp;content.&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Attributes&nbsp;overwrite&nbsp;existing&nbsp;attributes.&nbsp;Last&nbsp;in,&nbsp;last&nbsp;out.&lt;/li&gt;<br>&lt;/ol&gt;&lt;/span&gt;&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Freak out on syntax!</h2><div class="example"><h3>It is up to you. How do you like to write your code?</h3><div class="description"><span>I tried everything to make use of every syntactic constellation that is some how to realize. Just freak out on a valid syntax and try it your self.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container" style="color: green">This is green text in a container.<span><- Freaky! ;-)</span></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //If we really wanna freak out on the syntax, we can try something like that:
+  $container = html::div('This is green text in a container.')
+             -&gt;{'class=&quot;container&quot; style=&quot;color: green&quot;'}(html::span('&lt;- Freaky! ;-)'));
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&nbsp;style=&quot;color:&nbsp;green&quot;&gt;This&nbsp;is&nbsp;green&nbsp;text&nbsp;in&nbsp;a&nbsp;container.<br>&lt;span&gt;&amp;lt;-&nbsp;Freaky!&nbsp;;-)&lt;/span&gt;&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Lets move the focus on attributes</h2><div class="example"><h3>Just add a class</h3><div class="description"><span>This is the probably most readable way to define an attribute</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="in a box">Container</div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  echo html::style('.in.a.box{border: 1px solid black;}');
+  
+  //Lets focus on attributes
+  $container = html::div('Container')-&gt;class('in a box');
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;in&nbsp;a&nbsp;box&quot;&gt;Container&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Add content and attributes by providing a list of paramter</h3><div class="description"><span>This is also very readable if you write code by hand</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="in a box">Container</div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //You will get the same result writing
+  $container = html::div('Container','class','in a box');
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;in&nbsp;a&nbsp;box&quot;&gt;Container&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Add content and attributes by providing a list of paramter</h3><div class="description"><span>This is also very readable if you write code by hand</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="in a box">Container</div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //...and if you are really in the need of adding things, prepend add to your attribute
+  $container = html::div('Container','class','in a');
+  $container-&gt;addClass('box');
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;in&nbsp;a&nbsp;box&quot;&gt;Container&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Use common php commands to remove the attribute once you appended</h3><div class="description"><span>As long as you got a "connection" to an element, it is up to you to remove already set attributes. Just unset them.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div>Container</div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //You want to get rid of an attribute? Unset it!
+  $container = html::div('Container','class','in a box');
+  unset($container-&gt;class);
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&gt;Container&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Create nodes from html code</h3><div class="description"><span>This might look comfortable but is very inefficient and hey: Thats not the reason I wrote this class... so this is only a way. Not to be prefered! ...but possible anyways.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="in a box">Container</div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Oh, you know jQuery? Create nodes from strings will also work
+  //This way of creating nodes works but is not as efficient as &quot;building&quot; tags, anyways: Do it the way you want.
+  $container = html::tag('&lt;div class=&quot;in a box&quot;&gt;Container&lt;/div&gt;');
+  echo $container;
+  //print_r($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;in&nbsp;a&nbsp;box&quot;&gt;Container&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Create nodes from html code</h3><div class="description"><span>This might look comfortable but is very inefficient and hey: Thats not the reason I wrote this class... so this is only a way. Not to be prefered! ...but possible anyways.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="in a box"><span>Container</span></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Last but not least:
+  $container = html('&lt;div&gt;')-&gt;append(html('&lt;span&gt;')-&gt;append('Container'));
+  $container-&gt;{'class=&quot;in a box&quot;'}();
+  //Nothing special, but appended node and this weird attribute creation.
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;in&nbsp;a&nbsp;box&quot;&gt;<br>&nbsp;&nbsp;&lt;span&gt;Container&lt;/span&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Get a clue how efficient it can be to use this class</h3><div class="description"><span>Programatic repetition of elements. Just take your stuff an append it to nodes.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><h3>The reasons why I created this class</h3><span class="explained">
+	I know, there are some good classes out there to create html code.
+	They were all build with a specific idea in mind. Some of them do great job in assisting you writing correct html, tidying html, tweaking or modifying existing code or even automatic correction and nicing of ugly written code. These libs have to come to work, when everything else is to late.
+	Some other classes assist you in html creation. They offer special short syntax for common tasks on common tags like e.g. echo img($src); They are, in their nature, limited to a set of functionality. Beyond this limit, there is again, plain html.
+	A third genre are templating engines like the well known smarty. These template engines are specialized in letting you combine logics with html fragments in a very simple manner. In case of smarty in a special syntax (PHP alike) that brings some pro's and some con's.
+	</span><ul><li>I assume, users of my class know what they are doing and know how to write html. I do not want to restict your use of marked up code within the sgml world. Dont expect auto correction or automatic correction of misspelled tags or attributes.</li><li>I would give (and get for me of course) as much freedom in sytax as possible without creating a new parser. Almost everything you write and use for tag and attribute creation is written in PHP syntax but as flexible as possible.</li><li>I neither like eval, nor wanted to create another full featured parser. Mixing string crafted html concats are difficult to maintain. Template engines are a kind of extra abstraction and need some more setup and an extra interface. Its okay but not always the right thing.</li><li>I just thought about html as an object serialized from a string. So why mixing datas from object with strings through helper function/methods, templating with concatination instead of threating it what it is?</li><li>To be honest: I am a very lazy person. I do not want to write repeated pattern, repeating pattern or tons of code. Reusable and easy to maintainable code that is flexible and easy to understand but fully in control of the person who has written it. With or without mixing of data and structure. With or without mixing of structure and design. Do it the way you want and never regret things you have already written. Create controls.</li></ul></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Let me explain
+  $container = html('div')-&gt;class('container');
+  html::h3('The reasons why I created this class')-&gt;appendTo($container);
+  $explanation = html::span('class','explained')-&gt;appendTo($container);
+  $explanation-&gt;text('
+  I know, there are some good classes out there to create html code.
+  They were all build with a specific idea in mind. Some of them do great job in assisting you writing correct html, tidying html, tweaking or modifying existing code or even automatic correction and nicing of ugly written code. These libs have to come to work, when everything else is to late.
+  Some other classes assist you in html creation. They offer special short syntax for common tasks on common tags like e.g. echo img($src); They are, in their nature, limited to a set of functionality. Beyond this limit, there is again, plain html.
+  A third genre are templating engines like the well known smarty. These template engines are specialized in letting you combine logics with html fragments in a very simple manner. In case of smarty in a special syntax (PHP alike) that brings some pro\'s and some con\'s.
+  ');
+  $list = html::ul()-&gt;appendTo($container);
+  $bulletpoint[] = 'I assume, users of my class know what they are doing and know how to write html. I do not want to restict your use of marked up code within the sgml world. Dont expect auto correction or automatic correction of misspelled tags or attributes.';
+  $bulletpoint[] = 'I would give (and get for me of course) as much freedom in sytax as possible without creating a new parser. Almost everything you write and use for tag and attribute creation is written in PHP syntax but as flexible as possible.';
+  $bulletpoint[] = 'I neither like eval, nor wanted to create another full featured parser. Mixing string crafted html concats are difficult to maintain. Template engines are a kind of extra abstraction and need some more setup and an extra interface. Its okay but not always the right thing.';
+  $bulletpoint[] = 'I just thought about html as an object serialized from a string. So why mixing datas from object with strings through helper function/methods, templating with concatination instead of threating it what it is?';
+  $bulletpoint[] = 'To be honest: I am a very lazy person. I do not want to write repeated pattern, repeating pattern or tons of code. Reusable and easy to maintainable code that is flexible and easy to understand but fully in control of the person who has written it. With or without mixing of data and structure. With or without mixing of structure and design. Do it the way you want and never regret things you have already written. Create controls.';
+  foreach($bulletpoint as $text)
+    html::li($text)-&gt;appendTo($list);
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;h3&gt;The&nbsp;reasons&nbsp;why&nbsp;I&nbsp;created&nbsp;this&nbsp;class&lt;/h3&gt;<br>&nbsp;&nbsp;&lt;span&nbsp;class=&quot;explained&quot;&gt;I&nbsp;know,&nbsp;there&nbsp;are&nbsp;some&nbsp;good&nbsp;classes&nbsp;out&nbsp;there&nbsp;to&nbsp;create&nbsp;html&nbsp;code.&nbsp;They&nbsp;were&nbsp;all&nbsp;build&nbsp;with&nbsp;a&nbsp;specific&nbsp;idea&nbsp;in&nbsp;mind.&nbsp;Some&nbsp;of&nbsp;them&nbsp;do&nbsp;great&nbsp;job&nbsp;in&nbsp;assisting&nbsp;you&nbsp;writing&nbsp;correct&nbsp;html,&nbsp;tidying&nbsp;html,&nbsp;tweaking&nbsp;or&nbsp;modifying&nbsp;existing&nbsp;code&nbsp;or&nbsp;even&nbsp;automatic&nbsp;correction&nbsp;and&nbsp;nicing&nbsp;of&nbsp;ugly&nbsp;written&nbsp;code.&nbsp;These&nbsp;libs&nbsp;have&nbsp;to&nbsp;come&nbsp;to&nbsp;work,&nbsp;when&nbsp;everything&nbsp;else&nbsp;is&nbsp;to&nbsp;late.&nbsp;Some&nbsp;other&nbsp;classes&nbsp;assist&nbsp;you&nbsp;in&nbsp;html&nbsp;creation.&nbsp;They&nbsp;offer&nbsp;special&nbsp;short&nbsp;syntax&nbsp;for&nbsp;common&nbsp;tasks&nbsp;on&nbsp;common&nbsp;tags&nbsp;like&nbsp;e.g.&nbsp;echo&nbsp;img($src);&nbsp;They&nbsp;are,&nbsp;in&nbsp;their&nbsp;nature,&nbsp;limited&nbsp;to&nbsp;a&nbsp;set&nbsp;of&nbsp;functionality.&nbsp;Beyond&nbsp;this&nbsp;limit,&nbsp;there&nbsp;is&nbsp;again,&nbsp;plain&nbsp;html.&nbsp;A&nbsp;third&nbsp;genre&nbsp;are&nbsp;templating&nbsp;engines&nbsp;like&nbsp;the&nbsp;well&nbsp;known&nbsp;smarty.&nbsp;These&nbsp;template&nbsp;engines&nbsp;are&nbsp;specialized&nbsp;in&nbsp;letting&nbsp;you&nbsp;combine&nbsp;logics&nbsp;with&nbsp;html&nbsp;fragments&nbsp;in&nbsp;a&nbsp;very&nbsp;simple&nbsp;manner.&nbsp;In&nbsp;case&nbsp;of&nbsp;smarty&nbsp;in&nbsp;a&nbsp;special&nbsp;syntax&nbsp;(PHP&nbsp;alike)&nbsp;that&nbsp;brings&nbsp;some&nbsp;pro's&nbsp;and&nbsp;some&nbsp;con's.&lt;/span&gt;<br>&nbsp;&nbsp;&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;I&nbsp;assume,&nbsp;users&nbsp;of&nbsp;my&nbsp;class&nbsp;know&nbsp;what&nbsp;they&nbsp;are&nbsp;doing&nbsp;and&nbsp;know&nbsp;how&nbsp;to&nbsp;write&nbsp;html.&nbsp;I&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;restict&nbsp;your&nbsp;use&nbsp;of&nbsp;marked&nbsp;up&nbsp;code&nbsp;within&nbsp;the&nbsp;sgml&nbsp;world.&nbsp;Dont&nbsp;expect&nbsp;auto&nbsp;correction&nbsp;or&nbsp;automatic&nbsp;correction&nbsp;of&nbsp;misspelled&nbsp;tags&nbsp;or&nbsp;attributes.&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;I&nbsp;would&nbsp;give&nbsp;(and&nbsp;get&nbsp;for&nbsp;me&nbsp;of&nbsp;course)&nbsp;as&nbsp;much&nbsp;freedom&nbsp;in&nbsp;sytax&nbsp;as&nbsp;possible&nbsp;without&nbsp;creating&nbsp;a&nbsp;new&nbsp;parser.&nbsp;Almost&nbsp;everything&nbsp;you&nbsp;write&nbsp;and&nbsp;use&nbsp;for&nbsp;tag&nbsp;and&nbsp;attribute&nbsp;creation&nbsp;is&nbsp;written&nbsp;in&nbsp;PHP&nbsp;syntax&nbsp;but&nbsp;as&nbsp;flexible&nbsp;as&nbsp;possible.&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;I&nbsp;neither&nbsp;like&nbsp;eval,&nbsp;nor&nbsp;wanted&nbsp;to&nbsp;create&nbsp;another&nbsp;full&nbsp;featured&nbsp;parser.&nbsp;Mixing&nbsp;string&nbsp;crafted&nbsp;html&nbsp;concats&nbsp;are&nbsp;difficult&nbsp;to&nbsp;maintain.&nbsp;Template&nbsp;engines&nbsp;are&nbsp;a&nbsp;kind&nbsp;of&nbsp;extra&nbsp;abstraction&nbsp;and&nbsp;need&nbsp;some&nbsp;more&nbsp;setup&nbsp;and&nbsp;an&nbsp;extra&nbsp;interface.&nbsp;Its&nbsp;okay&nbsp;but&nbsp;not&nbsp;always&nbsp;the&nbsp;right&nbsp;thing.&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;I&nbsp;just&nbsp;thought&nbsp;about&nbsp;html&nbsp;as&nbsp;an&nbsp;object&nbsp;serialized&nbsp;from&nbsp;a&nbsp;string.&nbsp;So&nbsp;why&nbsp;mixing&nbsp;datas&nbsp;from&nbsp;object&nbsp;with&nbsp;strings&nbsp;through&nbsp;helper&nbsp;function/methods,&nbsp;templating&nbsp;with&nbsp;concatination&nbsp;instead&nbsp;of&nbsp;threating&nbsp;it&nbsp;what&nbsp;it&nbsp;is?&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;To&nbsp;be&nbsp;honest:&nbsp;I&nbsp;am&nbsp;a&nbsp;very&nbsp;lazy&nbsp;person.&nbsp;I&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;write&nbsp;repeated&nbsp;pattern,&nbsp;repeating&nbsp;pattern&nbsp;or&nbsp;tons&nbsp;of&nbsp;code.&nbsp;Reusable&nbsp;and&nbsp;easy&nbsp;to&nbsp;maintainable&nbsp;code&nbsp;that&nbsp;is&nbsp;flexible&nbsp;and&nbsp;easy&nbsp;to&nbsp;understand&nbsp;but&nbsp;fully&nbsp;in&nbsp;control&nbsp;of&nbsp;the&nbsp;person&nbsp;who&nbsp;has&nbsp;written&nbsp;it.&nbsp;With&nbsp;or&nbsp;without&nbsp;mixing&nbsp;of&nbsp;data&nbsp;and&nbsp;structure.&nbsp;With&nbsp;or&nbsp;without&nbsp;mixing&nbsp;of&nbsp;structure&nbsp;and&nbsp;design.&nbsp;Do&nbsp;it&nbsp;the&nbsp;way&nbsp;you&nbsp;want&nbsp;and&nbsp;never&nbsp;regret&nbsp;things&nbsp;you&nbsp;have&nbsp;already&nbsp;written.&nbsp;Create&nbsp;controls.&lt;/li&gt;<br>&nbsp;&nbsp;&lt;/ul&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Controls</h2><div class="example"><h3>Controls are reusable constructs</h3><div class="description"><span>You would like to create consistent html code fragments for recurring tasks/output. Controls should fit that need.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><button>My Button!</button><button>Second Button.</button></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Here comes the: Control!
+  //Lets start with a simple example.
+  //Create your control as you would create a tag.
+  html::control('simpleexample')-&gt;append(html::button('#caption'));
+  
+  //Open a div as &quot;output collector&quot;
+  $container = div('class','container');
+  //Now fill in data. Use the value with hash as key and assign your desired value.
+  html::control('simpleexample')-&gt;caption('My Button!')-&gt;appendTo($container);
+  //Feel free to reuse your control whenever you need a button.
+  html::control('simpleexample')-&gt;caption('Second Button.')-&gt;appendTo($container);
+  
+  echo $container;
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;button&gt;My&nbsp;Button!&lt;/button&gt;<br>&nbsp;&nbsp;&lt;button&gt;Second&nbsp;Button.&lt;/button&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Quite nice, isnt it?</h3><div class="description"><span>Lets create some more complex controls</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><div class="mycontrol textinput"><label for="name">Type your name: </label><input type="text" name="name" id="name" value="" /><input type="button" title="Send" value="Send" /></div><div class="mycontrol textinput"><label for="age">Type your age: </label><input type="text" name="age" id="age" value="" /><input type="button" title="Really?" value="Really?" /></div></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Now lets move to a more complex construct.
+  //Create your html construct
+  $control = html::div('class','mycontrol textinput')
+               -&gt;append(
+                     html::label('#caption')-&gt;for('#name'),
+                     html::input()-&gt;type('text')-&gt;name('#name')-&gt;id('#name')-&gt;value('#value'),
+                     html::input()-&gt;type('button')-&gt;title('#command')-&gt;value('#command')
+               );
+  //Draft your control if you want to:
+  //echo $control;
+  
+  //Assign your control code to a named html::control
+  html::control('textinput')-&gt;append($control);
+  
+  //Open a container
+  $container = div('class','container');
+  
+  //Reuse your control where ever you need it:
+  html::control('textinput')
+         -&gt;name('name')
+      -&gt;caption('Type your name: ')
+      -&gt;command('Send')
+        -&gt;value('')
+     -&gt;appendTo($container);
+            
+  html::control('textinput')
+         -&gt;name('age')
+      -&gt;caption('Type your age: ')
+      -&gt;command('Really?')
+        -&gt;value('')
+     -&gt;appendTo($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;name&quot;&gt;Type&nbsp;your&nbsp;name:&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;name&quot;&nbsp;id=&quot;name&quot;&nbsp;value=&quot;&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Send&quot;&nbsp;value=&quot;Send&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;age&quot;&gt;Type&nbsp;your&nbsp;age:&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;age&quot;&nbsp;id=&quot;age&quot;&nbsp;value=&quot;&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Really?&quot;&nbsp;value=&quot;Really?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Repeatable controls</h2><div class="example"><h3>We start with a simple repeated list</h3><div class="description"><span>This is the easiest and smallest way for repeating html code framents</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><li>Point -> Milk</li><li>Point -> Sugar</li></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Lets dig a bit more into the difference between &quot;repeatable controls&quot; and &quot;multi-dimensional controls&quot;
+  //Lets create a repeatable control
+  html::control('repeatable')-&gt;append(
+    html::li('Point -&gt; #item')
+  );
+  
+  //Now lets fill it with an array of values
+  $items[] = &quot;Milk&quot;;
+  $items[] = &quot;Sugar&quot;;
+  
+  
+  html::control('repeatable')-&gt;item($items)-&gt;appendToEmpty($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;li&gt;Point&nbsp;-&amp;gt;&nbsp;Milk&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Point&nbsp;-&amp;gt;&nbsp;Sugar&lt;/li&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Just another way to fill in data.</h3><div class="description"><span>This example is more useful for handcrafted items as it utilizes a list of parameters.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><li>Point -> Butter</li><li>Point -> Bread</li></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Another way is to fill it with a list of values
+  html::control('repeatable')-&gt;item('Butter', 'Bread')-&gt;appendToEmpty($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;li&gt;Point&nbsp;-&amp;gt;&nbsp;Butter&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Point&nbsp;-&amp;gt;&nbsp;Bread&lt;/li&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Be aware of things that cant be handled.</h3><div class="description"><span>This example is just to show you the limits of this simple technic.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><li>Value Added</li><li>Is the key Added</li><li>Value Added</li><li>Is the key Added</li><li>Do you see any use in this? Added</li></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //With these given examples, you probably dont see why this type is very simple. It does
+  // simply not know what part of the code you want to repeat.
+  // As of this it simply repeats the tag that has the hash including all sub nodes.
+  
+  //As soon as you add another dimension you will get (unwanted?) duplicates.
+  html::control('beawareof')-&gt;append(html::li('#text1 #text2'),html::hr());
+  
+  
+  //So lets expand it:
+  html::control('beawareof')-&gt;text1('Value','Is the key')-&gt;text2('Added')-&gt;appendToEmpty($container);
+  //What happend?
+  //First: The extra hr tag got ignored, cause it is &quot;outside&quot; of any repeated element.
+  //Second: text1 got repeated and filled driven by the given list. text2 got filled by the second value after
+  //        the variable has be blind copied to all tag copies. In further releases I will maybe extend this
+  //        behavior to a &quot;top town&quot; fill so DONT RELY ON THIS &quot;feature&quot;. Feel free to play with it as it might
+  //        give a great advantage and if you think it should stay Im gonna introduce another command for explicit
+  //        &quot;top down&quot; fill.
+  html::control('beawareof')-&gt;text1('Value','Is the key','#nevertolate')-&gt;text2('Added')-&gt;nevertolate('Do you see any use in this?')-&gt;appendTo($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;li&gt;Value&nbsp;Added&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Is&nbsp;the&nbsp;key&nbsp;Added&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Value&nbsp;Added&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Is&nbsp;the&nbsp;key&nbsp;Added&lt;/li&gt;<br>&nbsp;&nbsp;&lt;li&gt;Do&nbsp;you&nbsp;see&nbsp;any&nbsp;use&nbsp;in&nbsp;this?&nbsp;Added&lt;/li&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>More complex and powerful controls</h2><div class="example"><h3>Creation of a simple table as example for multi dimensional patterns</h3><div class="description"><span>As soon as you got how it works, you will ask yourself: Why the hell has it never been so easy to create html from php?</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><table border="1"><tr><td>0-0</td><td>0-1</td><td>0-2</td><td>0-3</td><td>0-4</td><td>0-5</td></tr><tr><td>1-0</td><td>1-1</td><td>1-2</td><td>1-3</td><td>1-4</td><td>1-5</td></tr><tr><td>2-0</td><td>2-1</td><td>2-2</td><td>2-3</td><td>2-4</td><td>2-5</td></tr><tr><td>3-0</td><td>3-1</td><td>3-2</td><td>3-3</td><td>3-4</td><td>3-5</td></tr><tr><td>4-0</td><td>4-1</td><td>4-2</td><td>4-3</td><td>4-4</td><td>4-5</td></tr><tr><td>5-0</td><td>5-1</td><td>5-2</td><td>5-3</td><td>5-4</td><td>5-5</td></tr><tr><td>6-0</td><td>6-1</td><td>6-2</td><td>6-3</td><td>6-4</td><td>6-5</td></tr><tr><td>7-0</td><td>7-1</td><td>7-2</td><td>7-3</td><td>7-4</td><td>7-5</td></tr><tr><td>8-0</td><td>8-1</td><td>8-2</td><td>8-3</td><td>8-4</td><td>8-5</td></tr><tr><td>9-0</td><td>9-1</td><td>9-2</td><td>9-3</td><td>9-4</td><td>9-5</td></tr></table></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Multi dimensional controls are currently the most complex and powerful tools to create html/objects from your code
+  //As soon as you see how to create and fill them, you will miss them everytime you create code without the html.class. I promise!
+  //Lets start building a control in well formatted chaining style.
+  
+  html::control('chainstyle')-&gt;append(
+    html::table()-&gt;border(1)-&gt;appendDimension(
+      html::tr()-&gt;appendDimension(
+        html::td('#data')
+      )
+    )
+  );
+  
+  //As you can see, this is a plain table. Lets go on with the sample data
+  for($row = 0; $row&lt;=9; $row++)
+    for($cell = 0; $cell&lt;=5; $cell++)
+      $tabledata[$row][$cell][&quot;data&quot;] = $row.&quot;-&quot;.$cell;
+  
+  //And explode it into the pattern
+  html::control('chainstyle')-&gt;explode($tabledata)-&gt;appendToEmpty($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;table&nbsp;border=&quot;1&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/table&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Do you missed code in the last example?</h3><div class="description"><span>There was realy everything in it that was needed to create this table! (And not more!) Here is the code more commented.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><table border="1"><tr><td>0-0</td><td>0-1</td><td>0-2</td><td>0-3</td><td>0-4</td><td>0-5</td></tr><tr><td>1-0</td><td>1-1</td><td>1-2</td><td>1-3</td><td>1-4</td><td>1-5</td></tr><tr><td>2-0</td><td>2-1</td><td>2-2</td><td>2-3</td><td>2-4</td><td>2-5</td></tr><tr><td>3-0</td><td>3-1</td><td>3-2</td><td>3-3</td><td>3-4</td><td>3-5</td></tr><tr><td>4-0</td><td>4-1</td><td>4-2</td><td>4-3</td><td>4-4</td><td>4-5</td></tr><tr><td>5-0</td><td>5-1</td><td>5-2</td><td>5-3</td><td>5-4</td><td>5-5</td></tr><tr><td>6-0</td><td>6-1</td><td>6-2</td><td>6-3</td><td>6-4</td><td>6-5</td></tr><tr><td>7-0</td><td>7-1</td><td>7-2</td><td>7-3</td><td>7-4</td><td>7-5</td></tr><tr><td>8-0</td><td>8-1</td><td>8-2</td><td>8-3</td><td>8-4</td><td>8-5</td></tr><tr><td>9-0</td><td>9-1</td><td>9-2</td><td>9-3</td><td>9-4</td><td>9-5</td></tr></table></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Now to the part what happend.
+  //As you know, you had to name the control and append a node to it.
+  html::control('chainstyle')-&gt;append(
+    //The node you appended ist the base node. Thats also the reason why you just &quot;appended&quot; it instead of
+    // appending plus assigning it as as new dimension. Each sub node from here should repeat for each first dimension.
+    // Means: each &lt;tr&gt;&lt;/tr&gt; should copy with each element in an array. (First Dimension)
+    html::table()-&gt;border(1)-&gt;appendDimension(
+      //Now append a second dimension to each tr element...
+      html::tr()-&gt;appendDimension(
+        //..the td. And of course. Each td consists of some &quot;data&quot;.
+        //Those data reside in the virtually third dimension but will get applied to each &quot;last&quot; in this case 2nd dimension.
+        html::td('#data')
+      )
+    )
+  );
+  
+  //As last step, we append it to the container
+  html::control('chainstyle')-&gt;explode($tabledata)-&gt;appendToEmpty($container);
+  
+  //...and send it to the audience.
+  echo $container;
+  
+  //Keep in mind: The control will only be written once!
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;table&nbsp;border=&quot;1&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/table&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Dont take this example to serious.</h2><div class="example"><h3>Define your own commands as alias</h3><div class="description"><span>Your feel uncomfortable with my predefined commands? Create aliases. I used this to shorten the syntax to the max.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><table><tr><td>0-0</td><td>0-1</td><td>0-2</td><td>0-3</td><td>0-4</td><td>0-5</td></tr><tr><td>1-0</td><td>1-1</td><td>1-2</td><td>1-3</td><td>1-4</td><td>1-5</td></tr><tr><td>2-0</td><td>2-1</td><td>2-2</td><td>2-3</td><td>2-4</td><td>2-5</td></tr><tr><td>3-0</td><td>3-1</td><td>3-2</td><td>3-3</td><td>3-4</td><td>3-5</td></tr><tr><td>4-0</td><td>4-1</td><td>4-2</td><td>4-3</td><td>4-4</td><td>4-5</td></tr><tr><td>5-0</td><td>5-1</td><td>5-2</td><td>5-3</td><td>5-4</td><td>5-5</td></tr><tr><td>6-0</td><td>6-1</td><td>6-2</td><td>6-3</td><td>6-4</td><td>6-5</td></tr><tr><td>7-0</td><td>7-1</td><td>7-2</td><td>7-3</td><td>7-4</td><td>7-5</td></tr><tr><td>8-0</td><td>8-1</td><td>8-2</td><td>8-3</td><td>8-4</td><td>8-5</td></tr><tr><td>9-0</td><td>9-1</td><td>9-2</td><td>9-3</td><td>9-4</td><td>9-5</td></tr></table></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //You feel uncomfortable with commands like appendDimension? You do not like readable code?
+  //Hard to craft, so it should be hard to read. ;-) No problem, create your own aliases.
+  //Let us shrink the table example to less than the half of code and fit it in one line.
+  
+  //Start with shortening commands (CASESENSITIVE)
+  $H=new html;
+  $H::alias('append','x');
+  $H::alias('appendDimension','D');
+  $H::alias('control','C');
+  $H::alias('explode','X');
+  function T(){return call_user_func_array('table',func_get_args());};
+  function D(){return call_user_func_array('td',func_get_args());};
+  function R(){return call_user_func_array('tr',func_get_args());};
+  define('r','#r');
+  define('R','r');
+  define('d','-');
+  
+  $h = div('class','container');
+  
+  //This is short, aint it?
+  $H::C(0)-&gt;x(T()-&gt;D(R()-&gt;D(D(r))));                             // &lt;- Definion
+  for($r=0;$r&lt;=9;$r++)for($c=0;$c&lt;=5;$c++)$d[$r][$c][R]=$r.d.$c; // &lt;- Create example data
+  $h-&gt;x($H::C(0)-&gt;X($d));                                        // &lt;- Fill in and output to container
+  
+  //But, as i mentioned: This example is just to showcase the flexibility and should not be used in any real scenario
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;table&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;0-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;1-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;2-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;3-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;4-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;5-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;6-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;7-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;8-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-0&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-1&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-2&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-3&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-4&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;9-5&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/table&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2>Lets get real again</h2><div class="example"><h3>Lets just advance and forget about this perl golf styles.</h3><div class="description"><span>The following example adds an extra dimension to the pattern.</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><table border="1"><tr><td><ol><li>Lars</li><li>Janet</li></ol></td><td><ol><li>Simon</li><li>Sandra</li></ol></td><td><ol><li>Dieter</li><li>Anne</li><li>Nero</li></ol></td></tr></table></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  //Repeating dimension currently MUST be completly consist of enumerated keys. (Or at least start with a 0 as first element key.)
+  //The last dimension must completly consist of associative keys, otherwise it will not be identified as last dimension.
+  
+  
+  //Lets repeat this example with another construction style and an extra dimension.
+  
+  html::control('controlstyle_listitem')-&gt;append(html::li('#name'));
+  html::control('controlstyle_orderedlist')-&gt;append(html::ol()-&gt;appendDimension(html::control('controlstyle_listitem')));
+  
+  html::control('controlstyle_tabledata')-&gt;append(html::td()-&gt;append(html::control('controlstyle_orderedlist')));
+  html::control('controlstyle_tablerow')-&gt;append(html::tr()-&gt;appendDimension(html::control('controlstyle_tabledata')));
+  html::control('controlstyle_table')-&gt;append(html::table()-&gt;border(1)-&gt;appendDimension(html::control('controlstyle_tablerow')));
+  
+  $tabledata = 
+  array(
+    array(
+      array(
+        array('name'=&gt;&quot;Lars&quot;),
+        array('name'=&gt;&quot;Janet&quot;),
+      ),
+      array(
+        array('name'=&gt;&quot;Simon&quot;),
+        array('name'=&gt;&quot;Sandra&quot;),
+      ),
+      array(
+        array('name'=&gt;&quot;Dieter&quot;),
+        array('name'=&gt;&quot;Anne&quot;),
+        array('name'=&gt;&quot;Nero&quot;),
+      ),
+    ),
+  );
+  
+  html::control('controlstyle_table')-&gt;explode($tabledata)-&gt;appendToEmpty($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;table&nbsp;border=&quot;1&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Lars&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Janet&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Simon&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Sandra&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Dieter&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Anne&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Nero&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>&nbsp;&nbsp;&lt;/table&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Here is an quite complex example for the use of control within controls and pattern</h3><div class="description"><span>This is currently one of the most "complicated" things you can do. But also very effective!</span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><ul class="mylist"><li style="color: red;">Point -> Test Text</li><div class="mycontrol textinput"><label for="textinput_red1">Blah</label><input type="text" name="textinput_red1" id="textinput_red1" value="Enter something!" /><input type="button" title="Start it" value="Start it" /></div><li style="color: green;">Point -> Another Test</li><div class="mycontrol textinput"><label for="textinput_green1">Blahblah</label><input type="text" name="textinput_green1" id="textinput_green1" value="Preset?" /><input type="button" title="Click me" value="Click me" /></div><span>Item Footer</span><li style="color: red;">Point -> Test Text</li><div class="mycontrol textinput"><label for="textinput_red2">Blah</label><input type="text" name="textinput_red2" id="textinput_red2" value="Enter something!" /><input type="button" title="Start it" value="Start it" /></div><li style="color: green;">Point -> Another Test</li><div class="mycontrol textinput"><label for="textinput_green2">Blahblah</label><input type="text" name="textinput_green2" id="textinput_green2" value="Preset?" /><input type="button" title="Click me" value="Click me" /></div><span>Item Footer</span><li style="color: red;">Point -> Test Text</li><div class="mycontrol textinput"><label for="textinput_red3">Blah</label><input type="text" name="textinput_red3" id="textinput_red3" value="Enter something!" /><input type="button" title="Start it" value="Start it" /></div><li style="color: green;">Point -> Another Test</li><div class="mycontrol textinput"><label for="textinput_green3">Blahblah</label><input type="text" name="textinput_green3" id="textinput_green3" value="Preset?" /><input type="button" title="Click me" value="Click me" /></div><span>Item Footer</span><li style="color: red;">Point -> Test Text</li><div class="mycontrol textinput"><label for="textinput_red4">Blah</label><input type="text" name="textinput_red4" id="textinput_red4" value="Enter something!" /><input type="button" title="Start it" value="Start it" /></div><li style="color: green;">Point -> Another Test</li><div class="mycontrol textinput"><label for="textinput_green4">Blahblah</label><input type="text" name="textinput_green4" id="textinput_green4" value="Preset?" /><input type="button" title="Click me" value="Click me" /></div><span>Item Footer</span><li style="color: red;">Point -> Test Text</li><div class="mycontrol textinput"><label for="textinput_red5">Blah</label><input type="text" name="textinput_red5" id="textinput_red5" value="Enter something!" /><input type="button" title="Start it" value="Start it" /></div><li style="color: green;">Point -> Another Test</li><div class="mycontrol textinput"><label for="textinput_green5">Blahblah</label><input type="text" name="textinput_green5" id="textinput_green5" value="Preset?" /><input type="button" title="Click me" value="Click me" /></div><span>Item Footer</span></ul></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  html::control('listitem2')-&gt;appendDimension(
+    html::li('Point -&gt; #item')-&gt;style('color: #color;')
+  );
+  html::control('list2')-&gt;append(
+    html::ul('class','mylist')-&gt;appendDimension(
+      html::control('listitem2')-&gt;append(html::control('textinput')),
+      html::span('Item Footer')
+    )
+  );
+
+  $item = array();$items = array();
+  
+  for($x=1;$x&lt;=5;$x++){
+    $items[0] = array(&quot;color&quot;=&gt;&quot;red&quot;,&quot;item&quot;=&gt;&quot;Test Text&quot;,&quot;caption&quot;=&gt;&quot;Blah&quot;,&quot;name&quot;=&gt;&quot;textinput_red$x&quot;,&quot;value&quot;=&gt;&quot;Enter something!&quot;,&quot;command&quot;=&gt;&quot;Start it&quot;);
+    $items[1] = array(&quot;color&quot;=&gt;&quot;green&quot;,&quot;item&quot;=&gt;&quot;Another Test&quot;,&quot;caption&quot;=&gt;&quot;Blahblah&quot;,&quot;name&quot;=&gt;&quot;textinput_green$x&quot;,&quot;value&quot;=&gt;&quot;Preset?&quot;,&quot;command&quot;=&gt;&quot;Click me&quot;);
+    $item[$x] = $items;
+  }
+
+  $container=div('class','container');
+  
+  html::control('list2')-&gt;explode($item)-&gt;appendTo($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;ul&nbsp;class=&quot;mylist&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;red;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Test&nbsp;Text&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_red1&quot;&gt;Blah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_red1&quot;&nbsp;id=&quot;textinput_red1&quot;&nbsp;value=&quot;Enter&nbsp;something!&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Start&nbsp;it&quot;&nbsp;value=&quot;Start&nbsp;it&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;green;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Another&nbsp;Test&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_green1&quot;&gt;Blahblah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_green1&quot;&nbsp;id=&quot;textinput_green1&quot;&nbsp;value=&quot;Preset?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Click&nbsp;me&quot;&nbsp;value=&quot;Click&nbsp;me&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Item&nbsp;Footer&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;red;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Test&nbsp;Text&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_red2&quot;&gt;Blah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_red2&quot;&nbsp;id=&quot;textinput_red2&quot;&nbsp;value=&quot;Enter&nbsp;something!&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Start&nbsp;it&quot;&nbsp;value=&quot;Start&nbsp;it&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;green;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Another&nbsp;Test&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_green2&quot;&gt;Blahblah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_green2&quot;&nbsp;id=&quot;textinput_green2&quot;&nbsp;value=&quot;Preset?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Click&nbsp;me&quot;&nbsp;value=&quot;Click&nbsp;me&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Item&nbsp;Footer&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;red;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Test&nbsp;Text&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_red3&quot;&gt;Blah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_red3&quot;&nbsp;id=&quot;textinput_red3&quot;&nbsp;value=&quot;Enter&nbsp;something!&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Start&nbsp;it&quot;&nbsp;value=&quot;Start&nbsp;it&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;green;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Another&nbsp;Test&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_green3&quot;&gt;Blahblah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_green3&quot;&nbsp;id=&quot;textinput_green3&quot;&nbsp;value=&quot;Preset?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Click&nbsp;me&quot;&nbsp;value=&quot;Click&nbsp;me&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Item&nbsp;Footer&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;red;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Test&nbsp;Text&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_red4&quot;&gt;Blah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_red4&quot;&nbsp;id=&quot;textinput_red4&quot;&nbsp;value=&quot;Enter&nbsp;something!&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Start&nbsp;it&quot;&nbsp;value=&quot;Start&nbsp;it&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;green;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Another&nbsp;Test&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_green4&quot;&gt;Blahblah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_green4&quot;&nbsp;id=&quot;textinput_green4&quot;&nbsp;value=&quot;Preset?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Click&nbsp;me&quot;&nbsp;value=&quot;Click&nbsp;me&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Item&nbsp;Footer&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;red;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Test&nbsp;Text&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_red5&quot;&gt;Blah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_red5&quot;&nbsp;id=&quot;textinput_red5&quot;&nbsp;value=&quot;Enter&nbsp;something!&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Start&nbsp;it&quot;&nbsp;value=&quot;Start&nbsp;it&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&nbsp;style=&quot;color:&nbsp;green;&quot;&gt;Point&nbsp;-&amp;gt;&nbsp;Another&nbsp;Test&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;class=&quot;mycontrol&nbsp;textinput&quot;&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&nbsp;for=&quot;textinput_green5&quot;&gt;Blahblah&lt;/label&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;text&quot;&nbsp;name=&quot;textinput_green5&quot;&nbsp;id=&quot;textinput_green5&quot;&nbsp;value=&quot;Preset?&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=&quot;button&quot;&nbsp;title=&quot;Click&nbsp;me&quot;&nbsp;value=&quot;Click&nbsp;me&quot;&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Item&nbsp;Footer&lt;/span&gt;<br>&nbsp;&nbsp;&lt;/ul&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2><div class="example"><h3>Just another example code.</h3><div class="description"><span></span></div><div class="startopen collapsible">This is the result</div><div class="outputbox"><div class="container"><ol><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Lars</a></span><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Thorsten</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Wolfgang</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Andrea</a></span><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Reinhard</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny1</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah1</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny2</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah2</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny3</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah3</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny4</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah4</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny5</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah5</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny6</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah6</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny7</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah7</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny8</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah8</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny9</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah9</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny10</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah10</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny11</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah11</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny12</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah12</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny13</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah13</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny14</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah14</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny15</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah15</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny16</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah16</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny17</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah17</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny18</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah18</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny19</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah19</a></span></li><li><span style="color: red;" class="gender male" title="Persons gender is: male"> * <a href="#page_male">Denny20</a></span><span style="color: red;" class="gender female" title="Persons gender is: female"> * <a href="#page_female">Hannah20</a></span></li></ol></div></div><div class="startclosed collapsible">See the PHP source (click to expand)</div><div><pre class="outputbox phpcode">&lt;?php
+include 'html.class.php';
+
+  html::control('lientry')-&gt;append(html::span(' * ')-&gt;style('color: red;')-&gt;class('gender #gender')-&gt;title('Persons gender is: #gender')-&gt;append(html::a('#name')-&gt;href('#page_#gender')));
+  html::control('litem')-&gt;append(html::li()-&gt;appendDimension(html::control('lientry')));
+  html::control('olist')-&gt;append(html::ol()-&gt;appendDimension(html::control('litem')));
+  
+  $row = array(); $user = array();
+  
+  $user[0][&quot;name&quot;] = &quot;Lars&quot;;
+  $user[0][&quot;gender&quot;] = &quot;male&quot;;
+  $user[1][&quot;name&quot;] = &quot;Thorsten&quot;;
+  $user[1][&quot;gender&quot;] = &quot;male&quot;;
+  $row[] = $user;
+  unset($user);
+  $user[0][&quot;name&quot;] = &quot;Denny&quot;;
+  $user[0][&quot;gender&quot;] = &quot;male&quot;;
+  $user[1][&quot;name&quot;] = &quot;Hannah&quot;;
+  $user[1][&quot;gender&quot;] = &quot;female&quot;;
+  $row[] = $user;
+  unset($user);
+  $user[0][&quot;name&quot;] = &quot;Wolfgang&quot;;
+  $user[0][&quot;gender&quot;] = &quot;male&quot;;
+  $user[1][&quot;name&quot;] = &quot;Andrea&quot;;
+  $user[1][&quot;gender&quot;] = &quot;female&quot;;
+  $user[2][&quot;name&quot;] = &quot;Reinhard&quot;;
+  $user[2][&quot;gender&quot;] = &quot;male&quot;;
+  $row[] = $user;
+  unset($user);
+  for($x=1;$x&lt;=20;$x++){
+    $user[0][&quot;name&quot;] = &quot;Denny&quot;.$x;
+    $user[0][&quot;gender&quot;] = &quot;male&quot;;
+    $user[1][&quot;name&quot;] = &quot;Hannah&quot;.$x;
+    $user[1][&quot;gender&quot;] = &quot;female&quot;;
+    $row[] = $user;
+    unset($user);
+  }
+  
+  html::control('olist')-&gt;explode($row)-&gt;appendToEmpty($container);
+
+?&gt;</pre></div><div class="startclosed collapsible">The HTML source for that example (click to expand)</div><div><pre class="outputbox source htmlcode">&lt;div&nbsp;class=&quot;container&quot;&gt;<br>&nbsp;&nbsp;&lt;ol&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Lars&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Thorsten&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Wolfgang&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Andrea&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Reinhard&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny1&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah1&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny2&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah2&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny3&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah3&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny4&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah4&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny5&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah5&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny6&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah6&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny7&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah7&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny8&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah8&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny9&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah9&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny10&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah10&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny11&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah11&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny12&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah12&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny13&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah13&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny14&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah14&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny15&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah15&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny16&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah16&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny17&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah17&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny18&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah18&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny19&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah19&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;male&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;male&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_male&quot;&gt;Denny20&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=&quot;color:&nbsp;red;&quot;&nbsp;class=&quot;gender&nbsp;female&quot;&nbsp;title=&quot;Persons&nbsp;gender&nbsp;is:&nbsp;female&quot;&gt;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#page_female&quot;&gt;Hannah20&lt;/a&gt;&lt;/span&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;<br>&nbsp;&nbsp;&lt;/ol&gt;<br>&lt;/div&gt;</pre></div><br /><div><a href="http://code.google.com/p/phpcreatehtml/">Return to http://code.google.com/p/phpcreatehtml/</a></div></div><h2></h2>					</td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-3452679-24']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	</body>
+</html>
