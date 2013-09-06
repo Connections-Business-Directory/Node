@@ -1,5 +1,8 @@
 <?php
 
+//namespace phpcreatehtml;
+//use ReflectionClass;
+
 /**
  * phpCreateHtml - This is a simple but powerful way to create
  * html tags from php similar to the way you create html with jQuery
@@ -22,14 +25,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 /* Debugging purposes */
-ini_set("display_errors", "ON");
-error_reporting(E_ALL);
+//ini_set("display_errors", "ON");
+//error_reporting(E_ALL);
 
-if( !function_exists("html") )
-{
+if (!function_exists("html")) {
 
     function html()
     {
@@ -38,8 +40,7 @@ if( !function_exists("html") )
 
 }
 
-if( !function_exists("create") )
-{
+if (!function_exists("create")) {
 
     function create()
     {
@@ -48,8 +49,7 @@ if( !function_exists("create") )
 
 }
 
-if( !function_exists("ctrl") )
-{
+if (!function_exists("ctrl")) {
 
     function ctrl()
     {
@@ -58,8 +58,7 @@ if( !function_exists("ctrl") )
 
 }
 
-if( !function_exists("control") )
-{
+if (!function_exists("control")) {
 
     function control()
     {
@@ -93,20 +92,17 @@ class html
 
     public static function debug($function = "", $string = "")
     {
-        if( !html::$debug ) return;
+        if (!html::$debug) return;
         echo $function.": ".trim($string)."\n";
     }
 
     public static function cache($state = NULL)
     {
-        if( class_exists('cache') && is_null($state) === false )
-        {
+        if (class_exists('cache') && is_null($state) === false) {
             cache::enable($state);
             self::$cache = $state;
             return cache::is_enabled();
-        }
-        elseif( class_exists('cache') && is_null($state) === true )
-        {
+        } elseif (class_exists('cache') && is_null($state) === true) {
             return self::$cache;
         }
         return html::$cache;
@@ -114,8 +110,7 @@ class html
 
     public static function tidy($html, $customConfig = array())
     {
-        if( \class_exists('tidy') )
-        {
+        if (\class_exists('tidy')) {
             $td = new tidy();
 
             $config = array(
@@ -154,14 +149,14 @@ class html
     public static function delete($name)
     {
         $name = self::getOrigin($name);
-        if( isset(self::$form[$name]) ) unset(self::$form[$name]);
+        if (isset(self::$form[$name])) unset(self::$form[$name]);
     }
 
     /**
      *
      * @return html
      */
-    public static function notag()
+    static public function notag()
     {
         return self::tag()->html(func_get_args());
     }
@@ -170,25 +165,22 @@ class html
      *
      * @return html
      */
-    public static function tag()
+    static public function tag()
     {
         $args = self::__prepareArguments(func_get_args());
         $tag = self::_createTag($args["nodename"]);
 
-        if( isset($args["attributes"]) )
-        {
-            foreach( $args["attributes"] as $id => $attr )
+        if (isset($args["attributes"])) {
+            foreach ($args["attributes"] as $id => $attr)
             {
-                if( $attr["type"] === "attribute" )
-                {
+                if ($attr["type"] === "attribute") {
                     $attribute = $attr["key"];
-                    if( !$attribute ) $attribute = "+";
-                    if( is_numeric($attribute) ) $attribute = "+".$attribute;
+                    if (!$attribute) $attribute = "+";
+                    if (is_numeric($attribute)) $attribute = "+".$attribute;
                     $tag->{$attribute}((string) $attr["data"]);
                 }
-                elseif( $attr["type"] === "append" )
-                {
-                    if( !is_object($attr["data"]) ) $tag->append((string) $attr["data"]);
+                elseif ($attr["type"] === "append") {
+                    if (!is_object($attr["data"])) $tag->append((string) $attr["data"]);
                     else $tag->append($attr["data"]);
                 }
             }
@@ -196,7 +188,7 @@ class html
         return $tag;
     }
 
-    private static function __prepareArguments(array $argData)
+    static private function __prepareArguments(array $argData)
     {
         $argData = self::__flattenArguments($argData);
         //$argData = self::__reorderArguments($argData);
@@ -204,25 +196,20 @@ class html
         return $argData;
     }
 
-    private static function __reorderArguments($argData)
+    static private function __reorderArguments($argData)
     {
-        for( $tc = 2; $tc >= 1; $tc-- )
+        for ($tc = 2; $tc >= 1; $tc--)
         {
-            if( $argData && count($argData) === ($tc + 1) && strpos($argData[$tc], "=") !== false )
-            {
+            if ($argData && count($argData) === ($tc + 1) && strpos($argData[$tc], "=") !== false) {
                 $equal = substr_count($argData[$tc], "='") + substr_count($argData[$tc], '="');
                 $sepGap = substr_count($argData[$tc], "' ") + substr_count($argData[$tc], '" ');
                 $quote = substr_count($argData[$tc], "'") + substr_count($argData[$tc], '"');
-                if( $equal === 1 && $sepGap === 0 && $quote === 2 || $equal > 1 && $equal === ($sepGap * 2) && $quote === ($equal * 2)
-                )
-                {
+                if ($equal === 1 && $sepGap === 0 && $quote === 2 || $equal > 1 && $equal === ($sepGap * 2) && $quote === ($equal * 2)
+                ) {
                     $attr = parse::__attribute_tokenizer($argData[$tc]);
-                    if( $tc === 1 )
-                    {
+                    if ($tc === 1) {
                         return array_merge(array($argData[0], ''), $attr);
-                    }
-                    elseif( $tc === 2 )
-                    {
+                    } elseif ($tc === 2) {
                         return array_merge(array($argData[0], $argData[1]), $attr);
                     }
                 }
@@ -231,7 +218,7 @@ class html
         return $argData;
     }
 
-    private function __argumentGuesser(array $argData)
+    static private function __argumentGuesser(array $argData)
     {
         $typ = "";
         $typSig = "";
@@ -243,145 +230,99 @@ class html
         $p = 0;
         $nodeElement = array_shift($argData);
         $descArray["nodename"] = $nodeElement;
-        foreach( $argData as $key => $val )
+        foreach ($argData as $key => $val)
         {
             $typ.=(is_object($val) === true ? "O" : "S");
         }
 
-        if( $typ ) $descArray["attributes"] = array();
-        if( $typ ) foreach( $argData as $key => $val )
+        if ($typ) $descArray["attributes"] = array();
+        if ($typ) foreach ($argData as $key => $val)
             {
-                if( $skip !== 0 )
-                {
+                if ($skip !== 0) {
                     $skipTo+=$skip;
                     $skip = 0;
                 }
-                if( $skipTo === $key )
-                {
+                if ($skipTo === $key) {
                     $sCount = substr_count($typ, "S");
                     $even = !($sCount % 2);
-                    if( $key === 0 && ($typLen = strlen($typ)) >= 3 )
-                    {
+                    if ($key === 0 && ($typLen = strlen($typ)) >= 3) {
                         $typSig = $typ[$p].$typ[$p + 1].$typ[$p + 2];
-                        //echo "$typSig\n";
-                        if( $skip === 0 && $typSig === "SSS" )
-                        {
-                            //echo ($even===true?"EVEN":"ODD")."\n";
-                            if( $typLen === 3 )
-                            {
+                        if ($skip === 0 && $typSig === "SSS") {
+                            if ($typLen === 3) {
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
                                 $skip = 3;
-                            }
-                            elseif( $even === true )
-                            { /* I $typLen>3 */
-                                $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
-                                //$descArray["attributes"][] = array("type"=>"append","data"=>$argData[$key]);
-                                $skip = 2;
-                            }
-                            elseif( $even === false )
-                            { /* I $typLen>3 */
-                                $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-                                $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
-                                $skip = 3;
-                            }
-                        }
-                        elseif( $skip === 0 && $typSig === "SSO" )
-                        {
-                            if( $even === true )
-                            {
+                            } elseif ($even === true) { /* I $typLen>3 */
                                 $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
                                 $skip = 2;
-                            }
-                            else
-                            { /* I $even===false */
+                            } elseif ($even === false) { /* I $typLen>3 */
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
                                 $skip = 3;
                             }
-                        }
-                        elseif( $skip === 0 && ($typSig === "SOS" || $typSig === "OOO") )
-                        {
-                            if( $typLen === 3 )
-                            { /* I $even===true */
+                        } elseif ($skip === 0 && $typSig === "SSO") {
+                            if ($even === true) {
+                                $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
+                                $skip = 2;
+                            } else { /* I $even===false */
+                                $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+                                $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
+                                $skip = 3;
+                            }
+                        } elseif ($skip === 0 && ($typSig === "SOS" || $typSig === "OOO")) {
+                            if ($typLen === 3) { /* I $even===true */
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 2]);
                                 $skip = 3;
-                            }
-                            elseif( $typLen >= 3 )
-                            {
+                            } elseif ($typLen >= 3) {
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
                                 $skip = 2;
                             }
-                        }
-                        elseif( $skip === 0 && ($typSig === "SOO" || $typSig === "OSO") )
-                        {
+                        } elseif ($skip === 0 && ($typSig === "SOO" || $typSig === "OSO")) {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
                             $skip = 1;
-                        }
-                        elseif( $skip === 0 && $typSig === "OOS" )
-                        {
+                        } elseif ($skip === 0 && $typSig === "OOS") {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$p + 1]);
                             $skip = 2;
-                        }
-                        elseif( $skip === 0 && $typSig === "OSS" )
-                        {
-                            if( $typLen === 3 )
-                            {
+                        } elseif ($skip === 0 && $typSig === "OSS") {
+                            if ($typLen === 3) {
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $skip = 1;
-                            }
-                            elseif( $typLen > 3 )
-                            {
+                            } elseif ($typLen > 3) {
                                 $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                                 $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
                                 $skip = 3;
                             }
                         }
-                    }
-                    elseif( $skip === 0 && $typ && strlen($typ) >= 2 )
-                    {
+                    } elseif ($skip === 0 && $typ && strlen($typ) >= 2) {
                         $typSig = $typ[$p].$typ[$p + 1];
-                        //echo "$typSig\n";
-                        if( $skip === 0 && $typSig === "SS" )
-                        {
+                        if ($skip === 0 && $typSig === "SS") {
                             $descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
                             $skip = 2;
-                        }
-                        elseif( $skip === 0 && $typSig === "SO" )
-                        {
+                        } elseif ($skip === 0 && $typSig === "SO") {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
                             $skip = 2;
-                        }
-                        elseif( $skip === 0 && $typSig === "OO" )
-                        {
+                        } elseif ($skip === 0 && $typSig === "OO") {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
                             $skip = 2;
-                        }
-                        elseif( $skip === 0 && $typSig === "OS" )
-                        {
+                        } elseif ($skip === 0 && $typSig === "OS") {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                             $skip = 1;
                         }
-                    }
-                    elseif( $skip === 0 )
-                    { /* I L===1 */
+                    } elseif ($skip === 0) { /* I L===1 */
                         $typSig = $typ[$p];
-                        //echo "$typSig\n";
-                        if( $skip === 0/* && ($typSig==="S"
-                          || $typSig==="O") */ )
-                        {
+                        if ($skip === 0/* && ($typSig==="S"
+                          || $typSig==="O") */) {
                             $descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
                             $skip = 1;
                         }
                     }
-                    if( $skip !== 0 )
-                    {
+                    if ($skip !== 0) {
                         $typ = substr($typ, $skip);
                         $p = 0;
                     }
@@ -390,20 +331,17 @@ class html
         return $descArray;
     }
 
-    private function __flattenArguments(array $argData)
+    static private function __flattenArguments(array $argData)
     {
         $argOut = array();
-        foreach( $argData as $key => $val )
+        foreach ($argData as $key => $val)
         {
             //if(is_numeric($key) && is_string($val) && parse::__has_attributes($val)===true){$argOut=array_merge($argOut,parse::__attribute_tokenizer($val));}
-            if( is_numeric($key) && !is_array($val) ) $argOut[] = $val;
-            elseif( !is_numeric($key) )
-            {
+            if (is_numeric($key) && !is_array($val)) $argOut[] = $val;
+            elseif (!is_numeric($key)) {
                 $argOut[] = $key;
                 $argOut[] = $val;
-            }
-            elseif( is_numeric($key) && is_array($val) )
-            {
+            } elseif (is_numeric($key) && is_array($val)) {
                 $argOut = array_merge($argOut, self::__flattenArguments($val));
             }
         }
@@ -412,19 +350,22 @@ class html
         return $argData;
     }
 
+    /**
+     *
+     * @param string $nodename
+     * @return html_attribute
+     */
     private static function _createTag($nodename = false)
     {
         $id = uniqid();
-        if( !isset(self::$tag[$id]) ) self::$tag[$id] = new self();
+        if (!isset(self::$tag[$id])) self::$tag[$id] = new self();
         self::$tag[$id]->setElement($id);
         html::debug(__METHOD__, "Create node from $nodename");
 
-        if( !self::$magicSpecialMethods )
-        {
+        if (!self::$magicSpecialMethods) {
             self::__selfInvestigate();
         }
-        if( isset($nodename) && !is_object($nodename) && isset(self::$magicSpecialMethods[$nodename]) )
-        {
+        if (isset($nodename) && !is_object($nodename) && isset(self::$magicSpecialMethods[$nodename])) {
             $callOperation = self::$magicSpecialIdentifier.$nodename;
             //Special Tags always start with namespace "special"
             return self::$callOperation($id, "special:".$nodename);
@@ -432,19 +373,28 @@ class html
         return self::$tag[$id]->_createNewTag($nodename);
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private static function __selfInvestigate()
     {
         $self = new ReflectionClass(__CLASS__);
-        foreach( $self->getMethods() as $id => $methodData )
+        foreach ($self->getMethods() as $id => $methodData)
         {
-            if( strpos($methodData->name, self::$magicSpecialIdentifier) !== false )
-            {
+//            html::debug(__METHOD__, "Check registered methods $methodData");
+            if (strpos($methodData->name, self::$magicSpecialIdentifier) !== false) {
                 self::$magicSpecialMethods[substr($methodData->name, strlen(self::$magicSpecialIdentifier))] = $methodData->name;
             }
         }
         return true;
     }
 
+    /**
+     *
+     * @param string $function
+     * @return string
+     */
     private static function __createSpecialName($function)
     {
         $name = substr($function, strlen(self::$magicSpecialIdentifier));
@@ -452,33 +402,110 @@ class html
         return $prefix.":".$name;
     }
 
-    //Definition of special commands
+    /**
+     * Definition of special commands
+     * @param type $command
+     * @param type $alias
+     * @return boolean
+     */
     private static function __special__alias($command, $alias)
     {
         self::$aliasCommandTable[$alias] = $command;
         return true;
     }
 
+    /**
+     * Special function to check a bunch of variables if there is any empty variable before creating a node
+     * @return html
+     */
+    static private function __special__ifNotAnyEmpty()
+    {
+        $args = func_get_args();
+        if ($args) {
+            foreach ($args as $arg)
+            {
+                if (empty($arg)) {
+//                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
+                    return html::tag('[nooutput]');
+//                    return html::{'[nooutput]'}();
+                }
+            }
+        }
+
+//        return html::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotanyemptymode'}(true);
+        $tag = self::tag(self::__createSpecialName(__FUNCTION__));
+        $tag->{'_name'}($args);
+        $tag->setMode(__FUNCTION__);
+        return $tag;
+    }
+
+    /**
+     * Special function to check a bunch of variables if they are all empty before creating a node
+     * @return html
+     */
+    static private function __special__ifNotAllEmpty()
+    {
+        $args = func_get_args();
+        if ($args) {
+            for ($x = 1; $x <= 1; $x++)
+            {
+                foreach ($args as $arg)
+                {
+                    if (!empty($arg)) {
+                        break(2);
+                    } else {
+//                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
+                        $newNodeInCharge = html::tag('[nooutput]');
+//                    return html::{'[nooutput]'}();
+//                        $newNodeInCharge = html::{'[nooutput]'}();
+                    }
+                }
+                return $newNodeInCharge;
+            }
+        }
+//        return html::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotallemptymode'}(true);
+        $tag = self::tag(self::__createSpecialName(__FUNCTION__));
+        $tag->{'_name'}($args);
+        $tag->setMode(__FUNCTION__);
+        return $tag;
+    }
+
+    /**
+     *
+     * @param type $on
+     * @param type $function
+     * @param type $callback
+     * @param type $ownerid
+     */
     private static function __registerEvent($on, $function, $callback, $ownerid)
     {
         self::$event[$function][$on][$ownerid] = $callback;
     }
 
+    /**
+     *
+     * @param string $name
+     * @param string $var
+     */
     private static function __registerState($name, $var = null)
     {
         self::$variable[$name] = $var;
     }
 
+    /**
+     *
+     * @param string $name
+     * @return string
+     */
     public static function __getState($name)
     {
-        if( isset(self::$variable[$name]) ) return self::$variable[$name];
+        if (isset(self::$variable[$name])) return self::$variable[$name];
     }
 
     public static function __hasEvent($on, $function, &$object)
     {
-        if( isset(self::$event[$function][$on]) === true )
-        {
-            foreach( self::$event[$function][$on] as $ownerid => $callback )
+        if (isset(self::$event[$function][$on]) === true) {
+            foreach (self::$event[$function][$on] as $ownerid => $callback)
                 $callback($object);
         }
     }
@@ -489,23 +516,20 @@ class html
         $callback = function(&$object)
                 {
                     $ns = html::__getState('namespace');
-                    if( $object->nodename && $ns && strpos($object->nodename, ':') === false ) $object->{'&__namespace'} = $ns;
+                    if ($object->nodename && $ns && strpos($object->nodename, ':') === false) $object->{'&__namespace'} = $ns;
                 };
         self::__registerEvent('on', '__toString', $callback, __FUNCTION__);
     }
 
     private static function __special__control($args)
     {
-        if( isset(self::$tagStore["control"][$args]) )
-        {
-            if( isset(self::$tagStore["control"][$args]->{'*registeredevents'}) )
-            {
+        if (isset(self::$tagStore["control"][$args])) {
+            if (isset(self::$tagStore["control"][$args]->{'*registeredevents'})) {
                 $events = self::$tagStore["control"][$args]->{'*registeredevents'};
                 unset(self::$tagStore["control"][$args]->{'*registeredevents'});
             }
             $clone = unserialize(serialize(self::$tagStore["control"][$args]));
-            if( isset($events) )
-            {
+            if (isset($events)) {
                 self::$tagStore["control"][$args]->{'*registeredevents'} = $events;
                 $clone->{'*registeredevents'}($events);
             }
@@ -532,19 +556,17 @@ class html
         html::debug(__METHOD__, "$name");
         html::commandAlias($name);
 
-        if( !self::$magicSpecialMethods )
-        {
+        if (!self::$magicSpecialMethods) {
             self::__selfInvestigate();
         }
 
-        if( isset(self::$magicSpecialMethods[$name]) )
-        {
+        if (isset(self::$magicSpecialMethods[$name])) {
             $name = self::$magicSpecialMethods[$name];
             html::debug(__METHOD__, "Call function $name");
             return call_user_func_array(array(__CLASS__, $name), $args);
         }
 
-        if( isset($args) ) return html::tag($name, $args);
+        if (isset($args)) return html::tag($name, $args);
         return html::tag($name);
     }
 
@@ -558,12 +580,12 @@ class html
 
     private static function commandIsAlias($name)
     {
-        if( isset(self::$aliasCommandTable[$name]) ) return true;
+        if (isset(self::$aliasCommandTable[$name])) return true;
     }
 
     public static function commandAlias(&$name)
     {
-        if( !html::commandIsAlias($name) ) return false;
+        if (!html::commandIsAlias($name)) return false;
         $alias = self::$aliasCommandTable[$name];
         $name = $alias;
         return true;
@@ -573,7 +595,7 @@ class html
     {
         $m = 0;
         $x = explode(',', json_encode($a, JSON_FORCE_OBJECT)."\n\n");
-        foreach( $x as $r )
+        foreach ($x as $r)
             $m = (substr_count($r, ':') > $m) ? substr_count($r, ':') : $m;
         return $m;
     }
@@ -582,22 +604,22 @@ class html
 
 class html_attribute
 {
+    /*
+     * html_attribute
+     */
 
     private $tag;
 
     function _createNewTag($string)
     {
-        if( $this->__braceCheck($string) === false )
-        {
+        if ($this->__braceCheck($string) === false) {
             $tag = $this->_nodename($string);
             return $tag;
-        }
-        else
-        {
+        } else {
             //R:$tag = $this->_parseFromString($string);
             $this->_parseFromString($string);
             //R:if( is_array($tag->_content) && count($tag->_content) == 1 && is_object($tag->_content[0]) ) return $tag->_content[0];
-            if( isset($this->_content) && is_array($this->_content) && count($this->_content) == 1 && is_object($this->_content[0]) ) return $this->_content[0];
+            if (isset($this->_content) && is_array($this->_content) && count($this->_content) == 1 && is_object($this->_content[0])) return $this->_content[0];
             //R:return $tag;
             return $this->tag();
         }
@@ -606,6 +628,12 @@ class html_attribute
     public function inReplaceMode($state = true)
     {
         $this->{"*inreplacemode"} = $state;
+        return $this->tag();
+    }
+
+    public function setMode($name, $state = true)
+    {
+        $this->{"*".$name} = $state;
         return $this->tag();
     }
 
@@ -640,21 +668,59 @@ class html_attribute
         return call_user_func_array(array($this, "append"), func_get_args());
     }
 
+    /**
+     *
+     * @return html_attribute
+     */
     public function append()
     {
-        if( func_get_args() ) foreach( func_get_args() as $object )
+        if (func_get_args()) foreach (func_get_args() as $object)
             {
                 $element = $this->tag();
-                if( $object instanceOf html_attribute )
-                {
+                if ($object instanceOf html_attribute) {
                     $element->addhtml($object->tag());
-                }
-                else
-                {
+                } else {
                     $element->addhtml($object);
                 }
             }
         return $this->tag();
+    }
+
+    /**
+     * This function will end any chainability and return the html as string before it free up the memory.
+     * I implemented this function for those how create fragments in a loop.
+     * @return string
+     */
+    public function pushToString()
+    {
+        $out = ''.$this;
+        $this->__dropFromMemory();
+//        $this->tag = null;
+//        array_walk_recursive($this->_content, function($item, $key)
+//                {
+//                    $item->__dropFromMemory();
+//                });
+//        $this->_content = null;
+//        gc_collect_cycles();
+//        print_r($this);
+        return $out;
+    }
+
+    public function __dropFromMemory()
+    {
+        unset($this->tag);
+        if (isset($this->_content) && is_array($this->_content)) {
+            foreach ($this->_content as $sub_element)
+            {
+                if($sub_element instanceOf html_attribute){
+                    $sub_element->__dropFromMemory();
+                }
+            }
+        }
+        if(isset($this->_content)){
+            unset($this->_content);
+        }
+        unset($this->nodename);
     }
 
     function __parentElement(html_attribute $object)
@@ -669,12 +735,9 @@ class html_attribute
 
     function _intoTag($string)
     {
-        if( $this->__braceCheck($string) === false )
-        {
+        if ($this->__braceCheck($string) === false) {
             return $this->html($string);
-        }
-        else
-        {
+        } else {
             return $this->_parseFromString($string);
         }
     }
@@ -686,10 +749,10 @@ class html_attribute
 
     function _parseFromString($string)
     {
-        if( html::cache() && cache::has(__FUNCTION__.$string) ) return cache::get(__FUNCTION__.$string);
+        if (html::cache() && cache::has(__FUNCTION__.$string)) return cache::get(__FUNCTION__.$string);
         //R:$createdElement = parse::html($string, $this->tag());
         $this->tag()->__parse($string);
-        if( html::cache() ) cache::set(__FUNCTION__.$string, $createdElement);
+        if (html::cache()) cache::set(__FUNCTION__.$string, $createdElement);
         //R:return $createdElement;
         return $this->tag();
     }
@@ -702,42 +765,40 @@ class html_attribute
     private function __braceCheck($string)
     {
         $string = trim($string);
-        if( strpos($string, "<") !== false && strpos($string, ">") !== false )
-        {
+        if (strpos($string, "<") !== false && strpos($string, ">") !== false) {
             return true;
         }
         else return false;
     }
 
+    /**
+     *
+     * @param type $attribute
+     * @param type $value
+     * @return \html_attribute
+     */
     function __call($attribute, $value)
     {
-        if( $attribute == "*registeredevents" && isset($this->{'*registeredevents'}) && is_array($value[0]) && isset($value[0]["event"]) )
-        {
+        if ($attribute == "*registeredevents" && isset($this->{'*registeredevents'}) && is_array($value[0]) && isset($value[0]["event"])) {
             $closureConstruct = array($value[0]["event"] => $value[0]["closure"]);
             $this->$attribute = array_merge($this->$attribute, $closureConstruct);
             return $this->tag();
         }
-        if( isset($this->{'*registeredevents'}[$attribute]) )
-        {
+        if (isset($this->{'*registeredevents'}[$attribute])) {
             $callback = $this->{'*registeredevents'}[$attribute];
             $callback($this->tag);
         }
-        if( $attribute == "explode" && is_array($value) && $this->tag()->nodename != "special:control" )
-        {
-            if( strpos(json_encode($this, JSON_FORCE_OBJECT), '#') !== false )
-            {
+        if ($attribute == "explode" && is_array($value) && $this->tag()->nodename != "special:control") {
+            if (strpos(json_encode($this, JSON_FORCE_OBJECT), '#') !== false) {
                 $pseudoWrap = html::control('internalCreatedGenericControlElement'.uniqid())->append($this);
                 return call_user_func_array(array($pseudoWrap, 'explode'), $value);
-            }
-            else
-            {
+            } else {
                 return $this;
             }
         }
 
         html::debug(__METHOD__, "$attribute");
-        if( html::commandAlias($attribute) )
-        {
+        if (html::commandAlias($attribute)) {
             return call_user_func_array(array($this, $attribute), $value);
         }
         return $this->setElementAttribute($attribute, $value);
@@ -747,39 +808,31 @@ class html_attribute
     {
         html::debug(__METHOD__, "$attribute");
         html::commandAlias($attribute);
-        if( is_array($value) && isset($value["event"]) && isset($value["closure"]) && $value["closure"] instanceOf Closure )
-        {
+        if (is_array($value) && isset($value["event"]) && isset($value["closure"]) && $value["closure"] instanceOf Closure) {
             $closureConstruct = array($value["event"] => $value["closure"]);
-            if( isset($this->{$attribute}) && is_array($this->{$attribute}) )
-            {
+            if (isset($this->{$attribute}) && is_array($this->{$attribute})) {
                 $this->$attribute = array_merge($this->$attribute, $closureConstruct);
-            }
-            else
-            {
+            } else {
                 $this->$attribute = array();
                 $this->$attribute = array_merge($this->$attribute, $closureConstruct);
             }
             return $this->tag();
         }
-        if( $this->parseAttr($attribute) )
-        {
-            if( is_string($value) )
-            {
+        if ($this->parseAttr($attribute)) {
+            if (is_string($value)) {
                 $this->tag()->addtext($value);
             }
-            if( is_object($value) )
-            {
+            if (is_object($value)) {
                 $this->tag()->append($value);
             }
             return $this->tag();
         }
-        if( !isset($value) ) $value = "";
-        if( !is_array($value) && !is_object($value) ) html::debug(__METHOD__, $attribute." = ".gettype($value)."(".$value.")");
+        if (!isset($value)) $value = "";
+        if (!is_array($value) && !is_object($value)) html::debug(__METHOD__, $attribute." = ".gettype($value)."(".$value.")");
         $attribute = strtolower($attribute);
-        foreach( array("add", "remove") as $pre )
+        foreach (array("add", "remove") as $pre)
         {
-            if( stripos($attribute, $pre) === 0 )
-            {
+            if (stripos($attribute, $pre) === 0) {
                 $attribute = substr($attribute, strlen("add"));
                 break;
             }
@@ -791,40 +844,40 @@ class html_attribute
 
     private function addElementAttribute($attribute, $value)
     {
-        if( isset($this->$attribute) ) html::debug(__METHOD__, "Attribute \$attrName==\"".$attribute."\" to append is: ".gettype($this->$attribute)."(".$attribute.")");
+        $attrName = null;
+        if (isset($this->$attribute)) html::debug(__METHOD__, "Attribute \$attrName==\"".$attribute."\" to append is: ".gettype($this->$attribute)."(".$attribute.")");
         html::debug(__METHOD__, "Value to append is: ".gettype($value)."(".$value.")");
 
-        if( $attribute == "html" || $attribute == "text" )
-        {
+        if ($attribute == "html" || $attribute == "text") {
             $attrName = $attribute = "_content";
         }
+
+        if (( $attrName == "cdata" && is_string($value)) || ( $attrName == "cdata" && is_array($value) && implode("", $value) === "" )) {
+            if (is_array($value)) $value = "";
+
+            $value = "<![CDATA[".$value."]]>";
+            $attrName = $attribute = "_content";
+        }
+
         $attrName = $attribute;
-        if( isset($this->$attribute) ) $attrType = gettype($this->$attribute);
+        if (isset($this->$attribute)) $attrType = gettype($this->$attribute);
         else $attrType = "string";
         $addType = gettype($value);
 
-        if( is_object($value) )
-        {
+        if (is_object($value)) {
             $this->__pushToArray($attribute, $value);
-        }
-        elseif( $addType == "string" && $attrType == "array" && $attrName == "_content" )
-        {
+        } elseif ($addType == "string" && $attrType == "array" && $attrName == "_content") {
             html::debug(__METHOD__, "Push STRING to _content ARRAYPUSH");
             $this->__pushToArray($attribute, html::tag()->{$attribute}($value));
-        }
-        elseif( $addType == "string" && $attrType == "string" )
-        {
+        } elseif ($addType == "string" && $attrType == "string") {
             html::debug(__METHOD__, "Append STRING to _content String");
-            if( !isset($this->$attribute) ) $this->$attribute = "";
+            if (!isset($this->$attribute)) $this->$attribute = "";
             $this->$attribute .= ($this->$attribute && $value[strlen($value) - 1] != ">" && $attrName != "_content" ? " " : "").$value;
         }
-        elseif( $attrType == "NULL" && $addType == "string" )
-        {
+        elseif ($attrType == "NULL" && $addType == "string") {
             html::debug(__METHOD__, "Overwrite STRING in _content");
             $this->$attribute = $value;
-        }
-        else
-        {
+        } else {
             trigger_error("Unhandled operation $attrName $attrType $addType", E_USER_ERROR);
         }
         return $this->tag();
@@ -832,8 +885,8 @@ class html_attribute
 
     private function __pushToArray($attribute, $element)
     {
-        if( !isset($this->$attribute) ) $this->$attribute = array();
-        if( !is_array($this->$attribute) ) $this->$attribute = array(html::tag()->text($this->$attribute));
+        if (!isset($this->$attribute)) $this->$attribute = array();
+        if (!is_array($this->$attribute)) $this->$attribute = array(html::tag()->text($this->$attribute));
         array_push($this->$attribute, $element);
     }
 
@@ -841,22 +894,16 @@ class html_attribute
     {
         $currentObject = new ArrayIterator($this);
 
-        foreach( $currentObject as $key => $val )
+        foreach ($currentObject as $key => $val)
         {
-            if( $key[0] != "*" && $key[0] != "&" && !is_array($val) && strpos($val, "#".$search) !== false )
-            {
-                if( $replace instanceOf html_attribute )
-                {
+            if ($key[0] != "*" && $key[0] != "&" && !is_array($val) && strpos($val, "#".$search) !== false) {
+                if ($replace instanceOf html_attribute) {
                     $this->empty()->append($replace);
-                }
-                else
-                {
+                } else {
                     $this->$key = str_replace("#".$search, $replace, $this->$key);
                 }
-            }
-            elseif( $key[0] != "*" && $key[0] != "&" && is_array($val) )
-            {
-                foreach( $val as $subObjects )
+            } elseif ($key[0] != "*" && $key[0] != "&" && is_array($val)) {
+                foreach ($val as $subObjects)
                 {
                     $subObjects->__contentReplace($search, $replace);
                 }
@@ -868,22 +915,19 @@ class html_attribute
     {
 
         $currentObject = new ArrayIterator($this);
-        foreach( $currentObject as $key => $val )
+        foreach ($currentObject as $key => $val)
         {
-            if( !is_array($val) && strpos($val, "#".$search) !== false )
-            {
+            if (!is_array($val) && strpos($val, "#".$search) !== false) {
                 $masterNode = unserialize(serialize($this));
-                if( $parent instanceOf html_attribute ) $parent->empty();
-                foreach( $replaceArray as $replaceId => $replaceData )
+                if ($parent instanceOf html_attribute) $parent->empty();
+                foreach ($replaceArray as $replaceId => $replaceData)
                 {
                     $copyNode = unserialize(serialize($masterNode));
                     $parent->append($copyNode);
                     $copyNode->$key = str_replace("#".$search, $replaceData, $copyNode->$key);
                 }
-            }
-            elseif( $key[0] != "*" && $key[0] != "&" && is_array($val) )
-            {
-                foreach( $val as $subObjects )
+            } elseif ($key[0] != "*" && $key[0] != "&" && is_array($val)) {
+                foreach ($val as $subObjects)
                 {
                     $subObjects->__contentRepeatReplace($search, $replaceArray, $this);
                 }
@@ -906,18 +950,15 @@ class html_attribute
         $this->__investigateArray($array, $dim = 0, $info);
         $return["dimension"] = 0;
         $return["datalayer"] = 0;
-        if( $info ) foreach( $info as $dim => $data )
+        if ($info) foreach ($info as $dim => $data)
             {
-                if( !$data["is_assoc"] )
-                {
+                if (!$data["is_assoc"]) {
                     $return["dimension"]++;
-                }
-                else
-                {
+                } else {
                     $return["datalayer"]++;
                 }
-                if( isset($data["itemcount"]) && $data["itemcount"] ) $return["itemcount"] = $data["itemcount"];
-                if( $data["is_dimension"] ) $return["is_dimension"][$dim] = true;
+                if (isset($data["itemcount"]) && $data["itemcount"]) $return["itemcount"] = $data["itemcount"];
+                if ($data["is_dimension"]) $return["is_dimension"][$dim] = true;
             }
         return $return;
     }
@@ -928,17 +969,14 @@ class html_attribute
         html::__array_depth($a);
         $info[$dim]["is_assoc"] = self::is_assoc($a);
         $info[$dim]["is_dimension"] = self::is_index($a);
-        if( $info[$dim]["is_assoc"] )
-        {
+        if ($info[$dim]["is_assoc"]) {
             $info[$dim]["itemcount"] = count($a);
         }
-        if( $info[$dim]["is_dimension"] )
-        {
+        if ($info[$dim]["is_dimension"]) {
             $info[$dim]["is_dimension"] = true;
         }
 
-        if( is_array($next = $this->__getNextDimensionArray($a)) )
-        {
+        if (is_array($next = $this->__getNextDimensionArray($a))) {
             $this->__investigateArray($next, $dim, $info);
         }
         return true;
@@ -946,28 +984,25 @@ class html_attribute
 
     private function __getNextDimensionArray($array)
     {
-        if( !is_array($array) ) return false;
-        foreach( $array as $key => $value )
+        if (!is_array($array)) return false;
+        foreach ($array as $key => $value)
         {
-            if( is_numeric($key) ) return $value;
+            if (is_numeric($key)) return $value;
         }
         return false;
     }
 
     private function __countDimensions(&$count, &$dimensionObjects, &$onlyNext)
     {
-        if( isset($this->{'*newdimension'}) && $this->{'*newdimension'} === true )
-        {
+        if (isset($this->{'*newdimension'}) && $this->{'*newdimension'} === true) {
             $count++;
             $dimensionObjects[$count] = $this;
-            if( $onlyNext )
-            {
+            if ($onlyNext) {
                 return true;
             }
         }
-        if( isset($this->_content) && is_array($this->_content) )
-        {
-            foreach( $this->_content as $sub )
+        if (isset($this->_content) && is_array($this->_content)) {
+            foreach ($this->_content as $sub)
             {
                 $sub->__countDimensions($count, $dimensionObjects, $onlyNext);
             }
@@ -980,8 +1015,7 @@ class html_attribute
         $this->__countDimensions($count, $objectsHoldingDimensions, $onlyNext);
         $return["dimension"] = $count;
         $return["references"] = $objectsHoldingDimensions;
-        if( $onlyNext && count($objectsHoldingDimensions) )
-        {
+        if ($onlyNext && count($objectsHoldingDimensions)) {
             return current($objectsHoldingDimensions);
         }
         return $return;
@@ -989,15 +1023,13 @@ class html_attribute
 
     private function __getDimensionContainerRecurse(&$depth, &$return)
     {
-        if( isset($this->_content) && is_array($this->_content) )
-        {
-            foreach( $this->_content as $sub )
+        if (isset($this->_content) && is_array($this->_content)) {
+            foreach ($this->_content as $sub)
             {
                 $sub->__getDimensionContainerRecurse($depth, $return);
             }
         }
-        if( isset($this->{'*newdimension'}) && $this->{'*newdimension'} === true )
-        {
+        if (isset($this->{'*newdimension'}) && $this->{'*newdimension'} === true) {
             $depth++;
             $return[$depth] = $this->_content;
             $this->_content = "#__appenddimensiondata";
@@ -1014,10 +1046,10 @@ class html_attribute
         $return = array_reverse($return);
         array_unshift($return, array());
         unset($return[0]);
-        if( $return ) foreach( $return as $level => $dataObjects )
+        if ($return) foreach ($return as $level => $dataObjects)
             {
                 $dimTag = html::tag();
-                if( $dataObjects ) foreach( $dataObjects as $doId => $dataObject )
+                if ($dataObjects) foreach ($dataObjects as $doId => $dataObject)
                     {
                         $dimTag->append($dataObject);
                     }
@@ -1037,28 +1069,27 @@ class html_attribute
     {
         $dimensionDatasets = $this->__getNumericArrayData($dimensionData);
         $dimensionVariables = $this->__getStringArrayData($dimensionData);
-        if( $dimensionVariables ) foreach( $dimensionVariables as $searchKey => $replaceData )
+        if ($dimensionVariables) foreach ($dimensionVariables as $searchKey => $replaceData)
             {
                 $this->__contentReplace($searchKey, $replaceData);
             }
 
-        if( $currentDimension == 1 ) $rootObject->{'&__dimensionobjects'}[$currentDimension]->empty();
+        if ($currentDimension == 1) $rootObject->{'&__dimensionobjects'}[$currentDimension]->empty();
 
         $patternCollection = html::tag();
-        if( $dimensionDatasets ) foreach( $dimensionDatasets as $dataID => $data )
+        if ($dimensionDatasets) foreach ($dimensionDatasets as $dataID => $data)
             {
                 $pattern = $this->__copyObject($rootObject->{'&__dimensionpattern'}[$currentDimension]);
 
-                if( $data ) foreach( $data as $searchKey => $replaceData )
+                if ($data) foreach ($data as $searchKey => $replaceData)
                     {
                         $pattern->__contentReplace($searchKey, $replaceData);
                     }
 
-                if( isset($rootObject->{'&__dimensionpattern'}[$currentDimension + 1]) )
-                {
+                if (isset($rootObject->{'&__dimensionpattern'}[$currentDimension + 1])) {
                     $currentDimension++;
                     $createOut = $pattern->__createDimensionFromPattern($data, $dimensionInfo, $rootObject, $currentDimension, $return);
-                    if( ($currentDimension - 1) == 1 ) $rootObject->{'&__dimensionobjects'}[$currentDimension - 1]->append($createOut);
+                    if (($currentDimension - 1) == 1) $rootObject->{'&__dimensionobjects'}[$currentDimension - 1]->append($createOut);
                     $currentDimension--;
                 }
                 $patternCollection->append($pattern);
@@ -1075,45 +1106,46 @@ class html_attribute
 
     private function __getNumericArrayData($dimensionData)
     {
-        if( $dimensionData ) foreach( $dimensionData as $key => $val )
+        if ($dimensionData) foreach ($dimensionData as $key => $val)
             {
-                if( is_numeric($key) ) $out[$key] = $val;
+                if (is_numeric($key)) $out[$key] = $val;
             }
-        if( !isset($out) ) return false;
+        if (!isset($out)) return false;
         return $out;
     }
 
     private function __getStringArrayData($dimensionData)
     {
-        if( $dimensionData ) foreach( $dimensionData as $key => $val )
+        if ($dimensionData) foreach ($dimensionData as $key => $val)
             {
-                if( is_string($key) ) $out[$key] = $val;
+                if (is_string($key)) $out[$key] = $val;
             }
-        if( isset($out) ) return $out;
+        if (isset($out)) return $out;
     }
 
     function setElementAttribute($attribute, $value)
     {
-        if( !is_array($value) && !is_object($value) ) html::debug(__METHOD__, "Set attribute $attribute to $value");
+        if (!is_array($value) && !is_object($value)) html::debug(__METHOD__, "Set attribute $attribute to $value");
         //echo "--> Set $attribute\n";
-        if( isset($this->{'*inreplacemode'}) && $this->{'*inreplacemode'} )
-        {
-            if( is_string($value) )
-            {
+//        print_r($this);
+//        if (isset($this->nodename) && $this->nodename === "__special__treat_next_attribute_as_nodename") {
+//            html::debug(__METHOD__, "Exchange preudo node for $attribute");
+//            return html::{$attribute}($value);
+//        }
+
+
+        if (isset($this->{'*inreplacemode'}) && $this->{'*inreplacemode'}) {
+            if (is_string($value)) {
                 //echo $attribute." - ".$value."\n";
                 $this->__contentReplace($attribute, $value);
-            }
-            elseif( is_array($value) && count($value) > 1 && html::__array_depth($value) == 1 )
-            {
+            } elseif (is_array($value) && count($value) > 1 && html::__array_depth($value) == 1) {
                 $this->__contentRepeatReplace($attribute, $value);
             }
             //To solve it, Im gonna do it ugly. This should be rewritten for better detection of multiparameter or multidimensional array.
             //The problem is: This function gets called twice. First with given array, then with each data seperatly.
             //Currently, Dimensions are restricted to cascading dimensions. It is not possible to feed to separate dimensions asyncron.
-            elseif( $attribute == "explode" && is_array($value) && count($value) >= 1 && html::__array_depth($value) >= 1 )
-            {
-                if( isset($this->{'&__called'}) && $this->{'&__called'} )
-                {
+            elseif ($attribute == "explode" && is_array($value) && count($value) >= 1 && html::__array_depth($value) >= 1) {
+                if (isset($this->{'&__called'}) && $this->{'&__called'}) {
                     $objectDimensions = $this->__getDimensions();
                     $objectDimensionPattern = $this->__getDimensionContainer();
                     $objectDimension = count($objectDimensionPattern); //$objectDimensions["dimension"];
@@ -1123,8 +1155,7 @@ class html_attribute
                     $dataDimension = $arrayDimensions["dimension"];
                     $dataLayer = $arrayDimensions["datalayer"];
 
-                    if( $objectDimension == $dataDimension && $dataLayer )
-                    {
+                    if ($objectDimension == $dataDimension && $dataLayer) {
 
                         //ob_start();
                         $this->{'&__dimensionobjects'} = $objectDimensionReferences;
@@ -1134,59 +1165,88 @@ class html_attribute
                         //echo "(Explode) Attributes: ".$dataLayer."\n";
                         $this->__extendDimensions($value, $arrayDimensions);
                         //ob_end_clean();
-                    }
-                    elseif( $objectDimension > $dataDimension )
-                    {
+                    } elseif ($objectDimension > $dataDimension) {
                         echo "Expect more dimensions in given data!\n";
                     }
                     $this->{'&__called'} = false;
                 }
-                if( isset($this->{'&__called'}) && $this->{'&__called'} === false ) unset($this->{'&__called'});
+                if (isset($this->{'&__called'}) && $this->{'&__called'} === false) unset($this->{'&__called'});
                 else $this->{'&__called'}++;
             }
         }
 
-        if( $attribute == "empty" ) return call_user_func(array($this, "__empty"));
+        if ($attribute == "empty") return call_user_func(array($this, "__empty"));
 
-        if( $value instanceOf html_attribute )
-        {
+        if ($value instanceOf html_attribute) {
             return $value->appendTo($this)->tag();
         }
 
         $attrName = $attribute;
         $addType = gettype($value);
-        if( $attrName == "text" || $attrName == "html" ) $attrName = $attribute = "_content";
+        if ($attrName == "text" || $attrName == "html") $attrName = $attribute = "_content";
 
-        if( isset($value) && is_array($value) && count($value) !== 0 )
-        {
+        if (( $attrName == "cdata" && is_string($value)) || ( $attrName == "cdata" && is_array($value) && implode("", $value) === "" )) {
+            if (is_array($value)) $value = "";
+            $value = "<![CDATA[".$value."]]>";
+            $attrName = $attribute = "_content";
+        }
+
+
+        if (isset($value) && is_array($value) && count($value) !== 0) {
             $value = (isset($value) && is_array($value) && isset($value[0]) ? $value[0] : $value);
             $value = $this->__selfStateAttribute($attribute, $value);
         }
 
-        if( !$attribute && $value )
-        {
-            //LE
-            //echo $attribute.":".$value."\n";
+
+
+
+        //Try to intercept node creation in special case ifEmpty
+//        if(isset($this->nodename) && $this->nodename === "special:ifNotAnyEmpty" && $attribute[0] !== "*" && $attribute !== "_name"){
+////            print_r($attribute);
+////            echo "\n";
+////            print_r($value);
+////            echo "\n";
+//            $this->nodename = $attribute;
+//            unset($this->_name);
+////            $attribute = $value;
+//            $value = array();
+//            return $this->tag();
+//        }
+//
+//        if (
+//                isset($this->{'*__special__ifnotanyempty'})
+//                && $this->{'*__special__ifnotanyempty'}
+//                && (is_array($value) && implode("",$value) === "")
+//                ) {
+////            print_r($this);
+////            print_r($attribute);
+////            print_r($value);
+//            html::debug(__METHOD__, "Check if $attribute is_empty (".(!count($value)).")");
+//            $this->nodename = "[nooutput]";
+//            return $this->tag();
+////            html::debug(__METHOD__, "Check node ".$this->nodename);
+//        }
+
+
+
+
+        if (!$attribute && $value) {
             $attribute = preg_replace("/[^a-z]/", "_", $value);
             trigger_error("Probably wrong count of given attributes. You try to assign $value to a non assigned attribute!", E_USER_WARNING);
             $this->$attribute = $value;
-        }
-        elseif( !$attribute && !$value )
-        {
+        } elseif (!$attribute && !$value) {
             //trigger_error("Probably wrong count of given attributes. Neither attribute nor value is given. Drop assignment.",E_USER_WARNING);
-        }
-        else
-        {
+        } else {
             $this->$attribute = $value;
         }
+
         return $this->tag();
     }
 
     private function __selfStateAttribute($attribute, $value)
     {
         $selfStates = array("disabled", "checked");
-        if( in_array($attribute, $selfStates) && $value != false )
-        {
+        if (in_array($attribute, $selfStates) && $value != false) {
             return $attribute;
         }
         return $value;
@@ -1208,15 +1268,12 @@ class html_attribute
         //print_r($args);
         $selector = element_selector::parser($args[0]);
         print_r($selector);
-        if( $selector->getTargetType() === "MULTI" )
-        {
-            foreach( $selector->getNextRule() as $id => $subSelector )
+        if ($selector->getTargetType() === "MULTI") {
+            foreach ($selector->getNextRule() as $id => $subSelector)
             {
                 $this->__findInElements($subSelector);
             }
-        }
-        else
-        {
+        } else {
             $this->__findInElements($selector);
         }
     }
@@ -1265,49 +1322,61 @@ class html_attribute
         $isSingleTag = self::__isSingeTag($nodeName) | (bool) isset($tag["issingle"]);
         $isUncloseTag = self::__isUncloseTag($nodeName) | (bool) isset($tag["isunclose"]);
 
-        if( strpos($nodeName, "special:") === 0 )
-        {
-            foreach( $tag as $key => $val )
-                if( $key != "_content" ) unset($tag[$key]);
+        if (strpos($nodeName, "special:") === 0) {
+            foreach ($tag as $key => $val)
+                if ($key != "_content") unset($tag[$key]);
             $nodeName = "";
         }
 
+        if (strpos($nodeName, "[nooutput]") === 0) {
+            return '';
+        }
 
-        if( isset($tag["nodename"]) ) unset($tag["nodename"]);
-        if( isset($tag["issingle"]) ) unset($tag["issingle"]);
-        if( isset($tag["isunclose"]) ) unset($tag["isunclose"]);#<==== new
+        if (isset($tag["nodename"])) unset($tag["nodename"]);
+        if (isset($tag["issingle"])) unset($tag["issingle"]);
+        if (isset($tag["isunclose"])) unset($tag["isunclose"]);#<==== new
 
-        if( !$isSingleTag && isset($tag["_content"]) )
-        {
-            if( isset($tag["_content"]) ) $tagContent = $tag["_content"];
+        var_dump($tag["_content"]);
 
-            if( is_array($tagContent) )
-            {
+        if (!$isSingleTag && isset($tag["_content"])) {
+            if (isset($tag["_content"]) && !$tag["_content"]) {
+                $tagContent = (string) $tag["_content"];
+            } elseif (isset($tag["_content"])) {
+                $tagContent = $tag["_content"];
+            }
+
+            if (is_array($tagContent)) {
                 $subNodes = $tagContent;
                 $tagContent = "";
-                foreach( $subNodes as $elNr => $subNode )
-                    $tagContent .= $subNode->toString();
-            }
-            if( isset($tag["_content"]) ) unset($tag["_content"]);
-        }
-        if( isset($tag["_content"]) ) unset($tag["_content"]);
-
-        if( $nodeName ) $strTag = '<'.$nodeName.' ';
-        if( $tag ) foreach( $tag as $attribute => $value )
-            {
-                if( $attribute[0] === "+" ) $attribute = substr($attribute, 1);
-                if( is_null($value) )
-                {
-                    $strTag .= $attribute.'="'.$attribute.'"';
-                }
-                elseif( $attribute[0] != "*" )
-                {
-                    if( is_string($value) )
-                    {
-                        $value = addcslashes(stripcslashes($value), '"');
+                foreach ($subNodes as $elNr => $subNode)
+                    if ($subNode instanceOf html_attribute) {
+                        $tagContent .= $subNode->toString();
+                    } else {
+                        $tagContent .= $subNode;
                     }
-                    elseif( is_array($value) )
-                    {
+            }
+
+            if (!isset($tagContent) || $tagContent === "") {
+                //Create single tag if there is no content
+                $isSingleTag = true;
+            }
+            if (isset($tag["_content"])) unset($tag["_content"]);
+        } elseif(!$isSingleTag && !isset($tag["_content"])) {
+            //Create single tag if there is no content
+            $isSingleTag = true;
+        }
+        if (isset($tag["_content"])) unset($tag["_content"]);
+
+        if ($nodeName) $strTag = '<'.$nodeName.' ';
+        if ($tag) foreach ($tag as $attribute => $value)
+            {
+                if ($attribute[0] === "+") $attribute = substr($attribute, 1);
+                if (is_null($value)) {
+                    $strTag .= $attribute.'="'.$attribute.'"';
+                } elseif ($attribute[0] != "*") {
+                    if (is_string($value)) {
+                        $value = addcslashes(stripcslashes($value), '"');
+                    } elseif (is_array($value)) {
                         $value = implode(" ", $value);
                         $value = addcslashes(stripcslashes($value), '"');
                     }
@@ -1315,21 +1384,21 @@ class html_attribute
                 }
             }
 
-        if( $isSingleTag )
-        {
-            if( $nodeName ) $strTag .= "/>";
+        if ($isSingleTag) {
+            if ($nodeName) $strTag .= "/>";
         }
-        else
-        {
-            if( !isset($strTag) ) $strTag = "";
-            if( $nodeName ) $strTag = rtrim($strTag).">";#<==== fixed (war an einer falschen stelle)
-            if( !$isUncloseTag )
-            { #<==== new
+        else {
+            if (!isset($strTag)) $strTag = "";
+            if ($nodeName) $strTag = rtrim($strTag).">";#<==== fixed (war an einer falschen stelle)
+            if (!$isUncloseTag) { #<==== new
                 $strTag .= $tagContent;
-                if( $nodeName ) $strTag .= "</".$nodeName.">";
+                if ($nodeName) $strTag .= "</".$nodeName.">";
             }
         }
 
+        if(empty($strTag)) $strTag = "";
+//        unset($this->tag);
+//        $this->tag = null;
         return $strTag;
     }
 
@@ -1339,7 +1408,7 @@ class html_attribute
         $regex = '([^ =]+)\\ *?=\\ *?("|\')((?:\\\\\\2+|[^\\2]*?)*?)\\2';
         $regex_full = '@'.$regex.'@s';
 
-        while( preg_match($regex_full, $string, $mt) ) {
+        while (preg_match($regex_full, $string, $mt)) {
             $this->{$mt[1]} = $mt[3];
             $string = preg_replace($regex_full, '', $string, 1);
             $hasModded = true;
@@ -1347,18 +1416,15 @@ class html_attribute
 
         $foo = preg_split('@\ +@s', trim($string));
 
-        foreach( $foo as $attr )
+        foreach ($foo as $attr)
         {
-            if( preg_match('@^([^=]+)=([^ ]+)$@s', $attr, $mt) )
-            {
+            if (preg_match('@^([^=]+)=([^ ]+)$@s', $attr, $mt)) {
                 $this->{$mt[1]} = $mt[2];
-            }
-            else
-            {
-                if( property_exists($this, $attr) ) $this->{$attr} = null;
+            } else {
+                if (property_exists($this, $attr)) $this->{$attr} = null;
             }
         }
-        if( !isset($hasModded) ) $hasModded = false;
+        if (!isset($hasModded)) $hasModded = false;
         return $hasModded;
     }
 
@@ -1373,16 +1439,15 @@ class html_attribute
           return $array;
          */
 
-        if( isset($this->tag()->nodename) && isset($this->tag()->{'&__namespace'}) && $this->tag()->{'&__namespace'} )
-        {
+        if (isset($this->tag()->nodename) && isset($this->tag()->{'&__namespace'}) && $this->tag()->{'&__namespace'}) {
             $this->tag()->nodename = $this->tag()->{'&__namespace'}.":".$this->tag()->nodename;
             unset($this->tag()->{'&__namespace'});
         }
 
         //Not in work... must be a recursion
-        foreach( $this->tag as $key => $val )
+        foreach ($this->tag as $key => $val)
         {
-            if( !is_object($val) && $key[0] != "*" && $key[0] != '&' ) $copy[$key] = $val;
+            if (!is_object($val) && $key[0] != "*" && $key[0] != '&') $copy[$key] = $val;
 
             //elseif($val instanceOf html_attribute) $copy[$key] = $val->toArray();
             //elseif(is_array($val)) foreach($val as $subValId => $subVal) $copy[$key][$subValId] = $subVal;
@@ -1390,6 +1455,10 @@ class html_attribute
         return $copy;
     }
 
+    /**
+     *
+     * @return html_attribute
+     */
     public function tag()
     {
         return $this->tag;
@@ -1413,12 +1482,11 @@ class parse
 
     public static function html($string = "", $toTag)
     {
-        if( html::cache() )
-        {
-            if( cache::has(__FUNCTION__.$string) ) return self::tokenizer(cache::get(__FUNCTION__.$string), $string, $toTag);
+        if (html::cache()) {
+            if (cache::has(__FUNCTION__.$string)) return self::tokenizer(cache::get(__FUNCTION__.$string), $string, $toTag);
         }
 
-        if( !self::$A ) self::_init();
+        if (!self::$A) self::_init();
         $S = self::$S;
         $A = self::$A;
         $T = self::$T;
@@ -1438,18 +1506,16 @@ class parse
         $rx.= "(?:>|(/)[".$S."]*>)"; //The end is reached if there is a closing sign found >
 
         preg_match_all("!".$rx."!sm", $string, $matched_tags, PREG_OFFSET_CAPTURE);
-        if( html::cache() )
-        {
+        if (html::cache()) {
             cache::set(__FUNCTION__.$string, $matched_tags);
         }
         return self::tokenizer($matched_tags, $string, $toTag);
     }
 
-    private function tokenizer($matchArray, $string, $toTag)
+    private static function tokenizer($matchArray, $string, $toTag)
     {
-        if( html::cache() )
-        {
-            if( cache::has(__FUNCTION__.$string) ) return cache::get(__FUNCTION__.$string);
+        if (html::cache()) {
+            if (cache::has(__FUNCTION__.$string)) return cache::get(__FUNCTION__.$string);
         }
 
         unset($matchArray[3]);
@@ -1467,45 +1533,37 @@ class parse
 
         $elementCount = count($matchArray[$ELEMENTS]);
         $depth = 0;
-        if( $matchArray[$ELEMENTS] ) foreach( $matchArray[$ELEMENTS] as $ID => $foo )
+        if ($matchArray[$ELEMENTS]) foreach ($matchArray[$ELEMENTS] as $ID => $foo)
             {
                 $tag = self::getTagInfo($matchArray, $ID, $depth);
                 $depth = $tag["depth"];
 
-                if( $tag["isEnd"] || $tag["isSingle"] )
-                {
+                if ($tag["isEnd"] || $tag["isSingle"]) {
                     $afterTag = self::getTagInfo($matchArray, $ID + 1, $depth);
                 }
 
-                if( !$last )
-                {
+                if (!$last) {
                     $firstTagID = $ID;
                 }
 
-                if( $depth == 0 || $elementCount == 1 )
-                {
+                if ($depth == 0 || $elementCount == 1) {
                     $newTag[$ID] = html::tag();
 
                     $firstTag = self::getTagInfo($matchArray, $firstTagID);
                     $newTag[$ID]->_nodename($firstTag["nodeName"]);
 
-                    if( $firstTag["attributes"] )
-                    {
+                    if ($firstTag["attributes"]) {
                         self::__attribute_tokenizer($firstTag["attributes"], $newTag[$ID]);
                     }
 
-                    if( $firstTagID == 0 )
-                    {
+                    if ($firstTagID == 0) {
                         $preNode = substr($string, 0, $firstTag["tagStartPos"]);
-                    }
-                    else
-                    {
+                    } else {
                         $preFirstTag = self::getTagInfo($matchArray, $firstTagID - 1);
                         $preNode = substr($string, $preFirstTag["tagEndPos"], $firstTag["tagStartPos"] - $preFirstTag["tagEndPos"]);
                     }
 
-                    if( $preNode )
-                    {
+                    if ($preNode) {
                         $toTag->addhtml($preNode);
                     }
 
@@ -1513,28 +1571,22 @@ class parse
                     unset($last);
 
                     $subString = substr($string, $firstTag["tagEndPos"], $tag["tagStartPos"] - $firstTag["tagEndPos"]);
-                    if( $subString )
-                    {
+                    if ($subString) {
                         $newTag[$ID]->_intoTag($subString);
                     }
 
                     $nextTag = self::getTagInfo($matchArray, $ID + 1);
-                    if( !$nextTag["nodeName"] )
-                    {
-                        if( $sufString = substr($string, $tag["tagEndPos"]) )
-                        {
+                    if (!$nextTag["nodeName"]) {
+                        if ($sufString = substr($string, $tag["tagEndPos"])) {
                             $toTag->addhtml($sufString);
                         }
                     }
-                }
-                else
-                {
+                } else {
                     $last = $tag;
                 }
             }
 
-        if( html::cache() )
-        {
+        if (html::cache()) {
             cache::set(__FUNCTION__.$string, $toTag->tag());
         }
 
@@ -1551,40 +1603,32 @@ class parse
         $VALUE = 0;
         $OFFSET = 1;
 
-        if( isset($matchArray[$TAGNAME][$ID][$VALUE]) ) $nodeName = trim($matchArray[$TAGNAME][$ID][$VALUE]);
-        if( isset($nodeName) && $nodeName[0] == "/" )
-        {
+        if (isset($matchArray[$TAGNAME][$ID][$VALUE])) $nodeName = trim($matchArray[$TAGNAME][$ID][$VALUE]);
+        if (isset($nodeName) && $nodeName[0] == "/") {
             $isEnd = true;
             $nodeName = trim(substr($nodeName, 1));
-        }
-        else
-        {
+        } else {
             $isEnd = false;
         }
 
-        if( isset($matchArray[$SINGLETAG][$ID]) && isset($matchArray[$TAGNAME][$ID][$VALUE]) )
-        {
+        if (isset($matchArray[$SINGLETAG][$ID]) && isset($matchArray[$TAGNAME][$ID][$VALUE])) {
             $isSingle = (bool) $matchArray[$SINGLETAG][$ID] || (bool) self::isSingleTag($matchArray[$TAGNAME][$ID][$VALUE]);
-        }
-        else
-        {
+        } else {
             $isSingle = false;
         }
-        if( !$isSingle && !$isEnd )
-        {
+        if (!$isSingle && !$isEnd) {
             $depth++;
         }
-        if( $isEnd )
-        {
+        if ($isEnd) {
             $depth--;
         }
-        if( !isset($matchArray[$ELEMENTS][$ID][$OFFSET]) ) $matchArray[$ELEMENTS][$ID][$OFFSET] = 0;
+        if (!isset($matchArray[$ELEMENTS][$ID][$OFFSET])) $matchArray[$ELEMENTS][$ID][$OFFSET] = 0;
         $tagStartPos = $matchArray[$ELEMENTS][$ID][$OFFSET];
 
-        if( !isset($matchArray[$ELEMENTS][$ID][$VALUE]) ) $matchArray[$ELEMENTS][$ID][$VALUE] = 0;
+        if (!isset($matchArray[$ELEMENTS][$ID][$VALUE])) $matchArray[$ELEMENTS][$ID][$VALUE] = 0;
         $tagEndPos = $tagStartPos + strlen($matchArray[$ELEMENTS][$ID][$VALUE]);
 
-        if( !isset($matchArray[$ATTRIBUTES][$ID][$VALUE]) ) $matchArray[$ATTRIBUTES][$ID][$VALUE] = "";
+        if (!isset($matchArray[$ATTRIBUTES][$ID][$VALUE])) $matchArray[$ATTRIBUTES][$ID][$VALUE] = "";
 
         $tag["nodeName"] = (isset($nodeName) ? $nodeName : "");
         $tag["isSingle"] = $isSingle;
@@ -1616,8 +1660,7 @@ class parse
     private static function braceCheck($string)
     {
         $string = trim($string);
-        if( strpos($string, "<") !== false || strpos($string, ">") !== false )
-        {
+        if (strpos($string, "<") !== false || strpos($string, ">") !== false) {
             return strpos($string, "<");
         }
         return false;
@@ -1637,7 +1680,7 @@ class parse
         $rx = "";
         $rx.= "".$A."[".$S."]*?=[".$S."]*?('|\")(?:(?:\\\\\\1|[^\\1])*?)(\\1)"; //Find fullfeatured attributes
         $rx.= "|(?:".$A.")[".$S."]*?=[^ ]*|[a-zA-Z]{1}[a-zA-Z0-9:-]*"; //Or be fine with a valid singlekey attribute
-        if( isset($attributeString) && $attributeString ) if( preg_match("!".$rx."!sm", $attributeString, $match) ) return true;
+        if (isset($attributeString) && $attributeString) if (preg_match("!".$rx."!sm", $attributeString, $match)) return true;
         return false;
     }
 
@@ -1661,26 +1704,20 @@ class parse
         $rx = "";
         $rx.= "".$A."[".$S."]*?=[".$S."]*?('|\")(?:(?:\\\\\\1|[^\\1])*?)(\\1)"; //Find fullfeatured attributes
         $rx.= "|(?:".$A.")[".$S."]*?=[^ ]*|[a-zA-Z]{1}[a-zA-Z0-9:-]*"; //Or be fine with a valid singlekey attribute
-        if( isset($attributeString) && $attributeString ) while( preg_match("!".$rx."!sm", $attributeString, $match) ) {
-                if( isset($match) && $match )
-                {
+        if (isset($attributeString) && $attributeString) while (preg_match("!".$rx."!sm", $attributeString, $match)) {
+                if (isset($match) && $match) {
                     @list($attributeName, $attributeValue) = explode("=", $match[0], 2);
                 }
-                if( isset($match[1]) && $match[1] )
-                {
+                if (isset($match[1]) && $match[1]) {
                     $attributeValue = substr(trim($attributeValue), 1, strlen(trim($attributeValue)) - 2);
                 }
-                if( is_object($htmlElement) && $htmlElement instanceOf html_attribute )
-                {
+                if (is_object($htmlElement) && $htmlElement instanceOf html_attribute) {
                     $htmlElement->{trim($attributeName)}(trim($attributeValue));
+                } else {
+                    if (isset($attributeName)) $toOutput[] = $attributeName;
+                    if (isset($attributeValue)) $toOutput[] = $attributeValue;
                 }
-                else
-                {
-                    if( isset($attributeName) ) $toOutput[] = $attributeName;
-                    if( isset($attributeValue) ) $toOutput[] = $attributeValue;
-                }
-                if( isset($match[$ATTRIBUTEPAIR]) && $match[$ATTRIBUTEPAIR] && isset($attributeString) && $attributeString )
-                {
+                if (isset($match[$ATTRIBUTEPAIR]) && $match[$ATTRIBUTEPAIR] && isset($attributeString) && $attributeString) {
                     $pos = strpos($attributeString, $match[$ATTRIBUTEPAIR]);
                     $attributeString = substr_replace($attributeString, "", $pos, strlen($match[$ATTRIBUTEPAIR]));
                 }
@@ -1701,12 +1738,9 @@ class cache
 
     public static function enable($state = true)
     {
-        if( extension_loaded("apc") )
-        {
+        if (extension_loaded("apc")) {
             self::$sys = "apc";
-        }
-        else
-        {
+        } else {
             self::$sys = "internal";
         }
         return self::$enabled = $state;
@@ -1714,10 +1748,8 @@ class cache
 
     public static function is_enabled()
     {
-        if( self::$enabled === true )
-        {
-            if( extension_loaded("apc") )
-            {
+        if (self::$enabled === true) {
+            if (extension_loaded("apc")) {
                 self::$enabled = true;
             }
             else self::$enabled = false;
@@ -1737,16 +1769,12 @@ class cache
 
     public static function get($key)
     {
-        if( self::$sys == "internal" )
-        {
+        if (self::$sys == "internal") {
             $data = self::internal_fetch(self::createKey($key), $success);
-        }
-        elseif( self::$sys == "apc" )
-        {
+        } elseif (self::$sys == "apc") {
             $data = self::apc_fetch(self::createKey($key), $success);
         }
-        if( !$success )
-        {
+        if (!$success) {
             trigger_error("Missing cache data!", E_USER_WARNING);
         }
         return $data;
@@ -1813,14 +1841,11 @@ class element_selector
     {
         self::defineConstants();
         $selector = self::removeGlitches($selector);
-        if( $parentObject ) $this->setParent($parentObject);
+        if ($parentObject) $this->setParent($parentObject);
 
-        if( !$parentObject && strpos($selector, ",") === false )
-        {
+        if (!$parentObject && strpos($selector, ",") === false) {
             $this->setLevel(1);
-        }
-        elseif( $parentObject )
-        {
+        } elseif ($parentObject) {
             $this->setLevel($parentObject->getLevel() + 1);
         }
 
@@ -1833,7 +1858,7 @@ class element_selector
      */
     private static function defineConstants()
     {
-        if( self::$definedConstants ) return;
+        if (self::$definedConstants) return;
         define("OP_NEXT", " ");
         define("OP_FOLLOWEDBY", ">");
         define("OP_DIRECTSIBLING", "+");
@@ -1889,7 +1914,7 @@ class element_selector
      */
     private static function internalParser($string, &$parentObject = null)
     {
-        if( !trim($string) ) return false;
+        if (!trim($string)) return false;
         $thisClass = get_called_class();
         $selectorObject = new $thisClass($string, $parentObject); //== setSelector($string)
         return $selectorObject;
@@ -1913,18 +1938,15 @@ class element_selector
      */
     private function checkMultiSelector($string)
     {
-        if( strpos($string, ",") !== false )
-        {
+        if (strpos($string, ",") !== false) {
             $selectorArray = preg_split("!\s*,\s*!sm", $string);
-            if( $selectorArray )
-            {
+            if ($selectorArray) {
                 $this->setTargetType("MULTI");
                 $this->setLookupFilter("*");
-                foreach( $selectorArray as $selector )
+                foreach ($selectorArray as $selector)
                 {
                     $nextrule = self::internalParser(" ".$selector, $this);
-                    if( $nextrule )
-                    {
+                    if ($nextrule) {
                         $this->nextRule($nextrule);
                     }
                 }
@@ -1944,17 +1966,15 @@ class element_selector
         $selectorInfo = $this->getSelectorType($string);
         $this->setRemaining($selectorInfo["nextrule"]);
 //		print_r($selectorInfo);
-        if( !$selectorInfo ) return false;
+        if (!$selectorInfo) return false;
 
         $this->setSelector($selectorInfo["thisselector"]);
         $this->setLookupFilter($selectorInfo["lookupFilter"]);
 
         $this->setTargetType($selectorInfo["thistyp"]);
-        if( $selectorInfo["nextrule"] )
-        {
+        if ($selectorInfo["nextrule"]) {
             $nextrule = self::internalParser($selectorInfo["nextrule"], $this);
-            if( $nextrule )
-            {
+            if ($nextrule) {
                 $this->nextRule($nextrule);
             }
         }
@@ -1966,12 +1986,11 @@ class element_selector
      */
     private function parseSelector($string)
     {
-        if( !trim($string) || !is_string($string) ) return false;
+        if (!trim($string) || !is_string($string)) return false;
 
         $this->setSelector($string);
 
-        if( !$this->checkMultiselector($string) )
-        {
+        if (!$this->checkMultiselector($string)) {
             $this->checkSingleSelector($string);
         }
     }
@@ -2068,7 +2087,7 @@ class element_selector
 
     public function hasNextRule()
     {
-        if( $this->nextRuleArray ) return true;
+        if ($this->nextRuleArray) return true;
     }
 
     public static function readLookupFilter($code)
@@ -2097,7 +2116,7 @@ class element_selector
     {
 //		echo "TRACE: (".$string.")\n";
 
-        if( !trim($string) ) return;
+        if (!trim($string)) return;
         $operator = substr($string, 0, 1);
 
 //		echo "OPERATOR: (".$operator.")\n";
@@ -2125,28 +2144,28 @@ class element_selector
                 break;
             case OP_ID:
                 $return = $this->traceID($string);
-                if( !$precastedLookup ) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
+                if (!$precastedLookup) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
                 break;
             case OP_PSEUDO:
                 $return = $this->tracePSEUDO($string);
-                if( !$this->getParent() ) $precastedLookup = LOOK_AT_ALL.CHILDREN;
-                if( !$precastedLookup ) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
+                if (!$this->getParent()) $precastedLookup = LOOK_AT_ALL.CHILDREN;
+                if (!$precastedLookup) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
                 break;
             case OP_ATTRIBUTE:
                 $return = $this->traceATTRIBUTE($string);
-                if( !$precastedLookup ) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
+                if (!$precastedLookup) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
                 break;
             case OP_SUBSELECT:
                 $return = $this->traceSUBSELECT($string);
                 $this->subSelector(self::internalParser($return["thisselector"]));
-                if( !$precastedLookup ) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
+                if (!$precastedLookup) $return["lookupFilter"] = LOOK_AT_THIS.ELEMENT;
                 break;
             default:
                 $return = $this->traceTAG($string);
-                if( !$precastedLookup ) $return["lookupFilter"] = LOOK_AT_ALL.CHILDREN;
+                if (!$precastedLookup) $return["lookupFilter"] = LOOK_AT_ALL.CHILDREN;
                 break;
         }
-        if( $precastedLookup ) $return["lookupFilter"] = $precastedLookup;
+        if ($precastedLookup) $return["lookupFilter"] = $precastedLookup;
         return $return;
     }
 
@@ -2161,8 +2180,7 @@ class element_selector
 
     private function traceTAG($string)
     {
-        if( preg_match('/(?<thisselector>^[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/(?<thisselector>^[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("TAG", $match);
         }
         return false;
@@ -2170,8 +2188,7 @@ class element_selector
 
     private function traceCLASS($string)
     {
-        if( preg_match('/\.(?<thisselector>(?:[a-z.]+[a-z0-9]*)*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\.(?<thisselector>(?:[a-z.]+[a-z0-9]*)*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("CLASS", $match);
         }
         return false;
@@ -2179,8 +2196,7 @@ class element_selector
 
     private function traceID($string)
     {
-        if( preg_match('/\#(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\#(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("ID", $match);
         }
         return false;
@@ -2188,8 +2204,7 @@ class element_selector
 
     private function traceDIRECTSIBLING($string)
     {
-        if( preg_match('/\+(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\+(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("DIRECTSIBLING", $match);
         }
         return false;
@@ -2197,8 +2212,7 @@ class element_selector
 
     private function traceSIBLING($string)
     {
-        if( preg_match('/\~(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\~(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("SIBLING", $match);
         }
         return false;
@@ -2206,8 +2220,7 @@ class element_selector
 
     private function tracePSEUDO($string)
     {
-        if( preg_match('/\:(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\:(?<thisselector>[a-z]+[a-z0-9]*)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("PSEUDO", $match);
         }
         return false;
@@ -2215,8 +2228,7 @@ class element_selector
 
     private function traceATTRIBUTE($string)
     {
-        if( preg_match('/\[(?<thisselector>[^\]]*)\](?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\[(?<thisselector>[^\]]*)\](?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("ATTRIBUTE", $match);
         }
         return false;
@@ -2224,8 +2236,7 @@ class element_selector
 
     private function traceSUBSELECT($string)
     {
-        if( preg_match('/\((?<thisselector>[^\)]*)\)(?<nextrule>.*)/ism', $string, $match) )
-        {
+        if (preg_match('/\((?<thisselector>[^\)]*)\)(?<nextrule>.*)/ism', $string, $match)) {
             return $this->traceResult("SUBSELECT", $match);
         }
         return false;
@@ -2233,4 +2244,4 @@ class element_selector
 
 }
 
-if( file_exists('html.shortcuts.php') ) include_once "html.shortcuts.php";
+if (file_exists('html.shortcuts.php')) include_once "html.shortcuts.php";

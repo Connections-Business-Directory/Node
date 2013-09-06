@@ -1,0 +1,37 @@
+(optional) Shortcuts
+
+<<<
+is_equal_string ** Tag creation function shortcut
+<u></u>
+<==>
+return u();
+>>>
+
+<<<
+is_equal_string ** Tag creation function shortcut in combination with "normal" creation
+<u><span>Test</span></u>
+<==>
+return u(html::span('Test'));
+>>>
+
+<<<
+is_equal_string ** Tag creation function shortcut in shortcut
+<div><u>Test</u></div>
+<==>
+return div(u('Test'));
+>>>
+
+<<<
+is_equal_string ** Tag creation function shortcut in shortcut and als list
+<div><u>Underline</u><b>Bold</b><i>Italic</i></div>
+<==>
+return div(u('Underline'),b('Bold'),i('Italic'));
+>>>
+
+<<<
+is_equal_string ** Tag creation function shortcut high depth
+<i><i><i><i><i><i><i><i><i><i>Italic</i></i></i></i></i></i></i></i></i></i>
+<==>
+return i(i(i(i(i(i(i(i(i(i('Italic'))))))))));
+>>>
+

@@ -1,0 +1,100 @@
+Tag creation methods
+
+<<<
+is_equal_string ** Tag creation by magic staticCall Method
+<u></u>
+<==>
+return html::u();
+>>>
+
+<<<
+is_equal_string ** Tag creation by tag call with plain node naming
+<u></u>
+<==>
+return html::tag('u');
+>>>
+
+<<<
+is_equal_string ** Tag creation by tag call as tag / through parser
+<u></u>
+<==>
+return html::tag('<u>');
+>>>
+
+<<<
+is_equal_string ** Tag creation by global helper function with plain node naming
+<a></a>
+<==>
+return html('a');
+>>>
+
+<<<
+is_equal_string ** Tag creation by global helper function with tag / through parser
+<a></a>
+<==>
+return html('<a>');
+>>>
+
+<<<
+is_equal_string ** Tag creation as full qualified tag / through parser
+<a></a>
+<==>
+return html('<a></a>');
+>>>
+
+<<<
+is_equal_string ** Tag creation of a single tag element / global function / node name
+<br />
+<==>
+return html('br');
+>>>
+
+<<<
+is_equal_string ** Tag creation of a single tag element / global function / through parser
+<br />
+<==>
+return html('<br>');
+>>>
+
+<<<
+is_equal_string ** Tag creation of a single tag element / global function / qualified tag through parser
+<br />
+<==>
+return html('<br/>');
+>>>
+
+<<<
+is_equal_string ** Tag creation of a single tag element with some allowed blanks / global function / qualified tag through parser
+<br />
+<==>
+return html('<br  / >');
+>>>
+
+<<<
+is_equal_string ** Appending an object to an element
+<div><b></b></div>
+<==>
+return html::div()->append(html('b'));
+>>>
+
+<<<
+is_equal_string ** Appending an object to an element and append one more object
+<div><b></b><u></u></div>
+<==>
+return html::div()->append(html('b'))->append(html::u());
+>>>
+
+<<<
+is_equal_string ** Appending of objects to an element
+<div><b></b><u></u></div>
+<==>
+return html::div()->append(html('b'),html::u());
+>>>
+
+<<<
+is_equal_string ** Appending of objects mixed with text to an element
+<div><b></b>and<u></u></div>
+<==>
+return html::div()->append(html('b'),"and",html::u());
+>>>
+
