@@ -1,7 +1,6 @@
 <?php
 
 //namespace phpcreatehtml;
-
 //use ReflectionClass;
 
 /**
@@ -579,27 +578,6 @@ class html
         return $this->elements[$this->element]->$method($args[0]);
     }
 
-    /**
-     *
-     * @return html_attribute
-     */
-    public function append(){
-        return $this->__call(__FUNCTION__,  func_get_args());
-    }
-
-    /**
-     * This function will end any chainability and return the html as string before it free up the memory.
-     * I implemented this function for those how create fragments in a loop.
-     * @return string
-     */
-    public function pushToString(){
-        $out = ''.$this;
-        $this->element = null;
-        $this->elements = null;
-        return $out;
-    }
-
-
     private static function commandIsAlias($name)
     {
         if (isset(self::$aliasCommandTable[$name])) return true;
@@ -690,6 +668,10 @@ class html_attribute
         return call_user_func_array(array($this, "append"), func_get_args());
     }
 
+    /**
+     *
+     * @return html_attribute
+     */
     public function append()
     {
         if (func_get_args()) foreach (func_get_args() as $object)
@@ -702,6 +684,43 @@ class html_attribute
                 }
             }
         return $this->tag();
+    }
+
+    /**
+     * This function will end any chainability and return the html as string before it free up the memory.
+     * I implemented this function for those how create fragments in a loop.
+     * @return string
+     */
+    public function pushToString()
+    {
+        $out = ''.$this;
+        $this->__dropFromMemory();
+//        $this->tag = null;
+//        array_walk_recursive($this->_content, function($item, $key)
+//                {
+//                    $item->__dropFromMemory();
+//                });
+//        $this->_content = null;
+//        gc_collect_cycles();
+//        print_r($this);
+        return $out;
+    }
+
+    public function __dropFromMemory()
+    {
+        unset($this->tag);
+        if (isset($this->_content) && is_array($this->_content)) {
+            foreach ($this->_content as $sub_element)
+            {
+                if($sub_element instanceOf html_attribute){
+                    $sub_element->__dropFromMemory();
+                }
+            }
+        }
+        if(isset($this->_content)){
+            unset($this->_content);
+        }
+        unset($this->nodename);
     }
 
     function __parentElement(html_attribute $object)
@@ -752,6 +771,12 @@ class html_attribute
         else return false;
     }
 
+    /**
+     *
+     * @param type $attribute
+     * @param type $value
+     * @return \html_attribute
+     */
     function __call($attribute, $value)
     {
         if ($attribute == "*registeredevents" && isset($this->{'*registeredevents'}) && is_array($value[0]) && isset($value[0]["event"])) {
@@ -1311,9 +1336,14 @@ class html_attribute
         if (isset($tag["issingle"])) unset($tag["issingle"]);
         if (isset($tag["isunclose"])) unset($tag["isunclose"]);#<==== new
 
+        var_dump($tag["_content"]);
+
         if (!$isSingleTag && isset($tag["_content"])) {
-            if (isset($tag["_content"]) && !$tag["_content"] ){ $tagContent = (string)$tag["_content"]; }
-            elseif (isset($tag["_content"]) ){ $tagContent = $tag["_content"]; }
+            if (isset($tag["_content"]) && !$tag["_content"]) {
+                $tagContent = (string) $tag["_content"];
+            } elseif (isset($tag["_content"])) {
+                $tagContent = $tag["_content"];
+            }
 
             if (is_array($tagContent)) {
                 $subNodes = $tagContent;
@@ -1326,10 +1356,14 @@ class html_attribute
                     }
             }
 
-            if (!isset($tagContent)) {
+            if (!isset($tagContent) || $tagContent === "") {
+                //Create single tag if there is no content
                 $isSingleTag = true;
             }
             if (isset($tag["_content"])) unset($tag["_content"]);
+        } elseif(!$isSingleTag && !isset($tag["_content"])) {
+            //Create single tag if there is no content
+            $isSingleTag = true;
         }
         if (isset($tag["_content"])) unset($tag["_content"]);
 
@@ -1361,6 +1395,8 @@ class html_attribute
                 if ($nodeName) $strTag .= "</".$nodeName.">";
             }
         }
+
+        if(empty($strTag)) $strTag = "";
 //        unset($this->tag);
 //        $this->tag = null;
         return $strTag;
