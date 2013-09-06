@@ -1293,7 +1293,7 @@ class html_attribute
         if (isset($tag["issingle"])) unset($tag["issingle"]);
         if (isset($tag["isunclose"])) unset($tag["isunclose"]);#<==== new
 
-        var_dump($tag["_content"]);
+        // var_dump($tag["_content"]);
 
         if (!$isSingleTag && isset($tag["_content"])) {
             if (isset($tag["_content"]) && !$tag["_content"]) {
