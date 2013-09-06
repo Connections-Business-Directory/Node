@@ -24,42 +24,6 @@
  *
  */
 
-if (!function_exists("html")) {
-
-    function html()
-    {
-        return call_user_func_array(array('html', 'tag'), func_get_args());
-    }
-
-}
-
-if (!function_exists("create")) {
-
-    function create()
-    {
-        return call_user_func_array(array('html', 'tag'), func_get_args());
-    }
-
-}
-
-if (!function_exists("ctrl")) {
-
-    function ctrl()
-    {
-        return call_user_func_array(array('html', 'control'), func_get_args());
-    }
-
-}
-
-if (!function_exists("control")) {
-
-    function control()
-    {
-        return call_user_func_array(array('html', 'control'), func_get_args());
-    }
-
-}
-
 class html
 {
 
