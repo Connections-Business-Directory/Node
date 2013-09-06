@@ -1,8 +1,4 @@
 <?php
-
-//namespace phpcreatehtml;
-//use ReflectionClass;
-
 /**
  * phpCreateHtml - This is a simple but powerful way to create
  * html tags from php similar to the way you create html with jQuery
@@ -27,9 +23,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-/* Debugging purposes */
-//ini_set("display_errors", "ON");
-//error_reporting(E_ALL);
 
 if (!function_exists("html")) {
 
