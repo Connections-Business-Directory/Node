@@ -33,7 +33,6 @@ class html
     public static $singleTags = array('img', 'input', 'br', 'hr');
     public static $uncloseTags = array('link', 'meta');
     public static $debug = false;
-    public static $tidy = false; //<-TRUE Screws output!!!
     public static $cache = NULL;
     private static $magicSpecialIdentifier = "__special__";
     private static $magicSpecialMethods;
@@ -63,39 +62,6 @@ class html
             return self::$cache;
         }
         return html::$cache;
-    }
-
-    public static function tidy($html, $customConfig = array())
-    {
-        if (\class_exists('tidy')) {
-            $td = new tidy();
-
-            $config = array(
-                'indent' => true,
-                'output-html' => true,
-                'tab-size' => 2,
-                'force-output' => true,
-                'wrap' => 0,
-                'doctype' => 'auto',
-                'input-xml' => true,
-                'replace-color' => true,
-                'literal-attributes' => false,
-                'merge-divs' => false,
-                'merge-spans' => false,
-                'fix-backslash' => true,
-                'drop-empty-paras' => false,
-                'drop-proprietary-attributes' => false,
-                'preserve-entities' => true,
-                'show-body-only' => true,
-                'wrap-php' => false,
-                'wrap-sections' => false,
-                'break-before-br' => true
-            );
-            $config = array_merge($config, $customConfig);
-            $td->parseString($html, $config);
-            $html = $td->value;
-        }
-        return $html;
     }
 
     public static function clean()
