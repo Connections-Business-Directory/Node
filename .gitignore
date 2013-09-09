@@ -208,6 +208,11 @@ pip-log.txt
 .coverage
 .tox
 
+#################
+## Netbeans
+#################
+nbproject/*.*
+.hgignore
 
 #Mr Developer
 .mr.developer.cfg
