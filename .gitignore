@@ -220,3 +220,7 @@ nbproject/*.*
 # Sublime Text 2 #
 ##################
 sftp-config.json
+
+# Ignore the testing shell plugin.
+connections-html.php
+class.html.php
