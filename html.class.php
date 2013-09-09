@@ -29,7 +29,14 @@ class html
 
     public $element;
     public $elements;
+
+    /**
+     * This is an array of objects of (self).
+     *
+     * @var (array)
+     */
     public static $tag;
+
     public static $singleTags = array('img', 'input', 'br', 'hr');
     public static $uncloseTags = array('link', 'meta');
     public static $debug = false;
@@ -64,11 +71,17 @@ class html
         return html::$cache;
     }
 
+    /**
+     * Seems to be an unfinished method that doesn't do anything.
+     */
     public static function clean()
     {
         self::$form = NULL;
     }
 
+    /**
+     * Seems to be an unfinished method that doesn't do anything.
+     */
     public static function delete($name)
     {
         $name = self::getOrigin($name);
@@ -85,8 +98,64 @@ class html
     }
 
     /**
+     * Create a node, optionally, with attributes and content.
      *
-     * @return html
+     * NOTES: Method takes n-number of params.
+     * - The first param will be the node type.
+     * - If a second param is supplied, that will be the node content; <node>param-2</node>
+     * - If a third param is supplied, the output will be <node param-2="param-3" />
+     * - If a forth param is supplied, the output will be <node param-3="param-4">param-2</node>
+     * - If an even number of params are supplied, param-2 will always be the node content.
+     *   The remaining params pairs will be added as node attributes where the first will be
+     *   the attribute name and the second will be the attribute value.
+     * - If an odd number of params are supplied, each param pair will be added as node attributes
+     *   where the first will be the attribute name and the second will be the attribute value.
+     *
+     * Example 1:
+     * <code>
+     * html::tag( 'div' );
+     * </code>
+     *
+     * Result:
+     * <code>
+     * <div /> # This seems to be a bug as the div self closes rather than creating a closing div.
+     * </code>
+     *
+     * Example 2:
+     * <code>
+     * html::tag( 'div', 'Container content.' );
+     * </code>
+     *
+     * Result:
+     * <code>
+     * <div>Container content.</div>
+     * </code>
+     *
+     * Example 3:
+     * <code>
+     * html::tag( 'div', 'class', 'container' );
+     * </code>
+     *
+     * Result:
+     * <code>
+     * <div class="container" />
+     * </code>
+     *
+     * Example 4:
+     * <code>
+     * html::tag( 'div', 'Container content.', 'class', 'container' );
+     * </code>
+     *
+     * Result:
+     * <code>
+     * <div class="container">Container content.</div
+     * </code>
+     *
+     * @todo Rename method to: node
+     * @todo Rename _createTag to: createNode
+     * @todo Rename $args to: $params
+     * @param (string) Node to create
+     * @return (string)
      */
     static public function tag()
     {
@@ -111,6 +180,35 @@ class html
         return $tag;
     }
 
+    /**
+     *
+     *
+     * NOTE: This method is called only by: self::tag()
+     *
+     * Example of array returned by <code>html::div('Text in a container.', 'class','container');</code>
+     * array(2) {
+     *  ["nodename"]=> string(3) "div"
+     *  ["attributes"]=> array(2) {
+     *      [0]=> array(2) {
+     *          ["type"]=>
+     *          string(6) "append"
+     *          ["data"]=>
+     *          string(20) "Text in a container."
+     *          }
+     *      [1]=> array(3) {
+     *          ["type"]=>
+     *          string(9) "attribute"
+     *          ["key"]=>
+     *          string(5) "class"
+     *          ["data"]=>
+     *          string(9) "container"
+     *          }
+     *      }
+     *  }
+     *
+     * @param (array) $argData
+     * @return (array)
+     */
     static private function __prepareArguments(array $argData)
     {
         $argData = self::__flattenArguments($argData);
@@ -254,6 +352,16 @@ class html
         return $descArray;
     }
 
+    /**
+     *
+     * This method is called only by: self::__prepareArguments()
+     *
+     * @todo Return $argOut instead of resetting $argData and returning it.
+     * @todo Clean up the if statement so it is more easily readable.
+     *
+     * @param (array) $argData
+     * @return (array)
+     */
     static private function __flattenArguments(array $argData)
     {
         $argOut = array();
@@ -275,8 +383,13 @@ class html
 
     /**
      *
-     * @param string $nodename
-     * @return html_attribute
+     * This method is called only by: self::tag()
+     *
+     * @todo Rename to: createNode
+     * @todo Rename param to: $name
+     *
+     * @param (string) $nodename
+     * @return (object)
      */
     private static function _createTag($nodename = false)
     {
@@ -1885,10 +1998,10 @@ class element_selector
      */
     private function checkSingleSelector($string)
     {
-//		echo $string."\n";
+//      echo $string."\n";
         $selectorInfo = $this->getSelectorType($string);
         $this->setRemaining($selectorInfo["nextrule"]);
-//		print_r($selectorInfo);
+//      print_r($selectorInfo);
         if (!$selectorInfo) return false;
 
         $this->setSelector($selectorInfo["thisselector"]);
@@ -2037,15 +2150,15 @@ class element_selector
 
     private function getSelectorType($string, $precastedLookup = null)
     {
-//		echo "TRACE: (".$string.")\n";
+//      echo "TRACE: (".$string.")\n";
 
         if (!trim($string)) return;
         $operator = substr($string, 0, 1);
 
-//		echo "OPERATOR: (".$operator.")\n";
-//		if($precastedLookup)
-//			echo "precastedLookup: ".$precastedLookup."\n";
-//		echo "Test Operator: '{$operator}'\n";
+//      echo "OPERATOR: (".$operator.")\n";
+//      if($precastedLookup)
+//          echo "precastedLookup: ".$precastedLookup."\n";
+//      echo "Test Operator: '{$operator}'\n";
         //TODO more convenient operator parser
         switch ($operator)
         {
@@ -2097,7 +2210,7 @@ class element_selector
         $return = array("thistyp" => $typ,
             "thisselector" => $match["thisselector"],
             "nextrule" => $match["nextrule"]);
-//		print_r($return);
+//      print_r($return);
         return $return;
     }
 
