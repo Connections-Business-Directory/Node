@@ -40,7 +40,6 @@ class html
     public static $singleTags = array('img', 'input', 'br', 'hr');
     public static $uncloseTags = array('link', 'meta');
     public static $debug = false;
-    public static $cache = NULL;
     private static $magicSpecialIdentifier = "__special__";
     private static $magicSpecialMethods;
     private static $aliasCommandTable = array();
@@ -50,25 +49,13 @@ class html
 
     function __construct()
     {
-        //if(is_null(self::$cache) === true) self::cache(true);
+
     }
 
     public static function debug($function = "", $string = "")
     {
         if (!html::$debug) return;
         echo $function.": ".trim($string)."\n";
-    }
-
-    public static function cache($state = NULL)
-    {
-        if (class_exists('cache') && is_null($state) === false) {
-            cache::enable($state);
-            self::$cache = $state;
-            return cache::is_enabled();
-        } elseif (class_exists('cache') && is_null($state) === true) {
-            return self::$cache;
-        }
-        return html::$cache;
     }
 
     /**
@@ -785,11 +772,8 @@ class html_attribute
 
     function _parseFromString($string)
     {
-        if (html::cache() && cache::has(__FUNCTION__.$string)) return cache::get(__FUNCTION__.$string);
-        //R:$createdElement = parse::html($string, $this->tag());
         $this->tag()->__parse($string);
-        if (html::cache()) cache::set(__FUNCTION__.$string, $createdElement);
-        //R:return $createdElement;
+
         return $this->tag();
     }
 
@@ -1518,9 +1502,6 @@ class parse
 
     public static function html($string = "", $toTag)
     {
-        if (html::cache()) {
-            if (cache::has(__FUNCTION__.$string)) return self::tokenizer(cache::get(__FUNCTION__.$string), $string, $toTag);
-        }
 
         if (!self::$A) self::_init();
         $S = self::$S;
@@ -1542,17 +1523,12 @@ class parse
         $rx.= "(?:>|(/)[".$S."]*>)"; //The end is reached if there is a closing sign found >
 
         preg_match_all("!".$rx."!sm", $string, $matched_tags, PREG_OFFSET_CAPTURE);
-        if (html::cache()) {
-            cache::set(__FUNCTION__.$string, $matched_tags);
-        }
+
         return self::tokenizer($matched_tags, $string, $toTag);
     }
 
     private static function tokenizer($matchArray, $string, $toTag)
     {
-        if (html::cache()) {
-            if (cache::has(__FUNCTION__.$string)) return cache::get(__FUNCTION__.$string);
-        }
 
         unset($matchArray[3]);
         unset($matchArray[4]);
@@ -1621,10 +1597,6 @@ class parse
                     $last = $tag;
                 }
             }
-
-        if (html::cache()) {
-            cache::set(__FUNCTION__.$string, $toTag->tag());
-        }
 
         return $toTag->tag();
     }
@@ -1760,97 +1732,6 @@ class parse
             }
 
         return $toOutput;
-    }
-
-}
-
-class cache
-{
-
-    private static $enabled;
-    private static $ttl = 10;
-    private static $store = array();
-    private static $sys = "internal"; //apc
-
-    public static function enable($state = true)
-    {
-        if (extension_loaded("apc")) {
-            self::$sys = "apc";
-        } else {
-            self::$sys = "internal";
-        }
-        return self::$enabled = $state;
-    }
-
-    public static function is_enabled()
-    {
-        if (self::$enabled === true) {
-            if (extension_loaded("apc")) {
-                self::$enabled = true;
-            }
-            else self::$enabled = false;
-        }
-        return self::$enabled;
-    }
-
-    private static function createKey($string)
-    {
-        return md5($string);
-    }
-
-    public static function has($key)
-    {
-        return call_user_func(array(__CLASS__, self::$sys."_exists"), self::createKey($key));
-    }
-
-    public static function get($key)
-    {
-        if (self::$sys == "internal") {
-            $data = self::internal_fetch(self::createKey($key), $success);
-        } elseif (self::$sys == "apc") {
-            $data = self::apc_fetch(self::createKey($key), $success);
-        }
-        if (!$success) {
-            trigger_error("Missing cache data!", E_USER_WARNING);
-        }
-        return $data;
-    }
-
-    public static function set($key, $data)
-    {
-        return call_user_func(array(__CLASS__, self::$sys."_store"), self::createKey($key), $data, self::$ttl);
-    }
-
-    private static function apc_fetch($key, &$success)
-    {
-        return apc_fetch($key, $success);
-    }
-
-    private static function apc_store($key, $data, $ttl)
-    {
-        return apc_store($key, $data, $ttl);
-    }
-
-    private static function apc_exists($key)
-    {
-        return apc_exists($key);
-    }
-
-    private static function internal_fetch($key, &$success)
-    {
-        $success = true;
-        return self::$store[$key];
-    }
-
-    private static function internal_store($key, $data, $ttl)
-    {
-        self::$store[$key] = $data;
-        return true;
-    }
-
-    private static function internal_exists($key)
-    {
-        return isset(self::$store[$key]);
     }
 
 }
