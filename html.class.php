@@ -24,8 +24,7 @@
  *
  */
 
-class html
-{
+class html {
 
 	public $element;
 	public $elements;
@@ -33,55 +32,79 @@ class html
 	/**
 	 * This is an array of objects of (self).
 	 *
+	 * @access public
 	 * @var (array)
 	 */
 	public static $tag;
 
-	public static $singleTags = array('img', 'input', 'br', 'hr');
-	public static $uncloseTags = array('link', 'meta');
-	public static $debug = false;
+	/**
+	 * Self closing tags.
+	 *
+	 * @access public
+	 * @var (array)
+	 */
+	public  static $singleTags             = array( 'area', 'base', 'br', 'col', 'hr', 'img', 'input', 'link', 'meta', 'param' );
+
+	public  static $uncloseTags            = array( 'link', 'meta' );
+	public  static $debug                  = false;
 	private static $magicSpecialIdentifier = "__special__";
 	private static $magicSpecialMethods;
 	private static $aliasCommandTable = array();
 	private static $tagStore;
 	private static $variable = array();
-	public static $event;
+	public  static $event;
 
-	function __construct()
-	{
+	public function __construct() {
 
 	}
 
-	public static function debug($function = "", $string = "")
-	{
-		if (!html::$debug) return;
-		echo $function.": ".trim($string)."\n";
+	/**
+	 * Outputs a debug message.
+	 *
+	 * @access public
+	 * @param  (string) $function [description]
+	 * @param  (string) $string   [description]
+	 * @return (string)           Debug message.
+	 */
+	public static function debug( $function = "", $string = "" ) {
+
+		if ( !html::$debug ) return;
+
+		echo $function . ": " . trim ( $string ) . "\n";
 	}
 
 	/**
 	 * Seems to be an unfinished method that doesn't do anything.
+	 *
+	 * @access public
 	 */
-	public static function clean()
-	{
+	public static function clean() {
+
 		self::$form = NULL;
 	}
 
 	/**
 	 * Seems to be an unfinished method that doesn't do anything.
+	 *
+	 * @access public
+	 * @param (string) $name
+	 * @return (void)
 	 */
-	public static function delete($name)
-	{
-		$name = self::getOrigin($name);
-		if (isset(self::$form[$name])) unset(self::$form[$name]);
+	public static function delete( $name ) {
+
+		$name = self::getOrigin( $name );
+
+		if ( isset( self::$form[ $name ] ) ) unset( self::$form[ $name ] );
 	}
 
 	/**
 	 *
+	 * @access public
 	 * @return html
 	 */
-	static public function notag()
-	{
-		return self::tag()->html(func_get_args());
+	static public function notag() {
+
+		return self::tag()->html( func_get_args() );
 	}
 
 	/**
@@ -141,29 +164,35 @@ class html
 	 * @todo Rename method to: node
 	 * @todo Rename _createTag to: createNode
 	 * @todo Rename $args to: $params
+	 *
+	 * @access public
 	 * @param (string) Node to create
 	 * @return (string)
 	 */
-	static public function tag()
-	{
-		$args = self::__prepareArguments(func_get_args());
-		$tag = self::_createTag($args["nodename"]);
+	public static function tag() {
 
-		if (isset($args["attributes"])) {
-			foreach ($args["attributes"] as $id => $attr)
-			{
-				if ($attr["type"] === "attribute") {
+		$args = self::__prepareArguments( func_get_args() );
+		$tag  = self::_createTag( $args["nodename"] );
+
+		if ( isset( $args["attributes"] ) ) {
+
+			foreach ( $args["attributes"] as $id => $attr ) {
+
+				if ( $attr["type"] === "attribute" ) {
+
 					$attribute = $attr["key"];
-					if (!$attribute) $attribute = "+";
-					if (is_numeric($attribute)) $attribute = "+".$attribute;
-					$tag->{$attribute}((string) $attr["data"]);
-				}
-				elseif ($attr["type"] === "append") {
-					if (!is_object($attr["data"])) $tag->append((string) $attr["data"]);
-					else $tag->append($attr["data"]);
+					if ( ! $attribute ) $attribute = "+";
+					if ( is_numeric( $attribute ) ) $attribute = "+".$attribute;
+					$tag->{ $attribute }( (string) $attr["data"] );
+
+				} elseif ( $attr["type"] === "append" ) {
+
+					if ( ! is_object( $attr["data"] ) ) $tag->append( (string) $attr["data"] );
+					else $tag->append( $attr["data"] );
 				}
 			}
 		}
+
 		return $tag;
 	}
 
@@ -193,149 +222,220 @@ class html
 	 *      }
 	 *  }
 	 *
+	 * @access private
 	 * @param (array) $argData
 	 * @return (array)
 	 */
-	static private function __prepareArguments(array $argData)
-	{
-		$argData = self::__flattenArguments($argData);
+	private static function __prepareArguments( array $argData ) {
+
+		$argData = self::__flattenArguments( $argData );
 		//$argData = self::__reorderArguments($argData);
-		$argData = self::__argumentGuesser($argData);
+		$argData = self::__argumentGuesser( $argData );
+
 		return $argData;
 	}
 
-	static private function __reorderArguments($argData)
-	{
-		for ($tc = 2; $tc >= 1; $tc--)
-		{
-			if ($argData && count($argData) === ($tc + 1) && strpos($argData[$tc], "=") !== false) {
-				$equal = substr_count($argData[$tc], "='") + substr_count($argData[$tc], '="');
-				$sepGap = substr_count($argData[$tc], "' ") + substr_count($argData[$tc], '" ');
-				$quote = substr_count($argData[$tc], "'") + substr_count($argData[$tc], '"');
-				if ($equal === 1 && $sepGap === 0 && $quote === 2 || $equal > 1 && $equal === ($sepGap * 2) && $quote === ($equal * 2)
-				) {
-					$attr = parse::__attribute_tokenizer($argData[$tc]);
-					if ($tc === 1) {
-						return array_merge(array($argData[0], ''), $attr);
-					} elseif ($tc === 2) {
-						return array_merge(array($argData[0], $argData[1]), $attr);
+	/**
+	 * [__reorderArguments description]
+	 * @param  [type] $argData [description]
+	 * @return (array)         [description]
+	 */
+	private static function __reorderArguments( $argData ) {
+
+		for ( $tc = 2; $tc >= 1; $tc-- ) {
+
+			if ( $argData && count( $argData ) === ( $tc + 1 ) && strpos( $argData[ $tc ], "=" ) !== FALSE ) {
+
+				$equal  = substr_count( $argData[ $tc ], "='" ) + substr_count( $argData[ $tc ], '="' );
+				$sepGap = substr_count( $argData[ $tc ], "' " ) + substr_count( $argData[ $tc ], '" ' );
+				$quote  = substr_count( $argData[ $tc ], "'" )  + substr_count( $argData[ $tc ], '"' );
+
+				if ( $equal === 1 && $sepGap === 0 && $quote === 2 || $equal > 1 && $equal === ( $sepGap * 2 ) && $quote === ( $equal * 2 ) ) {
+
+					$attr = parse::__attribute_tokenizer( $argData[ $tc ] );
+
+					if ( $tc === 1 ) {
+
+						return array_merge( array( $argData[0], '' ), $attr );
+
+					} elseif ( $tc === 2 ) {
+
+						return array_merge( array( $argData[0], $argData[1] ), $attr);
 					}
 				}
 			}
 		}
+
 		return $argData;
 	}
 
-	static private function __argumentGuesser(array $argData)
-	{
-		$typ = "";
-		$typSig = "";
-		$descArray = array();
-		$skip = 0;
-		$skipTo = 0;
-		$even = false;
-		$sCount = 0;
-		$p = 0;
-		$nodeElement = array_shift($argData);
-		$descArray["nodename"] = $nodeElement;
-		foreach ($argData as $key => $val)
-		{
-			$typ.=(is_object($val) === true ? "O" : "S");
+	/**
+	 * [__argumentGuesser description]
+	 *
+	 * @access private
+	 * @param  (array)  $argData
+	 * @return (array)
+	 */
+	private static function __argumentGuesser( array $argData ) {
+
+		$typ                   = '';
+		$typSig                = '';
+		$descArray             = array();
+		$skip                  = 0;
+		$skipTo                = 0;
+		$even                  = FALSE;
+		$sCount                = 0;
+		$p                     = 0;
+		$nodeElement           = array_shift( $argData );
+		$descArray['nodename'] = $nodeElement;
+
+		foreach ( $argData as $key => $val ) {
+
+			$typ .= ( is_object( $val ) === TRUE ? "O" : "S");
 		}
 
-		if ($typ) $descArray["attributes"] = array();
-		if ($typ) foreach ($argData as $key => $val)
-			{
-				if ($skip !== 0) {
-					$skipTo+=$skip;
-					$skip = 0;
-				}
-				if ($skipTo === $key) {
-					$sCount = substr_count($typ, "S");
-					$even = !($sCount % 2);
-					if ($key === 0 && ($typLen = strlen($typ)) >= 3) {
-						$typSig = $typ[$p].$typ[$p + 1].$typ[$p + 2];
-						if ($skip === 0 && $typSig === "SSS") {
-							if ($typLen === 3) {
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
-								$skip = 3;
-							} elseif ($even === true) { /* I $typLen>3 */
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
-								$skip = 2;
-							} elseif ($even === false) { /* I $typLen>3 */
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
-								$skip = 3;
-							}
-						} elseif ($skip === 0 && $typSig === "SSO") {
-							if ($even === true) {
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
-								$skip = 2;
-							} else { /* I $even===false */
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
-								$skip = 3;
-							}
-						} elseif ($skip === 0 && ($typSig === "SOS" || $typSig === "OOO")) {
-							if ($typLen === 3) { /* I $even===true */
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 2]);
-								$skip = 3;
-							} elseif ($typLen >= 3) {
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
-								$skip = 2;
-							}
-						} elseif ($skip === 0 && ($typSig === "SOO" || $typSig === "OSO")) {
-							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
-							$skip = 1;
-						} elseif ($skip === 0 && $typSig === "OOS") {
-							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
-							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p + 1]);
-							$skip = 2;
-						} elseif ($skip === 0 && $typSig === "OSS") {
-							if ($typLen === 3) {
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$skip = 1;
-							} elseif ($typLen > 3) {
-								$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-								$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
-								$skip = 3;
-							}
-						}
-					} elseif ($skip === 0 && $typ && strlen($typ) >= 2) {
-						$typSig = $typ[$p].$typ[$p + 1];
-						if ($skip === 0 && $typSig === "SS") {
+		if ( $typ ) $descArray['attributes'] = array();
+
+		if ( $typ ) foreach ( $argData as $key => $val ) {
+
+			if ( $skip !== 0 ) {
+
+				$skipTo+=$skip;
+				$skip = 0;
+			}
+
+			if ( $skipTo === $key ) {
+
+				$sCount = substr_count( $typ, "S" );
+				$even   = ! ( $sCount % 2 );
+
+				if ( $key === 0 && ( $typLen = strlen( $typ ) ) >= 3 ) {
+
+					$typSig = $typ[ $p ].$typ[ $p + 1 ].$typ[ $p + 2 ];
+
+					if ( $skip === 0 && $typSig === "SSS" ) {
+
+						if ( $typLen === 3 ) {
+
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
+							$skip = 3;
+
+						} elseif ( $even === TRUE ) { /* I $typLen>3 */
+
 							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
 							$skip = 2;
-						} elseif ($skip === 0 && $typSig === "SO") {
+
+						} elseif ( $even === FALSE ) { /* I $typLen>3 */
+
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
+							$skip = 3;
+						}
+
+					} elseif ($skip === 0 && $typSig === "SSO") {
+
+						if ($even === true) {
+
+							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
+							$skip = 2;
+
+						} else { /* I $even===false */
+
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
+							$skip = 3;
+						}
+
+					} elseif ($skip === 0 && ($typSig === "SOS" || $typSig === "OOO")) {
+
+						if ($typLen === 3) { /* I $even===true */
+
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
+							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 2]);
+							$skip = 3;
+
+						} elseif ($typLen >= 3) {
+
 							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
 							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
 							$skip = 2;
-						} elseif ($skip === 0 && $typSig === "OO") {
-							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
-							$skip = 2;
-						} elseif ($skip === 0 && $typSig === "OS") {
+						}
+
+					} elseif ($skip === 0 && ($typSig === "SOO" || $typSig === "OSO")) {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
+						$skip = 1;
+
+					} elseif ($skip === 0 && $typSig === "OOS") {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p]);
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$p + 1]);
+						$skip = 2;
+
+					} elseif ($skip === 0 && $typSig === "OSS") {
+
+						if ($typLen === 3) {
+
 							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
 							$skip = 1;
-						}
-					} elseif ($skip === 0) { /* I L===1 */
-						$typSig = $typ[$p];
-						if ($skip === 0/* && ($typSig==="S"
-						  || $typSig==="O") */) {
+
+						} elseif ($typLen > 3) {
+
 							$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
-							$skip = 1;
+							$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key + 1], "data" => $argData[$key + 2]);
+							$skip = 3;
 						}
+
 					}
-					if ($skip !== 0) {
-						$typ = substr($typ, $skip);
-						$p = 0;
+
+				} elseif ($skip === 0 && $typ && strlen($typ) >= 2) {
+
+					$typSig = $typ[$p].$typ[$p + 1];
+
+					if ($skip === 0 && $typSig === "SS") {
+
+						$descArray["attributes"][] = array("type" => "attribute", "key" => $argData[$key], "data" => $argData[$key + 1]);
+						$skip = 2;
+
+					} elseif ($skip === 0 && $typSig === "SO") {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
+						$skip = 2;
+
+					} elseif ($skip === 0 && $typSig === "OO") {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key + 1]);
+						$skip = 2;
+
+					} elseif ($skip === 0 && $typSig === "OS") {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+						$skip = 1;
+					}
+
+				} elseif ($skip === 0) { /* I L===1 */
+
+					$typSig = $typ[$p];
+
+					if ($skip === 0/* && ($typSig==="S" || $typSig==="O") */) {
+
+						$descArray["attributes"][] = array("type" => "append", "data" => $argData[$key]);
+						$skip = 1;
 					}
 				}
+
+				if ($skip !== 0) {
+
+					$typ = substr($typ, $skip);
+					$p = 0;
+				}
 			}
+		}
+
 		return $descArray;
 	}
 
@@ -346,25 +446,31 @@ class html
 	 * @todo Return $argOut instead of resetting $argData and returning it.
 	 * @todo Clean up the if statement so it is more easily readable.
 	 *
+	 * @access private
 	 * @param (array) $argData
 	 * @return (array)
 	 */
-	static private function __flattenArguments(array $argData)
-	{
+	private static function __flattenArguments( array $argData ) {
+
 		$argOut = array();
-		foreach ($argData as $key => $val)
-		{
+
+		foreach ($argData as $key => $val) {
+
 			//if(is_numeric($key) && is_string($val) && parse::__has_attributes($val)===true){$argOut=array_merge($argOut,parse::__attribute_tokenizer($val));}
 			if (is_numeric($key) && !is_array($val)) $argOut[] = $val;
 			elseif (!is_numeric($key)) {
 				$argOut[] = $key;
 				$argOut[] = $val;
+
 			} elseif (is_numeric($key) && is_array($val)) {
+
 				$argOut = array_merge($argOut, self::__flattenArguments($val));
 			}
 		}
+
 		$argData = array();
 		$argData = $argOut;
+
 		return $argData;
 	}
 
@@ -375,11 +481,12 @@ class html
 	 * @todo Rename to: createNode
 	 * @todo Rename param to: $name
 	 *
+	 * @access private
 	 * @param (string) $nodename
 	 * @return (object)
 	 */
-	private static function _createTag($nodename = false)
-	{
+	private static function _createTag($nodename = false) {
+
 		$id = uniqid();
 		if (!isset(self::$tag[$id])) self::$tag[$id] = new self();
 		self::$tag[$id]->setElement($id);
@@ -405,7 +512,7 @@ class html
 		$self = new ReflectionClass(__CLASS__);
 		foreach ($self->getMethods() as $id => $methodData)
 		{
-//            html::debug(__METHOD__, "Check registered methods $methodData");
+           // html::debug(__METHOD__, "Check registered methods $methodData");
 			if (strpos($methodData->name, self::$magicSpecialIdentifier) !== false) {
 				self::$magicSpecialMethods[substr($methodData->name, strlen(self::$magicSpecialIdentifier))] = $methodData->name;
 			}
@@ -415,39 +522,49 @@ class html
 
 	/**
 	 *
-	 * @param string $function
-	 * @return string
+	 * @access private
+	 * @param (string) $function
+	 * @return (string)
 	 */
-	private static function __createSpecialName($function)
-	{
-		$name = substr($function, strlen(self::$magicSpecialIdentifier));
-		$prefix = strtolower(str_replace("_", "", self::$magicSpecialIdentifier));
-		return $prefix.":".$name;
+	private static function __createSpecialName($function) {
+
+		$name   = substr( $function, strlen( self::$magicSpecialIdentifier ) );
+		$prefix = strtolower( str_replace( "_", '', self::$magicSpecialIdentifier ) );
+
+		return $prefix . ':' . $name;
 	}
 
 	/**
-	 * Definition of special commands
-	 * @param type $command
-	 * @param type $alias
-	 * @return boolean
+	 * Definition of special commands.
+	 *
+	 * @access private
+	 * @param [type] $command
+	 * @param [type] $alias
+	 * @return (boolean)
 	 */
-	private static function __special__alias($command, $alias)
-	{
-		self::$aliasCommandTable[$alias] = $command;
-		return true;
+	private static function __special__alias( $command, $alias ) {
+
+		self::$aliasCommandTable[ $alias ] = $command;
+
+		return TRUE;
 	}
 
 	/**
-	 * Special function to check a bunch of variables if there is any empty variable before creating a node
-	 * @return html
+	 * Special function to check a bunch of variables if there is any empty variable before creating a node.
+	 *
+	 * @access private
+	 * @return (html)
 	 */
-	static private function __special__ifNotAnyEmpty()
-	{
+	private static function __special__ifNotAnyEmpty() {
+
 		$args = func_get_args();
-		if ($args) {
-			foreach ($args as $arg)
-			{
-				if (empty($arg)) {
+
+		if ( $args ) {
+
+			foreach ($args as $arg) {
+
+				if ( empty( $arg ) ) {
+
 //                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
 					return html::tag('[nooutput]');
 //                    return html::{'[nooutput]'}();
@@ -459,103 +576,151 @@ class html
 		$tag = self::tag(self::__createSpecialName(__FUNCTION__));
 		$tag->{'_name'}($args);
 		$tag->setMode(__FUNCTION__);
+
 		return $tag;
 	}
 
 	/**
-	 * Special function to check a bunch of variables if they are all empty before creating a node
-	 * @return html
+	 * Special function to check a bunch of variables if they are all empty before creating a node.
+	 *
+	 * @access private
+	 * @return (html)
 	 */
-	static private function __special__ifNotAllEmpty()
-	{
+	private static function __special__ifNotAllEmpty() {
+
 		$args = func_get_args();
-		if ($args) {
-			for ($x = 1; $x <= 1; $x++)
-			{
-				foreach ($args as $arg)
-				{
-					if (!empty($arg)) {
+
+		if ( $args ) {
+
+			for ( $x = 1; $x <= 1; $x++ ) {
+
+				foreach ($args as $arg) {
+
+					if ( ! empty( $arg ) ) {
+
 						break(2);
+
 					} else {
+
 //                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
 						$newNodeInCharge = html::tag('[nooutput]');
 //                    return html::{'[nooutput]'}();
 //                        $newNodeInCharge = html::{'[nooutput]'}();
 					}
 				}
+
 				return $newNodeInCharge;
 			}
 		}
 //        return html::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotallemptymode'}(true);
-		$tag = self::tag(self::__createSpecialName(__FUNCTION__));
-		$tag->{'_name'}($args);
-		$tag->setMode(__FUNCTION__);
+		$tag = self::tag( self::__createSpecialName( __FUNCTION__ ) );
+		$tag->{'_name'}( $args );
+		$tag->setMode( __FUNCTION__ );
+
 		return $tag;
 	}
 
 	/**
 	 *
+	 * @access private
 	 * @param type $on
 	 * @param type $function
 	 * @param type $callback
 	 * @param type $ownerid
 	 */
-	private static function __registerEvent($on, $function, $callback, $ownerid)
-	{
-		self::$event[$function][$on][$ownerid] = $callback;
+	private static function __registerEvent( $on, $function, $callback, $ownerid ) {
+
+		self::$event[ $function ][ $on ][ $ownerid ] = $callback;
 	}
 
 	/**
 	 *
+	 * @access private
 	 * @param string $name
 	 * @param string $var
 	 */
-	private static function __registerState($name, $var = null)
-	{
-		self::$variable[$name] = $var;
+	private static function __registerState( $name, $var = NULL ) {
+
+		self::$variable [$name ] = $var;
 	}
 
 	/**
 	 *
-	 * @param string $name
-	 * @return string
+	 * @access public
+	 * @param (string) $name
+	 * @return (string)
 	 */
-	public static function __getState($name)
-	{
-		if (isset(self::$variable[$name])) return self::$variable[$name];
+	public static function __getState( $name ) {
+
+		if ( isset( self::$variable[ $name ] ) ) return self::$variable[ $name ];
 	}
 
-	public static function __hasEvent($on, $function, &$object)
-	{
-		if (isset(self::$event[$function][$on]) === true) {
-			foreach (self::$event[$function][$on] as $ownerid => $callback)
+	/**
+	 * [__hasEvent description]
+	 *
+	 * @access public
+	 * @param  [type] $on       [description]
+	 * @param  [type] $function [description]
+	 * @param  [type] $object   [description]
+	 * @return [type]           [description]
+	 */
+	public static function __hasEvent( $on, $function, &$object ) {
+
+		if ( isset( self::$event[ $function ] [$on ]) === TRUE ) {
+
+			foreach ( self::$event[ $function ][ $on ] as $ownerid => $callback )
 				$callback($object);
 		}
 	}
 
-	private static function __special__setNamespace($ns = false)
-	{
-		self::__registerState('namespace', $ns);
-		$callback = function(&$object)
-				{
+	/**
+	 * [__special__setNamespace description]
+	 *
+	 * @note This method will require PHP >= 5.3
+	 * @note Doesn't appear that this function is used.
+	 *
+	 * @access private
+	 * @param  (bool) $ns Namespace
+	 * @return [type]      [description]
+	 */
+	private static function __special__setNamespace( $ns = FALSE ) {
+
+		self::__registerState( 'namespace', $ns );
+
+		$callback = function( &$object ) {
+
 					$ns = html::__getState('namespace');
-					if ($object->nodename && $ns && strpos($object->nodename, ':') === false) $object->{'&__namespace'} = $ns;
+					if ( $object->nodename && $ns && strpos( $object->nodename, ':' ) === FALSE ) $object->{'&__namespace'} = $ns;
 				};
-		self::__registerEvent('on', '__toString', $callback, __FUNCTION__);
+
+		self::__registerEvent( 'on', '__toString', $callback, __FUNCTION__ );
 	}
 
-	private static function __special__control($args)
-	{
+	/**
+	 * [__special__control description]
+	 *
+	 * @access private
+	 * @param  [type] $args [description]
+	 * @return [type]       [description]
+	 */
+	private static function __special__control( $args ) {
+
 		if (isset(self::$tagStore["control"][$args])) {
+
 			if (isset(self::$tagStore["control"][$args]->{'*registeredevents'})) {
+
 				$events = self::$tagStore["control"][$args]->{'*registeredevents'};
 				unset(self::$tagStore["control"][$args]->{'*registeredevents'});
 			}
+
 			$clone = unserialize(serialize(self::$tagStore["control"][$args]));
+
 			if (isset($events)) {
+
 				self::$tagStore["control"][$args]->{'*registeredevents'} = $events;
 				$clone->{'*registeredevents'}($events);
 			}
+
 			return $clone;
 		}
 
@@ -564,22 +729,38 @@ class html
 		//This tag is in replacemode means. After restoring it, it should replace given values and attributes instead of create attributes
 		$tag->inReplaceMode(true);
 		self::$tagStore["control"][$args] = $tag;
+
 		return $tag;
 	}
 
 	//End definition
 
-	final public function setElement($id)
-	{
+	/**
+	 * [setElement description]
+	 *
+	 * @access public
+	 * @param [type] $id [description]
+	 */
+	final public function setElement( $id ) {
+
 		$this->element = $id;
 	}
 
-	public static function __callStatic($name, $args)
-	{
-		html::debug(__METHOD__, "$name");
-		html::commandAlias($name);
+	/**
+	 * Magic method statically called to create object node.
+	 *
+	 * @access public
+	 * @param  (string) $name The node tag.
+	 * @param  (mixed) $args [array | string]
+	 * @return [type]       [description]
+	 */
+	public static function __callStatic($name, $args) {
 
-		if (!self::$magicSpecialMethods) {
+		html::debug( __METHOD__, "$name" );
+		html::commandAlias( $name );
+
+		if ( ! self::$magicSpecialMethods ) {
+
 			self::__selfInvestigate();
 		}
 
@@ -593,33 +774,70 @@ class html
 		return html::tag($name);
 	}
 
-	public function __call($method, $args)
-	{
-		html::debug(__METHOD__, "$method");
-		$this->elements[$this->element] = new html_attribute;
-		$this->elements[$this->element]->__parentElement($this->elements[$this->element]);
-		return $this->elements[$this->element]->$method($args[0]);
+	/**
+	 * [__call description]
+	 *
+	 * @access public
+	 * @param  (string) $method The method name to call.
+	 * @param  (array)  $args   [description]
+	 * @return [type]         [description]
+	 */
+	public function __call( $method, $args ) {
+
+		html::debug( __METHOD__, "$method" );
+
+		$this->elements[ $this->element ] = new html_attribute;
+		$this->elements[ $this->element ]->__parentElement( $this->elements[ $this->element ] );
+
+		return $this->elements[ $this->element ]->$method( $args[0] );
 	}
 
-	private static function commandIsAlias($name)
-	{
-		if (isset(self::$aliasCommandTable[$name])) return true;
+	/**
+	 * [commandIsAlias description]
+	 *
+	 * @access private
+	 * @param  (string) $name
+	 * @return (bool)
+	 */
+	private static function commandIsAlias( $name ) {
+
+		if ( isset( self::$aliasCommandTable[ $name ] ) ) return TRUE;
+
+		return FALSE;
 	}
 
-	public static function commandAlias(&$name)
-	{
-		if (!html::commandIsAlias($name)) return false;
-		$alias = self::$aliasCommandTable[$name];
-		$name = $alias;
-		return true;
+	/**
+	 * [commandAlias description]
+	 *
+	 * @access public
+	 * @param  [type] $name [description]
+	 * @return (bool)
+	 */
+	public static function commandAlias( &$name ) {
+
+		if ( ! html::commandIsAlias( $name ) ) return FALSE;
+
+		$alias = self::$aliasCommandTable[ $name ];
+		$name  = $alias;
+
+		return TRUE;
 	}
 
-	public static function __array_depth(array $a)
-	{
+	/**
+	 * [__array_depth description]
+	 *
+	 * @access public
+	 * @param  (array)  $a
+	 * @return (int)
+	 */
+	public static function __array_depth( array $a ) {
+
 		$m = 0;
-		$x = explode(',', json_encode($a, JSON_FORCE_OBJECT)."\n\n");
-		foreach ($x as $r)
-			$m = (substr_count($r, ':') > $m) ? substr_count($r, ':') : $m;
+		$x = explode(',', json_encode( $a, JSON_FORCE_OBJECT ) . "\n\n" );
+
+		foreach ( $x as $r )
+			$m = ( substr_count( $r, ':' ) > $m ) ? substr_count( $r, ':' ) : $m;
+
 		return $m;
 	}
 
@@ -1404,19 +1622,25 @@ class html_attribute
 				}
 			}
 
-		if ($isSingleTag) {
+		if ( $isSingleTag ) {
+
 			if ($nodeName) $strTag .= "/>";
-		}
-		else {
-			if (!isset($strTag)) $strTag = "";
-			if ($nodeName) $strTag = rtrim($strTag).">";#<==== fixed (war an einer falschen stelle)
-			if (!$isUncloseTag) { #<==== new
+
+		} else {
+
+			if ( ! isset ( $strTag ) ) $strTag = "";
+
+			if ( $nodeName ) $strTag = rtrim( $strTag ).">";#<==== fixed (war an einer falschen stelle)
+
+			if ( ! $isUncloseTag ) { #<==== new
+
 				$strTag .= $tagContent;
-				if ($nodeName) $strTag .= "</".$nodeName.">";
+
+				if ( $nodeName ) $strTag .= "</".$nodeName.">";
 			}
 		}
 
-		if(empty($strTag)) $strTag = "";
+		if( empty( $strTag ) ) $strTag = '';
 //        unset($this->tag);
 //        $this->tag = null;
 		return $strTag;
