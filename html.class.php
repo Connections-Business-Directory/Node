@@ -229,7 +229,7 @@ class html {
 	private static function __prepareArguments( array $argData ) {
 
 		$argData = self::__flattenArguments( $argData );
-		//$argData = self::__reorderArguments($argData);
+		$argData = self::__reorderArguments( $argData );
 		$argData = self::__argumentGuesser( $argData );
 
 		return $argData;
@@ -512,7 +512,7 @@ class html {
 		$self = new ReflectionClass(__CLASS__);
 		foreach ($self->getMethods() as $id => $methodData)
 		{
-           // html::debug(__METHOD__, "Check registered methods $methodData");
+			// html::debug(__METHOD__, "Check registered methods $methodData");
 			if (strpos($methodData->name, self::$magicSpecialIdentifier) !== false) {
 				self::$magicSpecialMethods[substr($methodData->name, strlen(self::$magicSpecialIdentifier))] = $methodData->name;
 			}
@@ -1594,14 +1594,10 @@ class html_attribute
 					}
 			}
 
-			if (!isset($tagContent) || $tagContent === "") {
-				//Create single tag if there is no content
+			if (!isset($tagContent)) {
 				$isSingleTag = true;
 			}
 			if (isset($tag["_content"])) unset($tag["_content"]);
-		} elseif(!$isSingleTag && !isset($tag["_content"])) {
-			//Create single tag if there is no content
-			$isSingleTag = true;
 		}
 		if (isset($tag["_content"])) unset($tag["_content"]);
 
