@@ -1,0 +1,34 @@
+Control creation
+
+<<<
+is_equal_string ** Create a control and use it
+<div class="control textinput"><span><label for="name">Name</label>: </span><input id="name" value="" /></div>
+<==>
+html::control('textinput')->append(
+	html::div('class','control textinput',
+		html::span()->append(html::label('#label','for','#name'))->addtext(': '),
+		html::input('id','#name','value','#value')
+	)
+);
+return html::control("textinput")->label('Name')->name('name')->value('');
+>>>
+
+<<<
+is_equal_string ** Create a control and use it as you like
+<div class="control textinput"><span><label for="name">Name</label>: </span><input id="name" value="" /></div>
+<div class="control textinput"><span><label for="phone">Phone</label>: </span><input id="phone" value="+49" /></div>
+<==>
+//Define a control and use sharp as variable marker
+html::control('textinput')->append(
+	html::div('class','control textinput',
+		html::span()->append(html::label('#label','for','#name'))->addtext(': '),
+		html::input('id','#name','value','#value')
+	)
+);
+//Now just call the control and assign values to the variables as if they are attributes
+return 
+html::control("textinput")->label('Name')->name('name')->value('')."
+".html::control("textinput")->label('Phone')->name('phone')->value('+49')
+;
+>>>
+

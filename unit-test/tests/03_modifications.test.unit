@@ -1,0 +1,29 @@
+Modification methods
+
+<<<
+is_equal_string ** Create a html tag with a text node
+<a href="#">TestString</a>
+<==>
+return html::a('TestString','href','#');
+>>>
+
+<<<
+is_equal_string ** Remove the text node from the tag
+<a href="#"></a>
+<==>
+return html::a('TestString','href','#')->empty();
+>>>
+
+<<<
+is_equal_string ** Remove the text node from the tag, created differently compared to the previous
+<a href="#"></a>
+<==>
+return html('<a>')->{'href="#"'}()->text('TestString')->empty();
+>>>
+
+<<<
+is_equal_string ** Double anounced attributes get resolved last in last out
+<a class="second" href="#">x</a>
+<==>
+return html('<a class="first">')->{'href="#" class="second"'}('x');
+>>>

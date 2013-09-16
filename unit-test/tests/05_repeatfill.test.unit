@@ -1,0 +1,23 @@
+Repeat Fill
+
+<<<
+is_equal_string ** Create a simple fill in pattern and use it
+<table class="mytable"><tr class="tablerow"><td>1</td></tr></table>
+<==>
+$table = html::table('class','#tableclass')->appendDimension(
+	html::tr()->class('#trclass')->appendDimension(
+		html::td('#number')
+	)
+);
+$tabledata = array(
+	'tableclass'=>'mytable',
+	array(
+		'trclass'=>'tablerow',
+		array(
+			'number'=>'1',
+		),
+	),
+);
+return $table->explode($tabledata);
+>>>
+

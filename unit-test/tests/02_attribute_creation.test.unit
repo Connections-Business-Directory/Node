@@ -1,0 +1,184 @@
+Attribute creation methods
+
+<<<
+is_equal_string ** Attribute creation through magic Call method
+<a href="#"></a>
+<==>
+return html('a')->href('#');
+>>>
+
+<<<
+is_equal_string ** Attribute creation through parser as as non closed tag
+<a href="#"></a>
+<==>
+return html('<a href="#">');
+>>>
+
+<<<
+is_equal_string ** Attribute creation and text to insert into the tag
+<a href="#">x</a>
+<==>
+return html('a')->href('#')->text('x');
+>>>
+
+<<<
+is_equal_string ** In 'uncommon' order. First append text node then create attribute
+<a href="#">x</a>
+<==>
+return html('a')->text('x')->href('#');
+>>>
+
+<<<
+is_equal_string ** Mixed: Tag creation through parser with attribute and then appending text node
+<a href="#">x</a>
+<==>
+return html('<a href="#">')->text('x');
+>>>
+
+<<<
+is_equal_string ** Full parsed tag from string with some odd blanks
+<a href="#">x</a>
+<==>
+return html('<a   href="#" >x< /a >');
+>>>
+
+<<<
+is_equal_string ** Creation by magic static call and appending of a attribute
+<a href="#"></a>
+<==>
+return html::a()->href('#');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and adding an attribute
+<a href="#">y</a>
+<==>
+return html::a('y')->href('#');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and attribute in parameter style
+<a href="#">y</a>
+<==>
+return html::a('y','href','#');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and two attributes in parameter style
+<a href="#" target="_new">y</a>
+<==>
+return html::a('y','href','#','target','_new');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and attribute as parsed pseudo method and 'common' attribute creation
+<a href="#" target="_blank">y</a>
+<==>
+return html::a('y')->{'href="#"'}()->target('_blank');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and attribute as parsed pseudo method with some blanks
+<a href="#" target="_blank">y</a>
+<==>
+return html::a('y')->{'href = "#"  target=  "_blank"'}();
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and attribute as parsed pseudo method and 'common' attribute creation with given string parameter.
+<a href="#">OneTwo</a>
+<==>
+return html::a('One')->{'href="#"'}('Two');
+>>>
+
+<<<
+is_equal_string ** Creation of a node with text and attribute as parsed pseudo method and 'common' attribute creation with another object.
+<a href="#">One<b>Two</b></a>
+<==>
+return html::a('One')->{'href="#"'}(html::b('Two'));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag
+<span></span>
+<==>
+return html('span');
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag and content
+<span>Tag</span>
+<==>
+return html('span','Tag');
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, content and one attribute
+<span class="yes">Tag</span>
+<==>
+return html('span','Tag','class','yes');
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, content and two attributes
+<span class="yes" style="font-weight:bold;">Tag</span>
+<==>
+return html('span','Tag','class','yes','style','font-weight:bold;');
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, *no* content and two attributes
+<span class="yes" style="font-weight:bold;"></span>
+<==>
+return html('span','class','yes','style','font-weight:bold;');
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, content and an associative array of attributes
+<span class="yes" style="font-weight:bold;">Tag</span>
+<==>
+return html('span','Tag',array('class'=>'yes','style'=>'font-weight:bold;'));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, content and a non-associative array of attributes
+<span class="yes" style="font-weight:bold;">Tag</span>
+<==>
+return html('span','Tag',array('class','yes','style','font-weight:bold;'));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag, content and a non-associative array of attributes including another array
+<span class="yes" style="font-weight:bold;">Tag</span>
+<==>
+return html('span','Tag',array('class','yes',array('style'=>'font-weight:bold;')));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag and append another tag
+<span><b>Tag</b></span>
+<==>
+return html('span',b('Tag'));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag and append another tag to further tag plus one tag to the base element
+<span><b><u>Tag</u></b><u>Test</u></span>
+<==>
+return html('span',b(u('Tag')),u('Test'));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag and append a bunch of tags thought an array
+<ul><li>1</li><li>2</li><li>3</li></ul>
+<==>
+return html('ul',array(li('1'),li('2'),li('3')));
+>>>
+
+<<<
+is_equal_string ** Contextual inline creation of a tag and append a bunch of tags thought an array. Short initial tag works of course the same way.
+<ul><li>1</li><li>2</li><li>3</li></ul>
+<==>
+return ul(array(li('1'),li('2'),li('3')));
+>>>
+

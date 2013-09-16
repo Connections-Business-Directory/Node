@@ -1,0 +1,1887 @@
+Stability insurance
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return a();
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html('a');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html::tag('a');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html('<a>');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html::tag('<a>');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html('<a></a>');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html::tag('<a></a>');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html('< a >');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html::tag('< a >');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html('< a >< /a >');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a></a>
+<==>
+return html::tag('< a >< /a >');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return a('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('a','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('a','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a>','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a>','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a></a>','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a></a>','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >< /a >','in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >< /a >','in');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return a()->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('a')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('a')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a>')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a>')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a></a>')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a></a>')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >< /a >')->text('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >< /a >')->text('in');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return a()->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('a')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('a')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a>')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a>')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a></a>')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a></a>')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >< /a >')->html('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >< /a >')->html('in');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return a()->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('a')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('a')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a>')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a>')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('<a></a>')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('<a></a>')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html('< a >< /a >')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>in</a>
+<==>
+return html::tag('< a >< /a >')->append('in');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return a()->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html('a')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html::tag('a')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html('<a>')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html::tag('<a>')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html('<a></a>')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html::tag('<a></a>')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html('< a >')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html::tag('< a >')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html('< a >< /a >')->append('in')->addtext('to');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>into</a>
+<==>
+return html::tag('< a >< /a >')->append('in')->addtext('to');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return a()->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html('a')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html::tag('a')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html('<a>')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html::tag('<a>')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html('<a></a>')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html::tag('<a></a>')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html('< a >')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html::tag('< a >')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html('< a >< /a >')->append('in')->addtext('to')->append('in');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<a>intoin</a>
+<==>
+return html::tag('< a >< /a >')->append('in')->addtext('to')->append('in');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return b('class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html('b','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html::tag('b','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html('<b>','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html::tag('<b>','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html('<b></b>','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html::tag('<b></b>','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html('< b >','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html::tag('< b >','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html('< b >< /b >','class','c');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c"></b>
+<==>
+return html::tag('< b >< /b >','class','c');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return b('class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html('b','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html::tag('b','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html('<b>','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html::tag('<b>','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html('<b></b>','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html::tag('<b></b>','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html('< b >','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html::tag('< b >','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html('< b >< /b >','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d"></b>
+<==>
+return html::tag('< b >< /b >','class','c')->addClass('d');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return b('bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html('b','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html::tag('b','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html('<b>','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html::tag('<b>','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html('<b></b>','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html::tag('<b></b>','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html('< b >','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html::tag('< b >','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html('< b >< /b >','bold','class','c')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d">bold</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c')->addClass('d');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return b('bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html('b','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html::tag('b','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html('<b>','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html::tag('<b>','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html('<b></b>','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html::tag('<b></b>','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html('< b >','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html::tag('< b >','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html('< b >< /b >','bold','class','c','attr','to')->addClass('d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c','attr','to')->addClass('d');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return b('bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html('b','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html::tag('b','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html('<b>','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html::tag('<b>','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html('<b></b>','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html::tag('<b></b>','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html('< b >','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html::tag('< b >','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html('< b >< /b >','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">boldtext</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c','attr','to')->addClass('d')->addtext('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return b('bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html('b','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html::tag('b','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html('<b>','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html::tag('<b>','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html('<b></b>','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html::tag('<b></b>','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html('< b >','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html::tag('< b >','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html('< b >< /b >','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u>text</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c',u('underlined'),'attr','to')->addClass('d')->addtext('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return b('bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('b','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('b','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('<b>','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('<b>','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('<b></b>','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('<b></b>','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('< b >','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('< b >','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('< b >< /b >','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c',u('underlined'),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return b('bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('b','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('b','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('<b>','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('<b>','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('<b></b>','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('<b></b>','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('< b >','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('< b >','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html('< b >< /b >','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c d" attr="to">bold<u>underlined</u><i>italic</i>text</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c',array(u('underlined')),'attr','to',i('italic'))->addClass('d')->addtext('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return b('bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html('b','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html::tag('b','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html('<b>','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html::tag('<b>','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html('<b></b>','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html::tag('<b></b>','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html('< b >','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html::tag('< b >','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html('< b >< /b >','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b bold="class" attr="to" class="d">c<u>underlined</u>and<i>italic</i>text</b>
+<==>
+return html::tag('< b >< /b >','bold','class','c',array(u('underlined'),'and',i('italic')),'attr','to')->addClass('d')->addtext('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return b(array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('b',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('b',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('<b>',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('<b>',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('<b></b>',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('<b></b>',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('< b >','bold',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('< b >',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('< b >< /b >',array('class','myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('< b >< /b >',array('class','myclass'))->text('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return b(array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('b',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('b',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('<b>',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('<b>',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('<b></b>',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('<b></b>',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('< b >','bold',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('< b >',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html('< b >< /b >',array('class'=>'myclass'))->text('text');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="myclass">text</b>
+<==>
+return html::tag('< b >< /b >',array('class'=>'myclass'))->text('text');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return b('class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html('b','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html::tag('b','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html('<b>','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html::tag('<b>','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html('<b></b>','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html::tag('<b></b>','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html('< b >','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html::tag('< b >','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html('< b >< /b >','class','c','d');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d">class</b>
+<==>
+return html::tag('< b >< /b >','class','c','d');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return b('class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html('b','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html::tag('b','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html('<b>','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html::tag('<b>','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html('<b></b>','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html::tag('<b></b>','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html('< b >','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html::tag('< b >','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html('< b >< /b >','class','c','d','e');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e"></b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return b('class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html('b','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html::tag('b','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html('<b>','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html::tag('<b>','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html('<b></b>','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html::tag('<b></b>','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html('< b >','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html::tag('< b >','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html('< b >< /b >','class','c','d','e','f');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f">class</b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e','f');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return b('class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html('b','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html::tag('b','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html('<b>','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html::tag('<b>','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html('<b></b>','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html::tag('<b></b>','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html('< b >','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html::tag('< b >','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html('< b >< /b >','class','c','d','e','f','g');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g"></b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e','f','g');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return b('class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html('b','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html::tag('b','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html('<b>','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html::tag('<b>','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html('<b></b>','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html::tag('<b></b>','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html('< b >','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html::tag('< b >','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html('< b >< /b >','class','c','d','e','f','g','h');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h">class</b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e','f','g','h');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return b('class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html('b','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html::tag('b','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html('<b>','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html::tag('<b>','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html('<b></b>','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html::tag('<b></b>','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html('< b >','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html::tag('< b >','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html('< b >< /b >','class','c','d','e','f','g','h','i');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b class="c" d="e" f="g" h="i"></b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e','f','g','h','i');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return b('class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html('b','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html::tag('b','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html('<b>','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html::tag('<b>','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html('<b></b>','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html::tag('<b></b>','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html('< b >','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html::tag('< b >','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html('< b >< /b >','class','c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class</b>
+<==>
+return html::tag('< b >< /b >','class','c','d','e','f','g','h','i','j');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return b('class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html('b','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html::tag('b','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html('<b>','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html::tag('<b>','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html('<b></b>','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html::tag('<b></b>','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html('< b >','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html::tag('< b >','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html('< b >< /b >','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u></b>
+
+<==>
+return html::tag('< b >< /b >','class',u(),'c','d','e','f','g','h','i','j');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return b('class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html('b','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html::tag('b','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html('<b>','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html::tag('<b>','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html('<b></b>','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html::tag('<b></b>','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html('< b >','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html::tag('< b >','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html('< b >< /b >','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" g="h" i="j">class<u></u><i></i></b>
+<==>
+return html::tag('< b >< /b >','class',u(),'c','d',i(),'e','f','g','h','i','j');
+>>>
+
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return b('class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html('b','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html::tag('b','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html('<b>','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html::tag('<b>','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html('<b></b>','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html::tag('<b></b>','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html('< b >','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html::tag('< b >','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html('< b >< /b >','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
+<<<
+is_equal_string ** Essential creation tests
+<b c="d" e="f" h="i">class<u></u><i></i>g<span></span><div></div><hr />j</b>
+<==>
+return html::tag('< b >< /b >','class',u(),'c','d',i(),'e','f','g',array(span(),div(),hr()),'h','i','j');
+>>>
