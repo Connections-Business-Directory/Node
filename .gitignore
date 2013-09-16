@@ -222,5 +222,5 @@ nbproject/*.*
 sftp-config.json
 
 # Ignore the testing shell plugin.
-connections-html.php
+connections-node.php
 class.html.php
