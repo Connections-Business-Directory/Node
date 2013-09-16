@@ -7,6 +7,7 @@ require('../class.node.php');
 // editted to call the new class name.
 class_alias('cnNode', 'html');
 
+// A few helper functions used throughout the unit tests.
 if (!function_exists("html")) {
 
 	function html()
@@ -43,6 +44,7 @@ if (!function_exists("control")) {
 
 }
 
+// A bunch of other helper functions used throughout the unit tests.
 if (file_exists(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'html.shortcuts.php')) require('html.shortcuts.php');
 
 class tests{
