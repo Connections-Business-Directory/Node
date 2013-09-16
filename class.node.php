@@ -113,7 +113,7 @@ class cnNode {
 	 * NOTES: Method takes n-number of params.
 	 * - The first param will be the node type.
 	 * - If a second param is supplied, that will be the node content; <node>param-2</node>
-	 * - If a third param is supplied, the output will be <node param-2="param-3" />
+	 * - If a third param is supplied, the output will be <node param-2="param-3">/node>
 	 * - If a forth param is supplied, the output will be <node param-3="param-4">param-2</node>
 	 * - If an even number of params are supplied, param-2 will always be the node content.
 	 *   The remaining params pairs will be added as node attributes where the first will be
@@ -128,7 +128,7 @@ class cnNode {
 	 *
 	 * Result:
 	 * <code>
-	 * <div /> # This seems to be a bug as the div self closes rather than creating a closing div.
+	 * <div></div>
 	 * </code>
 	 *
 	 * Example 2:
@@ -148,7 +148,7 @@ class cnNode {
 	 *
 	 * Result:
 	 * <code>
-	 * <div class="container" />
+	 * <div class="container"></div>
 	 * </code>
 	 *
 	 * Example 4:
@@ -786,7 +786,7 @@ class cnNode {
 
 		cnNode::debug( __METHOD__, "$method" );
 
-		$this->elements[ $this->element ] = new html_attribute;
+		$this->elements[ $this->element ] = new cnNode_Attribute;
 		$this->elements[ $this->element ]->__parentElement( $this->elements[ $this->element ] );
 
 		return $this->elements[ $this->element ]->$method( $args[0] );
@@ -843,12 +843,8 @@ class cnNode {
 
 }
 
-class html_attribute
+class cnNode_Attribute
 {
-	/*
-	 * html_attribute
-	 */
-
 	private $tag;
 
 	function _createNewTag($string)
@@ -878,14 +874,14 @@ class html_attribute
 		return $this->tag();
 	}
 
-	public function appendTo(html_attribute $object)
+	public function appendTo(cnNode_Attribute $object)
 	{
 		$element = $object->tag();
 		$element->addhtml($this->tag());
 		return $this->tag();
 	}
 
-	public function appendToEmpty(html_attribute $object)
+	public function appendToEmpty(cnNode_Attribute $object)
 	{
 		return $this->appendTo($object->empty());
 	}
@@ -918,7 +914,7 @@ class html_attribute
 		if (func_get_args()) foreach (func_get_args() as $object)
 			{
 				$element = $this->tag();
-				if ($object instanceOf html_attribute) {
+				if ($object instanceOf cnNode_Attribute) {
 					$element->addhtml($object->tag());
 				} else {
 					$element->addhtml($object);
@@ -953,7 +949,7 @@ class html_attribute
 		if (isset($this->_content) && is_array($this->_content)) {
 			foreach ($this->_content as $sub_element)
 			{
-				if($sub_element instanceOf html_attribute){
+				if($sub_element instanceOf cnNode_Attribute){
 					$sub_element->__dropFromMemory();
 				}
 			}
@@ -964,7 +960,7 @@ class html_attribute
 		unset($this->nodename);
 	}
 
-	function __parentElement(html_attribute $object)
+	function __parentElement(cnNode_Attribute $object)
 	{
 		$this->tag = $object;
 	}
@@ -1135,7 +1131,7 @@ class html_attribute
 		foreach ($currentObject as $key => $val)
 		{
 			if ($key[0] != "*" && $key[0] != "&" && !is_array($val) && strpos($val, "#".$search) !== false) {
-				if ($replace instanceOf html_attribute) {
+				if ($replace instanceOf cnNode_Attribute) {
 					$this->empty()->append($replace);
 				} else {
 					$this->$key = str_replace("#".$search, $replace, $this->$key);
@@ -1157,7 +1153,7 @@ class html_attribute
 		{
 			if (!is_array($val) && strpos($val, "#".$search) !== false) {
 				$masterNode = unserialize(serialize($this));
-				if ($parent instanceOf html_attribute) $parent->empty();
+				if ($parent instanceOf cnNode_Attribute) $parent->empty();
 				foreach ($replaceArray as $replaceId => $replaceData)
 				{
 					$copyNode = unserialize(serialize($masterNode));
@@ -1415,7 +1411,7 @@ class html_attribute
 
 		if ($attribute == "empty") return call_user_func(array($this, "__empty"));
 
-		if ($value instanceOf html_attribute) {
+		if ($value instanceOf cnNode_Attribute) {
 			return $value->appendTo($this)->tag();
 		}
 
@@ -1587,7 +1583,7 @@ class html_attribute
 				$subNodes = $tagContent;
 				$tagContent = "";
 				foreach ($subNodes as $elNr => $subNode)
-					if ($subNode instanceOf html_attribute) {
+					if ($subNode instanceOf cnNode_Attribute) {
 						$tagContent .= $subNode->toString();
 					} else {
 						$tagContent .= $subNode;
@@ -1689,7 +1685,7 @@ class html_attribute
 		{
 			if (!is_object($val) && $key[0] != "*" && $key[0] != '&') $copy[$key] = $val;
 
-			//elseif($val instanceOf html_attribute) $copy[$key] = $val->toArray();
+			//elseif($val instanceOf cnNode_Attribute) $copy[$key] = $val->toArray();
 			//elseif(is_array($val)) foreach($val as $subValId => $subVal) $copy[$key][$subValId] = $subVal;
 		}
 		return $copy;
@@ -1697,7 +1693,7 @@ class html_attribute
 
 	/**
 	 *
-	 * @return html_attribute
+	 * @return cnNode_Attribute
 	 */
 	public function tag()
 	{
@@ -1939,7 +1935,7 @@ class parse
 				if (isset($match[1]) && $match[1]) {
 					$attributeValue = substr(trim($attributeValue), 1, strlen(trim($attributeValue)) - 2);
 				}
-				if (is_object($htmlElement) && $htmlElement instanceOf html_attribute) {
+				if (is_object($htmlElement) && $htmlElement instanceOf cnNode_Attribute) {
 					$htmlElement->{trim($attributeName)}(trim($attributeValue));
 				} else {
 					if (isset($attributeName)) $toOutput[] = $attributeName;
