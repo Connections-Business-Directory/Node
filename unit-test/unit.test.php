@@ -1,7 +1,7 @@
 <?php
 
 // Reuire the main class.
-require('../html.class.php');
+require('../class.node.php');
 
 // Alias the orginal class name to the new class name so the tests do not need
 // editted to call the new class name.
