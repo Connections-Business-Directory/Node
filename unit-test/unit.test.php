@@ -1,5 +1,11 @@
 <?php
+
+// Reuire the main class.
 require('../html.class.php');
+
+// Alias the orginal class name to the new class name so the tests do not need
+// editted to call the new class name.
+class_alias('cnHTML', 'html');
 
 if (!function_exists("html")) {
 

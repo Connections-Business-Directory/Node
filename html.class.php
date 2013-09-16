@@ -24,7 +24,7 @@
  *
  */
 
-class html {
+class cnHTML {
 
 	public $element;
 	public $elements;
@@ -68,7 +68,7 @@ class html {
 	 */
 	public static function debug( $function = "", $string = "" ) {
 
-		if ( !html::$debug ) return;
+		if ( ! cnHTML::$debug ) return;
 
 		echo $function . ": " . trim ( $string ) . "\n";
 	}
@@ -490,7 +490,7 @@ class html {
 		$id = uniqid();
 		if (!isset(self::$tag[$id])) self::$tag[$id] = new self();
 		self::$tag[$id]->setElement($id);
-		html::debug(__METHOD__, "Create node from $nodename");
+		cnHTML::debug(__METHOD__, "Create node from $nodename");
 
 		if (!self::$magicSpecialMethods) {
 			self::__selfInvestigate();
@@ -512,7 +512,7 @@ class html {
 		$self = new ReflectionClass(__CLASS__);
 		foreach ($self->getMethods() as $id => $methodData)
 		{
-			// html::debug(__METHOD__, "Check registered methods $methodData");
+			// cnHTML::debug(__METHOD__, "Check registered methods $methodData");
 			if (strpos($methodData->name, self::$magicSpecialIdentifier) !== false) {
 				self::$magicSpecialMethods[substr($methodData->name, strlen(self::$magicSpecialIdentifier))] = $methodData->name;
 			}
@@ -566,13 +566,13 @@ class html {
 				if ( empty( $arg ) ) {
 
 //                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
-					return html::tag('[nooutput]');
-//                    return html::{'[nooutput]'}();
+					return cnHTML::tag('[nooutput]');
+//                    return cnHTML::{'[nooutput]'}();
 				}
 			}
 		}
 
-//        return html::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotanyemptymode'}(true);
+//        return cnHTML::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotanyemptymode'}(true);
 		$tag = self::tag(self::__createSpecialName(__FUNCTION__));
 		$tag->{'_name'}($args);
 		$tag->setMode(__FUNCTION__);
@@ -603,16 +603,16 @@ class html {
 					} else {
 
 //                    return call_user_func_array(array('html','tag'), array('[nooutput]'));
-						$newNodeInCharge = html::tag('[nooutput]');
-//                    return html::{'[nooutput]'}();
-//                        $newNodeInCharge = html::{'[nooutput]'}();
+						$newNodeInCharge = cnHTML::tag('[nooutput]');
+//                    return cnHTML::{'[nooutput]'}();
+//                        $newNodeInCharge = cnHTML::{'[nooutput]'}();
 					}
 				}
 
 				return $newNodeInCharge;
 			}
 		}
-//        return html::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotallemptymode'}(true);
+//        return cnHTML::{'__special__treat_next_attribute_as_nodename'}()->{'*incheckifnotallemptymode'}(true);
 		$tag = self::tag( self::__createSpecialName( __FUNCTION__ ) );
 		$tag->{'_name'}( $args );
 		$tag->setMode( __FUNCTION__ );
@@ -689,7 +689,7 @@ class html {
 
 		$callback = function( &$object ) {
 
-					$ns = html::__getState('namespace');
+					$ns = cnHTML::__getState('namespace');
 					if ( $object->nodename && $ns && strpos( $object->nodename, ':' ) === FALSE ) $object->{'&__namespace'} = $ns;
 				};
 
@@ -756,8 +756,8 @@ class html {
 	 */
 	public static function __callStatic($name, $args) {
 
-		html::debug( __METHOD__, "$name" );
-		html::commandAlias( $name );
+		cnHTML::debug( __METHOD__, "$name" );
+		cnHTML::commandAlias( $name );
 
 		if ( ! self::$magicSpecialMethods ) {
 
@@ -766,12 +766,12 @@ class html {
 
 		if (isset(self::$magicSpecialMethods[$name])) {
 			$name = self::$magicSpecialMethods[$name];
-			html::debug(__METHOD__, "Call function $name");
+			cnHTML::debug(__METHOD__, "Call function $name");
 			return call_user_func_array(array(__CLASS__, $name), $args);
 		}
 
-		if (isset($args)) return html::tag($name, $args);
-		return html::tag($name);
+		if (isset($args)) return cnHTML::tag($name, $args);
+		return cnHTML::tag($name);
 	}
 
 	/**
@@ -784,7 +784,7 @@ class html {
 	 */
 	public function __call( $method, $args ) {
 
-		html::debug( __METHOD__, "$method" );
+		cnHTML::debug( __METHOD__, "$method" );
 
 		$this->elements[ $this->element ] = new html_attribute;
 		$this->elements[ $this->element ]->__parentElement( $this->elements[ $this->element ] );
@@ -815,7 +815,7 @@ class html {
 	 */
 	public static function commandAlias( &$name ) {
 
-		if ( ! html::commandIsAlias( $name ) ) return FALSE;
+		if ( ! cnHTML::commandIsAlias( $name ) ) return FALSE;
 
 		$alias = self::$aliasCommandTable[ $name ];
 		$name  = $alias;
@@ -904,7 +904,7 @@ class html_attribute
 
 	public function appendDimension()
 	{
-		html::debug(__FUNCTION__, "Append Dimension");
+		cnHTML::debug(__FUNCTION__, "Append Dimension");
 		$this->{'*newdimension'}(true);
 		return call_user_func_array(array($this, "append"), func_get_args());
 	}
@@ -1028,15 +1028,15 @@ class html_attribute
 		}
 		if ($attribute == "explode" && is_array($value) && $this->tag()->nodename != "special:control") {
 			if (strpos(json_encode($this, JSON_FORCE_OBJECT), '#') !== false) {
-				$pseudoWrap = html::control('internalCreatedGenericControlElement'.uniqid())->append($this);
+				$pseudoWrap = cnHTML::control('internalCreatedGenericControlElement'.uniqid())->append($this);
 				return call_user_func_array(array($pseudoWrap, 'explode'), $value);
 			} else {
 				return $this;
 			}
 		}
 
-		html::debug(__METHOD__, "$attribute");
-		if (html::commandAlias($attribute)) {
+		cnHTML::debug(__METHOD__, "$attribute");
+		if (cnHTML::commandAlias($attribute)) {
 			return call_user_func_array(array($this, $attribute), $value);
 		}
 		return $this->setElementAttribute($attribute, $value);
@@ -1044,8 +1044,8 @@ class html_attribute
 
 	function __set($attribute, $value)
 	{
-		html::debug(__METHOD__, "$attribute");
-		html::commandAlias($attribute);
+		cnHTML::debug(__METHOD__, "$attribute");
+		cnHTML::commandAlias($attribute);
 		if (is_array($value) && isset($value["event"]) && isset($value["closure"]) && $value["closure"] instanceOf Closure) {
 			$closureConstruct = array($value["event"] => $value["closure"]);
 			if (isset($this->{$attribute}) && is_array($this->{$attribute})) {
@@ -1066,7 +1066,7 @@ class html_attribute
 			return $this->tag();
 		}
 		if (!isset($value)) $value = "";
-		if (!is_array($value) && !is_object($value)) html::debug(__METHOD__, $attribute." = ".gettype($value)."(".$value.")");
+		if (!is_array($value) && !is_object($value)) cnHTML::debug(__METHOD__, $attribute." = ".gettype($value)."(".$value.")");
 		$attribute = strtolower($attribute);
 		foreach (array("add", "remove") as $pre)
 		{
@@ -1083,8 +1083,8 @@ class html_attribute
 	private function addElementAttribute($attribute, $value)
 	{
 		$attrName = null;
-		if (isset($this->$attribute)) html::debug(__METHOD__, "Attribute \$attrName==\"".$attribute."\" to append is: ".gettype($this->$attribute)."(".$attribute.")");
-		html::debug(__METHOD__, "Value to append is: ".gettype($value)."(".$value.")");
+		if (isset($this->$attribute)) cnHTML::debug(__METHOD__, "Attribute \$attrName==\"".$attribute."\" to append is: ".gettype($this->$attribute)."(".$attribute.")");
+		cnHTML::debug(__METHOD__, "Value to append is: ".gettype($value)."(".$value.")");
 
 		if ($attribute == "html" || $attribute == "text") {
 			$attrName = $attribute = "_content";
@@ -1105,15 +1105,15 @@ class html_attribute
 		if (is_object($value)) {
 			$this->__pushToArray($attribute, $value);
 		} elseif ($addType == "string" && $attrType == "array" && $attrName == "_content") {
-			html::debug(__METHOD__, "Push STRING to _content ARRAYPUSH");
-			$this->__pushToArray($attribute, html::tag()->{$attribute}($value));
+			cnHTML::debug(__METHOD__, "Push STRING to _content ARRAYPUSH");
+			$this->__pushToArray($attribute, cnHTML::tag()->{$attribute}($value));
 		} elseif ($addType == "string" && $attrType == "string") {
-			html::debug(__METHOD__, "Append STRING to _content String");
+			cnHTML::debug(__METHOD__, "Append STRING to _content String");
 			if (!isset($this->$attribute)) $this->$attribute = "";
 			$this->$attribute .= ($this->$attribute && $value[strlen($value) - 1] != ">" && $attrName != "_content" ? " " : "").$value;
 		}
 		elseif ($attrType == "NULL" && $addType == "string") {
-			html::debug(__METHOD__, "Overwrite STRING in _content");
+			cnHTML::debug(__METHOD__, "Overwrite STRING in _content");
 			$this->$attribute = $value;
 		} else {
 			trigger_error("Unhandled operation $attrName $attrType $addType", E_USER_ERROR);
@@ -1124,7 +1124,7 @@ class html_attribute
 	private function __pushToArray($attribute, $element)
 	{
 		if (!isset($this->$attribute)) $this->$attribute = array();
-		if (!is_array($this->$attribute)) $this->$attribute = array(html::tag()->text($this->$attribute));
+		if (!is_array($this->$attribute)) $this->$attribute = array(cnHTML::tag()->text($this->$attribute));
 		array_push($this->$attribute, $element);
 	}
 
@@ -1204,7 +1204,7 @@ class html_attribute
 	private function __investigateArray(array $a, $dim = 0, &$info = array())
 	{
 		$dim++;
-		html::__array_depth($a);
+		cnHTML::__array_depth($a);
 		$info[$dim]["is_assoc"] = self::is_assoc($a);
 		$info[$dim]["is_dimension"] = self::is_index($a);
 		if ($info[$dim]["is_assoc"]) {
@@ -1286,7 +1286,7 @@ class html_attribute
 		unset($return[0]);
 		if ($return) foreach ($return as $level => $dataObjects)
 			{
-				$dimTag = html::tag();
+				$dimTag = cnHTML::tag();
 				if ($dataObjects) foreach ($dataObjects as $doId => $dataObject)
 					{
 						$dimTag->append($dataObject);
@@ -1314,7 +1314,7 @@ class html_attribute
 
 		if ($currentDimension == 1) $rootObject->{'&__dimensionobjects'}[$currentDimension]->empty();
 
-		$patternCollection = html::tag();
+		$patternCollection = cnHTML::tag();
 		if ($dimensionDatasets) foreach ($dimensionDatasets as $dataID => $data)
 			{
 				$pattern = $this->__copyObject($rootObject->{'&__dimensionpattern'}[$currentDimension]);
@@ -1363,12 +1363,12 @@ class html_attribute
 
 	function setElementAttribute($attribute, $value)
 	{
-		if (!is_array($value) && !is_object($value)) html::debug(__METHOD__, "Set attribute $attribute to $value");
+		if (!is_array($value) && !is_object($value)) cnHTML::debug(__METHOD__, "Set attribute $attribute to $value");
 		//echo "--> Set $attribute\n";
 //        print_r($this);
 //        if (isset($this->nodename) && $this->nodename === "__special__treat_next_attribute_as_nodename") {
-//            html::debug(__METHOD__, "Exchange preudo node for $attribute");
-//            return html::{$attribute}($value);
+//            cnHTML::debug(__METHOD__, "Exchange preudo node for $attribute");
+//            return cnHTML::{$attribute}($value);
 //        }
 
 
@@ -1376,13 +1376,13 @@ class html_attribute
 			if (is_string($value)) {
 				//echo $attribute." - ".$value."\n";
 				$this->__contentReplace($attribute, $value);
-			} elseif (is_array($value) && count($value) > 1 && html::__array_depth($value) == 1) {
+			} elseif (is_array($value) && count($value) > 1 && cnHTML::__array_depth($value) == 1) {
 				$this->__contentRepeatReplace($attribute, $value);
 			}
 			//To solve it, Im gonna do it ugly. This should be rewritten for better detection of multiparameter or multidimensional array.
 			//The problem is: This function gets called twice. First with given array, then with each data seperatly.
 			//Currently, Dimensions are restricted to cascading dimensions. It is not possible to feed to separate dimensions asyncron.
-			elseif ($attribute == "explode" && is_array($value) && count($value) >= 1 && html::__array_depth($value) >= 1) {
+			elseif ($attribute == "explode" && is_array($value) && count($value) >= 1 && cnHTML::__array_depth($value) >= 1) {
 				if (isset($this->{'&__called'}) && $this->{'&__called'}) {
 					$objectDimensions = $this->__getDimensions();
 					$objectDimensionPattern = $this->__getDimensionContainer();
@@ -1459,10 +1459,10 @@ class html_attribute
 ////            print_r($this);
 ////            print_r($attribute);
 ////            print_r($value);
-//            html::debug(__METHOD__, "Check if $attribute is_empty (".(!count($value)).")");
+//            cnHTML::debug(__METHOD__, "Check if $attribute is_empty (".(!count($value)).")");
 //            $this->nodename = "[nooutput]";
 //            return $this->tag();
-////            html::debug(__METHOD__, "Check node ".$this->nodename);
+////            cnHTML::debug(__METHOD__, "Check node ".$this->nodename);
 //        }
 
 
@@ -1530,7 +1530,7 @@ class html_attribute
 
 	private function __hasEvent($on, $function)
 	{
-		html::__hasEvent($on, $function, $this);
+		cnHTML::__hasEvent($on, $function, $this);
 		return $this->tag();
 	}
 
@@ -1541,12 +1541,12 @@ class html_attribute
 
 	private static function __isSingeTag($nodeName)
 	{
-		return (bool) in_array($nodeName, html::$singleTags); #<==== new (some changes)
+		return (bool) in_array($nodeName, cnHTML::$singleTags); #<==== new (some changes)
 	}
 
 	private static function __isUncloseTag($nodeName)
 	{
-		return (bool) in_array($nodeName, html::$uncloseTags); #<==== new
+		return (bool) in_array($nodeName, cnHTML::$uncloseTags); #<==== new
 	}
 
 	function __toString()
@@ -1644,7 +1644,7 @@ class html_attribute
 
 	public function parseAttr($string)
 	{
-		html::debug(__METHOD__, $string);
+		cnHTML::debug(__METHOD__, $string);
 		$regex = '([^ =]+)\\ *?=\\ *?("|\')((?:\\\\\\2+|[^\\2]*?)*?)\\2';
 		$regex_full = '@'.$regex.'@s';
 
@@ -1779,7 +1779,7 @@ class parse
 				}
 
 				if ($depth == 0 || $elementCount == 1) {
-					$newTag[$ID] = html::tag();
+					$newTag[$ID] = cnHTML::tag();
 
 					$firstTag = self::getTagInfo($matchArray, $firstTagID);
 					$newTag[$ID]->_nodename($firstTag["nodeName"]);
@@ -1882,7 +1882,7 @@ class parse
 
 	private static function isSingleTag($nodeName)
 	{
-		return (bool) in_array($nodeName, html::$singleTags); #<==== new (some changes)
+		return (bool) in_array($nodeName, cnHTML::$singleTags); #<==== new (some changes)
 	}
 
 	private static function braceCheck($string)
